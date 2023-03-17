@@ -14,23 +14,24 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 bg-gray-50 antialiased">
-        <div class="flex h-screen">
-          <div class="w-1/2 bg-cover bg-center" style="background-image:url('{{ asset('imgs/backgroun-biblioteca.jpg') }}');">
-          </div>
-          <div class="w-1/2 flex flex-col justify-center items-center">
-            <div>
-              <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-              </a>
+    <body class="font-sans text-gray-900 bg-gray-100 antialiased">
+        <div class="flex flex-col sm:flex-row h-screen justify-center">
+            <div class="w-full sm:w-1/2 bg-cover bg-center" style="background-image:url('{{ asset('imgs/backgroun-biblioteca.jpg') }}');">
+                <a href="http://www.itsncg.edu.mx/"><img src="{{ asset('imgs/logo.png') }}" alt="Logo" class="hidden sm:block absolute bottom-0 left-3 w-16 h-30 p-2"></a>
             </div>
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-              {{ $slot }}
+            <div class="w-full sm:w-1/2 flex flex-col justify-center items-center mx-auto">
+                <div class="mt-8">
+                    <a href="/">
+                        <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    </a>
+                </div>
+                <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+                    {{ $slot }}
+                </div>
+                <div class="sm:hidden">
+                    <a href="http://www.itsncg.edu.mx/"><img src="{{ asset('imgs/logo.png') }}" alt="Logo" class="w-16 h-30 p-2"></a>
+                </div>
             </div>
-          </div>
         </div>
     </body>
-
-
-
 </html>
