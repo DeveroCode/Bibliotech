@@ -1,4 +1,4 @@
-<div class="bg-indigo-900 text-white">
+<div class="bg-indigo-800 text-white">
     <footer class="container mx-auto py-6 px-4">
       <div class="flex flex-wrap justify-between md:text-start text-center">
         <div class="w-full md:w-1/3 mb-4 md:mb-0"">
