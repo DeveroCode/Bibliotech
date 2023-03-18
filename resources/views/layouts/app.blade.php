@@ -15,10 +15,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-white">
-            <h2>Aqui estoy</h2>
+        <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
-            <h2 class="text-white">Aqui estoy</h2>
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white">
