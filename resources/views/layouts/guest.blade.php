@@ -13,6 +13,8 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        {{-- Livewire --}}
+        @livewireStyles
     </head>
     <body class="font-sans text-gray-900 bg-gray-100 antialiased">
         <div class="flex flex-col sm:flex-row h-screen justify-center">
@@ -33,5 +35,6 @@
                 </div>
             </div>
         </div>
+        @livewireScripts
     </body>
 </html>
