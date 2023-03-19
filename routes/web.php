@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LibroController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Grouping routes
 
-Route::get('/dashboard', function () {
-    return view('administrator.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [LibroController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/create', [LibroController::class, 'create'])->name('dashboard.create');
+});
+// Route::get('/dashboard', [LibroController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
