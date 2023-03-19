@@ -18,7 +18,7 @@
                     <x-nav-link>
                         {{ __('Libros') }}
                     </x-nav-link>
-                    <x-nav-link>
+                    <x-nav-link :href="route('dashboard.create')" :active="request()->routeIs('dashboard.create')">
                         {{ __('Agregar') }}
                     </x-nav-link>
                     <x-nav-link>
