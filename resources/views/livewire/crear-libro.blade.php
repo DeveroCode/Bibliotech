@@ -69,6 +69,7 @@
             class="block text-sm mt-1 w-full"
             type="file"
             wire:model="imagen"
+            accept="image/*"
         />
         <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
     </div>

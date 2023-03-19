@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Categoria;
 use Livewire\Component;
+use App\Models\Categoria;
+use Livewire\WithFileUploads;
 
 class CrearLibro extends Component
 {
@@ -18,6 +19,8 @@ class CrearLibro extends Component
     public $descripcion;
     public $imagen;
 
+    use WithFileUploads;
+
     protected $rules = [
         'titulo' => 'required|string',
         'autores' => 'required|string',
@@ -28,7 +31,7 @@ class CrearLibro extends Component
         'cantidad' => 'required|integer',
         'isbn' => 'required|string',
         'descripcion' => 'required|string',
-        'imagen' => 'required|image',
+        'imagen' => 'required|image|max:1024',
     ];
 
     public function crearLibro()
