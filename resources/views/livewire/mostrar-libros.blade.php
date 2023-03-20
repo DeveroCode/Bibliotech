@@ -23,10 +23,9 @@
 
           {{-- Disponibles --}}
           <td class="table-cell px-6 py-4">
-            <span
-              class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+            <span class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
               <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-              Disponibles
+              Disponibles {{ $libro->cantidad }}
             </span>
           </td>
 
@@ -43,13 +42,16 @@
           </td>
           {{-- Herramientas --}}
           <td class="table-cell py-4">
-            <div class="flex items-center gap-4">
-              <a href="#">
-                <i class="fa-solid fa-trash"></i>
-              </a>
-              <a href="#">
-                <i class="fa-solid fa-pen"></i>
-              </a>
+            <div class="flex items-center gap-4 text-indigo-600 text-base">
+                <a href="#">
+                    <i class="fa-solid fa-eye"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
             </div>
           </td>
 
@@ -57,4 +59,9 @@
       </tbody>
     @endforeach
   </table>
+
+  {{-- Paginate --}}
+  <div class="mt-10">
+    {{ $libros->links() }}
+  </div>
 </div>
