@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden">
-                <div class="md:flex md:justify-center p-5 text-2xl">
+                <div class="md:flex md:justify-center text-2xl">
                     <livewire:mostrar-libros>
                 </div>
             </div>
