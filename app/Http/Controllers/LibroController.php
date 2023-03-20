@@ -40,6 +40,12 @@ class LibroController extends Controller
         //
     }
 
+    public function showLibros()
+    {
+        //
+        return view('administrator.show');
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
