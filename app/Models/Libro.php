@@ -26,4 +26,9 @@ class Libro extends Model
         'imagen',
         'user_id'
     ];
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class);
+    }
 }
