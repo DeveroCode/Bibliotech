@@ -21,7 +21,6 @@
         <div class="w-1/2 mr-2">
             <x-input-label for="tomo" :value="__('Tomo')"  class="uppercase"/>
             <x-text-input id="tomo" class="block mt-1 w-full" type="text" wire:model="tomo" :value="old('tomo')" placeholder="Ej: Tomo 3"/>
-            <x-input-error :messages="$errors->get('tomo')" class="mt-2" />
         </div>
 
         <div class="w-1/2">
@@ -45,7 +44,7 @@
 
         <div class="w-1/2">
             <x-input-label for="cantidad" :value="__('cantidad')"  class="uppercase"/>
-            <x-text-input id="cantidad" class="block mt-1 w-full" type="text" wire:model="titulo" :value="old('titulo')" placeholder="Ej: calculo diferencial"/>
+            <x-text-input id="cantidad" class="block mt-1 w-full" type="text" wire:model="cantidad" :value="old('cantidad')" placeholder="Ej: calculo diferencial"/>
             <x-input-error :messages="$errors->get('cantidad')" class="mt-2" />
         </div>
     </div>
@@ -71,6 +70,14 @@
             wire:model="imagen"
             accept="image/*"
         />
+
+        {{-- Preview image --}}
+        <div class="my-5 w-80">
+            @if ($imagen)
+                Imagen: <img src="{{ $imagen->temporaryUrl() }}">
+            @endif
+        </div>
+
         <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
     </div>
 
