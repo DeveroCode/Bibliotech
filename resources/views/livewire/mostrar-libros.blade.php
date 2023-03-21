@@ -49,7 +49,7 @@
                 <a href="#">
                     <i class="fa-solid fa-trash"></i>
                 </a>
-                <a href="#">
+                <a href="{{ route('dashboard.edit', $libro->id) }}">
                     <i class="fa-solid fa-pen"></i>
                 </a>
             </div>

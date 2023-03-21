@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [LibroController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/create', [LibroController::class, 'create'])->name('dashboard.create');
+    Route::get('/dashboard/{libro}/edit', [LibroController::class, 'edit'])->name('dashboard.edit');
     Route::get('/dashboard/show-list-books', [LibroController::class, 'showLibros'])->name('dashboard.show');
 });
 // Route::get('/dashboard', [LibroController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');

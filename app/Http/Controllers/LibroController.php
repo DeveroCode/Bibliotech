@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Libro;
 use Illuminate\Http\Request;
 
 class LibroController extends Controller
@@ -49,9 +50,13 @@ class LibroController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Libro $libro)
     {
         //
+        return view('administrator.edit', [
+            'libro' => $libro
+        ]);
+
     }
 
     /**
