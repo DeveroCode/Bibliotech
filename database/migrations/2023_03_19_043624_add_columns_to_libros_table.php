@@ -15,7 +15,6 @@ return new class extends Migration
             //
             $table->string('titulo');
             $table->string('edicion');
-            // $table->foreignId('autor_id')->constrained('autores')->onDelete('cascade');
             $table->string('tomo')->nullable();
             $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
             $table->date('fecha');
@@ -37,6 +36,7 @@ return new class extends Migration
             //
             $table->dropForeign('libros_categoria_id_foreign');
             $table->dropForeign('libros_user_id_foreign');
+            // $table->dropForeign('libros_autor_id_foreign');
             $table->dropColumn(['titulo', 'edicion', 'tomo', 'categoria_id', 'fecha', 'cantidad', 'isbn', 'descripcion', 'imagen']);
         });
     }
