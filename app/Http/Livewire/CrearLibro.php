@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Autor;
+use App\Models\Libro;
 use Livewire\Component;
 use App\Models\Categoria;
-use App\Models\Libro;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
 
 class CrearLibro extends Component
 {
@@ -39,14 +41,14 @@ class CrearLibro extends Component
     {
         $datos = $this->validate();
 
+
         // Save image
         $imagen = $this->imagen->store('public/libros');
         $datos['imagen'] = str_replace('public/libros/', '', $imagen);
 
         // Create book
-        Libro::create([
+        $libro = Libro::create([
             'titulo' => $datos['titulo'],
-            'autores' => $datos['autores'],
             'edicion' => $datos['edicion'],
             'tomo' => $datos['tomo'],
             'categoria_id' => $datos['categoria'],
@@ -56,7 +58,18 @@ class CrearLibro extends Component
             'descripcion' => $datos['descripcion'],
             'imagen' => $datos['imagen'],
             'user_id' => auth()->user()->id,
+
         ]);
+
+        // Assign authors to book
+        $autores = explode(',', $datos['autores']);
+        foreach ($autores as $autor) {
+            $autor = Autor::firstOrCreate(['autores_id' => $autor]);
+            $libro->autor()->attach($autor->id);
+        }
+
+
+
         // create message of success
         session()->flash('message', 'Libro creado con éxito');
 
