@@ -15,7 +15,7 @@ class Libro extends Model
 
     protected $fillable = [
         'titulo',
-        'autores',
+        'autor_id',
         'edicion',
         'tomo',
         'categoria_id',
@@ -30,5 +30,10 @@ class Libro extends Model
     public function categoria()
     {
         return $this->belongsTo(Categoria::class);
+    }
+
+    public function autor()
+    {
+        return $this->belongsTo(autor::class);
     }
 }

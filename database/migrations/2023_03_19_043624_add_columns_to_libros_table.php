@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::table('libros', function (Blueprint $table) {
             //
             $table->string('titulo');
-            $table->string('autores');
             $table->string('edicion');
+            // $table->foreignId('autor_id')->constrained('autores')->onDelete('cascade');
             $table->string('tomo')->nullable();
             $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
             $table->date('fecha');
@@ -37,7 +37,7 @@ return new class extends Migration
             //
             $table->dropForeign('libros_categoria_id_foreign');
             $table->dropForeign('libros_user_id_foreign');
-            $table->dropColumn(['titulo', 'autores', 'edicion', 'tomo', 'categoria_id', 'fecha', 'cantidad', 'isbn', 'descripcion', 'imagen']);
+            $table->dropColumn(['titulo', 'edicion', 'tomo', 'categoria_id', 'fecha', 'cantidad', 'isbn', 'descripcion', 'imagen']);
         });
     }
 };
