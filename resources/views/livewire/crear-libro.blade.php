@@ -6,14 +6,14 @@
     </div>
 
     <div class="mt-5">
-        <x-input-label for="autores" :value="__('Autores')"  class="uppercase"/>
+        <x-input-label for="autores" :value="__('Autores *Recuerda colocar al autor principal primero')"  class="uppercase"/>
         <x-text-input id="autores" class="block mt-1 w-full" type="text" wire:model="autores" :value="old('autores')" placeholder="Ej: Isaac Newtoon"/>
         <x-input-error :messages="$errors->get('autores')" class="mt-2" />
     </div>
 
     <div class="mt-5">
-        <x-input-label for="edicion" :value="__('Edicion')"  class="uppercase"/>
-        <x-text-input id="edicion" class="block mt-1 w-full" type="text" wire:model="edicion" :value="old('edicion')" placeholder="Ej: primera edicion"/>
+        <x-input-label for="edicion" :value="__('Lugar y Editorial')"  class="uppercase"/>
+        <x-text-input id="edicion" class="block mt-1 w-full" type="text" wire:model="edicion" :value="old('edicion')" placeholder="Ej: Mexico: Addisson Wesley 1998"/>
         <x-input-error :messages="$errors->get('edicion')" class="mt-2" />
     </div>
 

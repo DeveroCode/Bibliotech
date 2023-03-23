@@ -79,10 +79,10 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('General') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('dashboard.show')" :active="request()->routeIs('dashboard.show')">
                 {{ __('Libros') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('dashboard.create')" :active="request()->routeIs('dashboard.create')">
                 {{ __('Agregar') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link>
