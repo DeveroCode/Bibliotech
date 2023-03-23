@@ -8,13 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Autor extends Model
 {
     use HasFactory;
-
+    protected  $table = "autores";
     protected $fillable = [
-        'autores_id',
+        'autor',
     ];
 
-    public function libro()
+    // public function libros()
+    // {
+    //     return $this->belongsToMany(Libro::class);
+    // }
+
+    public function autores()
     {
-        return $this->belongsToMany(libro::class);
+        return $this->belongsToMany(Autor::class, 'autor_libro', 'libros_id', 'autores_id');
     }
+
 }

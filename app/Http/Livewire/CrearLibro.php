@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class CrearLibro extends Component
 {
+
     public $titulo;
     public $autores;
     public $edicion;
@@ -37,45 +38,53 @@ class CrearLibro extends Component
         'imagen' => 'required|image|max:1024',
     ];
 
+
+
     public function crearLibro()
-    {
-        $datos = $this->validate();
-
-
-        // Save image
-        $imagen = $this->imagen->store('public/libros');
-        $datos['imagen'] = str_replace('public/libros/', '', $imagen);
-
-        // Create book
-        $libro = Libro::create([
-            'titulo' => $datos['titulo'],
-            'edicion' => $datos['edicion'],
-            'tomo' => $datos['tomo'],
-            'categoria_id' => $datos['categoria'],
-            'fecha' => $datos['fecha'],
-            'cantidad'  => $datos['cantidad'],
-            'isbn' => $datos['isbn'],
-            'descripcion' => $datos['descripcion'],
-            'imagen' => $datos['imagen'],
-            'user_id' => auth()->user()->id,
-
-        ]);
-
-        // Assign authors to book
-        $autores = explode(',', $datos['autores']);
-        foreach ($autores as $autor) {
-            $autor = Autor::firstOrCreate(['autores_id' => $autor]);
-            $libro->autor()->attach($autor->id);
-        }
-
-
-
-        // create message of success
-        session()->flash('message', 'Libro creado con éxito');
-
-        // redirect to home
-        return redirect()->route('dashboard');
+{
+    $datos = $this->validate();
+    // Array autores
+    $autores = explode(',', $datos['autores']);
+    $autores_ids = [];
+    foreach ($autores as $autor) {
+        $autor = Autor::firstOrCreate(['autor' => $autor]);
+        $autores_ids[] = $autor->id;
     }
+
+    // Guardar imagen
+    $imagen = $this->imagen->store('public/libros');
+    $datos['imagen'] = str_replace('public/libros/', '', $imagen);
+
+
+
+    // Crear el libro
+     $libro = Libro::create([
+        'titulo' => $datos['titulo'],
+        'edicion' => $datos['edicion'],
+        'tomo' => $datos['tomo'],
+        'categoria_id' => $datos['categoria'],
+        'fecha' => $datos['fecha'],
+        'cantidad'  => $datos['cantidad'],
+        'isbn' => $datos['isbn'],
+        'descripcion' => $datos['descripcion'],
+        'imagen' => $datos['imagen'],
+        'user_id' => auth()->user()->id,
+    ]);
+
+    // Adjuntar autores al libro
+    //$libro->autores()->attach($autores_ids);
+    foreach ($autores_ids as $autor_id) {
+        DB::table('autor_libro')->insert([
+            'libros_id' => $libro->id,
+            'autores_id' => $autor_id,
+        ]);
+    }
+    // Crear mensaje de éxito
+    session()->flash('message', 'Libro creado con éxito');
+
+    // Redirigir al dashboard
+    return redirect()->route('dashboard');
+}
 
     public function render()
     {
