@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Autor;
 use App\Models\Libro;
 use Livewire\Component;
 use App\Models\Categoria;
@@ -51,13 +52,13 @@ class EditarLibro extends Component
         $this->descripcion = $libro->descripcion;
         $this->imagen = $libro->imagen;
 
-        $autores = explode(';', $libro->autores);
-        $formatted_autores = [];
+        $autores = $libro->autores;
+        $autores_array = [];
         foreach ($autores as $autor) {
-            $name_parts = explode(',', $autor);
-            $formatted_autores[] = trim($name_parts[1]) . ' ' . trim($name_parts[0]);
+            $autores_array[] = $autor->autor;
         }
-        $this->autores = implode(', ', $formatted_autores);
+        $this->autores = implode(', ', $autores_array);
+
     }
 
 
@@ -73,7 +74,6 @@ class EditarLibro extends Component
         $libro = Libro::find($this->libro_id);
         // value assignment to the book
         $libro->titulo = $datos['titulo'];
-        $libro->autores = $datos['autores'];
         $libro->edicion = $datos['edicion'];
         $libro->tomo = $datos['tomo'];
         $libro->categoria_id = $datos['categoria'];
@@ -82,6 +82,15 @@ class EditarLibro extends Component
         $libro->isbn = $datos['isbn'];
         $libro->descripcion = $datos['descripcion'];
         $libro->imagen = $datos['imagen'] ?? $libro->imagen;
+
+        // Update the autors
+        $autores = explode(',', $datos['autores']);
+        $autores_ids = [];
+        foreach ($autores as $autor) {
+            $autor = Autor::firstOrCreate(['autor' => $autor]);
+            $autores_ids[] = $autor->id;
+        }
+        $libro->autores()->sync($autores_ids);
         // Save the book
         $libro->save();
         // Redirect

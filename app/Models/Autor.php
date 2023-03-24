@@ -18,8 +18,8 @@ class Autor extends Model
     //     return $this->belongsToMany(Libro::class);
     // }
 
-    public function autores()
-    {
-        return $this->belongsToMany(Autor::class, 'autor_libro', 'libros_id', 'autores_id');
-    }
+    // public function autores()
+    // {
+    //     return $this->belongsToMany(Autor::class, 'autor_libro', 'libros_id', 'autores_id');
+    // }
 }

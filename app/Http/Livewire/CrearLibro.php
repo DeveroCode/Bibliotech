@@ -44,6 +44,7 @@ class CrearLibro extends Component
     {
         $datos = $this->validate();
         // Array autores
+        $datos['autores'] = strtolower($datos['autores']);
         $autores = explode(',', $datos['autores']);
         $autores_ids = [];
         foreach ($autores as $autor) {
@@ -76,6 +77,7 @@ class CrearLibro extends Component
                 'autores_id' => $autor_id,
             ]);
         }
+
         // Crear mensaje de éxito
         session()->flash('message', 'Libro creado con éxito');
 

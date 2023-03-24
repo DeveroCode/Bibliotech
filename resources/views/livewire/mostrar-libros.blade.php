@@ -3,7 +3,7 @@
   <table class="table-auto text-xs w-full m-auto border-collapse bg-white text-left text-gray-500">
     <thead class="bg-gray-50">
       <tr>
-        <th class="px-3 py-4  font-medium text-gray-900">Título</th>
+        <th class="w-1/3 px-3 py-4  font-medium text-gray-900">Título</th>
         <th class="px-3 py-4  font-medium text-gray-900">Estado</th>
         <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Edicion</th>
         <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Categoría</th>
@@ -18,7 +18,7 @@
             <div class="text-sm">
               <div class="font-medium text-gray-700">{{ $libro->titulo }}</div>
               <div class="text-gray-400">
-                {{-- get the author data from the previous line of code you just created in CrearLibri --}}
+                {{-- Autores --}}
                 @foreach ($libro->autores as $autor)
                     {{ $autor->autor }}
                 @endforeach
