@@ -9,7 +9,6 @@ class Autor_libro extends Model
 {
     use HasFactory;
     protected $table = "autor_libro";
-
     protected $fillable = [
         'autores_id',
         'libros_id',
