@@ -17,7 +17,12 @@
           <th class="flex gap-3 px-3 py-2 font-normal text-gray-900">
             <div class="text-sm">
               <div class="font-medium text-gray-700">{{ $libro->titulo }}</div>
-              <div class="text-gray-400">{{ $libro->autores }}</div>
+              <div class="text-gray-400">
+                {{-- get the author data from the previous line of code you just created in CrearLibri --}}
+                @foreach ($libro->autores as $autor)
+                    {{ $autor->autor }}
+                @endforeach
+                </div>
             </div>
           </th>
 

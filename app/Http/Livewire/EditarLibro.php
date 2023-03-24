@@ -42,7 +42,6 @@ class EditarLibro extends Component
     public function mount(Libro $libro){
         $this->libro_id = $libro->id;
         $this->titulo = $libro->titulo;
-        $this->autores = $libro->autores;
         $this->edicion = $libro->edicion;
         $this->tomo = $libro->tomo;
         $this->categoria = $libro->categoria_id;
@@ -51,6 +50,14 @@ class EditarLibro extends Component
         $this->isbn = $libro->isbn;
         $this->descripcion = $libro->descripcion;
         $this->imagen = $libro->imagen;
+
+        $autores = explode(';', $libro->autores);
+        $formatted_autores = [];
+        foreach ($autores as $autor) {
+            $name_parts = explode(',', $autor);
+            $formatted_autores[] = trim($name_parts[1]) . ' ' . trim($name_parts[0]);
+        }
+        $this->autores = implode(', ', $formatted_autores);
     }
 
 

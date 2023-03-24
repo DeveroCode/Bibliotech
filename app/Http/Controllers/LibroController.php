@@ -43,8 +43,8 @@ class LibroController extends Controller
 
     public function showLibros()
     {
-        //
-        return view('administrator.show');
+        $libros = Libro::with('autores')->get();
+        return view('administrator.show',  ['libros' => $libros]);
     }
 
     /**
