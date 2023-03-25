@@ -183,7 +183,5 @@
         </div>
     </div>
 </x-app-layout>
-@push('scripts')
-    <script src="https://kit.fontawesome.com/85d631ed4b.js" crossorigin="anonymous"></script>
-@endpush
+
 
