@@ -15,7 +15,10 @@ class LibroController extends Controller
     public function index()
     {
         //
-        return view('administrator.index');
+        $libros_en_existencia = Libro::where('cantidad', '>', 0)->count();
+        return view('administrator.index', [
+            'libros_en_existencia' => $libros_en_existencia
+        ]);
     }
 
     /**
@@ -62,18 +65,14 @@ class LibroController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        //delete the books and autors
+        $libro = Libro::find($id);
+        $libro->autores()->detach();
+        $libro->delete();
+        return redirect()->route('dashboard.show');
     }
 }
