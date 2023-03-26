@@ -65,6 +65,12 @@ class EditarLibro extends Component
     // Edit and create libro
     public function editarLibro(){
         $datos = $this->validate();
+
+        $datos['autores'] = strtolower($datos['autores']);
+        $datos['titulo'] = strtolower($datos['titulo']);
+        $datos['edicion'] = strtolower($datos['edicion']);
+        $datos['categoria_id'] = strtolower($datos['categoria']);
+        $datos['descripcion'] = strtolower($datos['descripcion']);
         //check if a new image exists
         if ($this->imagen_nueva) {
             $imagen = $this->imagen_nueva->store('public/libros');

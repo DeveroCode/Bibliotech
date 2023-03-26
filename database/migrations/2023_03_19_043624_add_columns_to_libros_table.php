@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
             $table->date('fecha');
             $table->integer('cantidad');
-            $table->string('isbn');
+            $table->string('isbn')->unique();
             $table->text('descripcion');
             $table->string('imagen');
             $table->integer('publicado')->default(1);

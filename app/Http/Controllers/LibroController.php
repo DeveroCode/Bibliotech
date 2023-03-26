@@ -38,14 +38,6 @@ class LibroController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     public function showLibros()
     {
         $libros = Libro::with('autores')->get();
@@ -62,17 +54,5 @@ class LibroController extends Controller
             'libro' => $libro
         ]);
 
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //delete the books and autors
-        $libro = Libro::find($id);
-        $libro->autores()->detach();
-        $libro->delete();
-        return redirect()->route('dashboard.show');
     }
 }

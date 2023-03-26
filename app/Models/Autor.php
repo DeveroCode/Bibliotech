@@ -15,11 +15,11 @@ class Autor extends Model
 
     // public function libros()
     // {
-    //     return $this->belongsToMany(Libro::class);
+    //     return $this->belongsToMany(Libro::class, 'autor_libro', 'libros_id', 'autores_id');
     // }
 
-    // public function autores()
-    // {
-    //     return $this->belongsToMany(Autor::class, 'autor_libro', 'libros_id', 'autores_id');
-    // }
+    public function libros()
+    {
+        return $this->belongsToMany(Libro::class, 'autor_libro', 'autores_id', 'libros_id');
+    }
 }

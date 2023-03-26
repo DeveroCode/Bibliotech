@@ -33,7 +33,7 @@ class CrearLibro extends Component
         'categoria' => 'required|integer',
         'fecha' => 'required|date',
         'cantidad' => 'required|integer',
-        'isbn' => 'required|string',
+        'isbn' => 'required|string|unique:libros,isbn',
         'descripcion' => 'required|string',
         'imagen' => 'required|image|max:1024',
     ];
@@ -43,8 +43,12 @@ class CrearLibro extends Component
     public function crearLibro()
     {
         $datos = $this->validate();
-        // Array autores
+        // Convert to lowercase
         $datos['autores'] = strtolower($datos['autores']);
+        $datos['titulo'] = strtolower($datos['titulo']);
+        $datos['edicion'] = strtolower($datos['edicion']);
+        $datos['categoria_id'] = strtolower($datos['categoria']);
+        $datos['descripcion'] = strtolower($datos['descripcion']);
         $autores = explode(',', $datos['autores']);
         $autores_ids = [];
         foreach ($autores as $autor) {
@@ -55,6 +59,16 @@ class CrearLibro extends Component
         // Guardar imagen
         $imagen = $this->imagen->store('public/libros');
         $datos['imagen'] = str_replace('public/libros/', '', $imagen);
+
+        // Verificar si el ISBN ya existe en la base de datos
+        if (Libro::where('isbn', $datos['isbn'])->exists()) {
+            // Crear mensaje de error
+            session()->flash('error', 'El ISBN ya existe en la base de datos.');
+
+            // Redirigir al formulario
+            return redirect()->back();
+        }
+
 
         // Crear el libro
         $libro = Libro::create([
