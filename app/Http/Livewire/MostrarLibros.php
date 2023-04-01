@@ -8,7 +8,8 @@ use Livewire\Component;
 
 class MostrarLibros extends Component
 {
-    protected $listeners = ['deleteBook'];
+    public $isbn;
+    protected $listeners = ['deleteBook', 'leerDatos' => 'buscar'];
 
     // Create function of sweet alert to delete books
     public function deleteBook(Libro $libro)
@@ -35,10 +36,19 @@ class MostrarLibros extends Component
 
     }
 
+    public function buscar($isbn)
+    {
+        $this->isbn = $isbn;
+    }
+
     public function render()
     {
-        $libros = Libro::where('user_id', auth()->user()->id)->paginate(50);
-
+        if ($this->isbn) {
+            $libros = Libro::where('isbn', 'LIKE', '%' . $this->isbn . '%')->paginate(50);
+        } else {
+            $libros = Libro::paginate(50);
+        }
+        // $libros = Libro::where('user_id', auth()->user()->id)->paginate(50);
         return view('livewire.mostrar-libros', [
             'libros' => $libros
         ]);
