@@ -16,59 +16,105 @@
             </tr>
         </thead>
         @foreach ($libros as $libro)
-        <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-            <tr class="hover:bg-gray-50">
-                {{-- Titulo y Autores --}}
-                <th class="flex gap-3 px-3 py-2 font-normal text-gray-900">
-                    <div class="text-sm">
-                        <div class="font-medium text-gray-700 capitalize">{{ $libro->titulo }}</div>
-                        <div class="text-gray-400 capitalize">
-                            {{-- Autores --}}
-                            @foreach ($libro->autores as $autor)
-                            {{ $autor->autor }}
-                            @endforeach
+            <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+                <tr class="hover:bg-gray-50">
+                    {{-- Titulo y Autores --}}
+                    <th class="flex gap-3 px-3 py-2 font-normal text-gray-900">
+                        <div class="text-sm">
+                            <div class="font-medium text-gray-700 capitalize">{{ $libro->titulo }}</div>
+                            <div class="text-gray-400 capitalize">
+                                {{-- Autores --}}
+                                @foreach ($libro->autores as $autor)
+                                {{ $autor->autor }}
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                </th>
+                    </th>
 
-                {{-- Disponibles --}}
-                <td class="table-cell px-6 py-4">
-                    <span
-                        class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                        <span class="h-1.5 w-1.5 rounded-full bg-green-600 capitalize"></span>
-                        Disponibles {{ $libro->cantidad }}
-                    </span>
-                </td>
-
-                {{-- Edicion --}}
-                <td class="px-2 py-2 hidden lg:table-cell capitalize">{{ $libro->edicion }}</td>
-                {{-- Categoria --}}
-                <td class="hidden lg:table-cell px-2 py-2">
-                    <div class="flex gap-2">
+                    {{-- Disponibles --}}
+                    <td class="table-cell px-6 py-4">
                         <span
-                            class="inline-flex items-center gap-1 rounded-full bg-sea-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                            {{ $libro->categoria->categoria}}
+                            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+                            <span class="h-1.5 w-1.5 rounded-full bg-green-600 capitalize"></span>
+                            Disponibles {{ $libro->cantidad }}
                         </span>
-                    </div>
-                </td>
-                {{-- Herramientas --}}
-                <td class="table-cell py-4">
-                    <div class="flex items-center gap-4 text-indigo-600 text-base">
-                        <a href="#">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                        {{-- pasa los nombres de los autores de cada libro --}}
-                        <button wire:click="$emit('delete', {{ $libro->id }})">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <a href="{{ route('dashboard.edit', $libro->id) }}">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                    </div>
-                </td>
+                    </td>
 
-            </tr>
-        </tbody>
+                    {{-- Edicion --}}
+                    <td class="px-2 py-2 hidden lg:table-cell capitalize">{{ $libro->edicion }}</td>
+                    {{-- Categoria --}}
+                    <td class="hidden lg:table-cell px-2 py-2">
+                        <div class="flex gap-2">
+                            {{-- changes the color depending on the category, i.e. if it is 1=bg-orange-600 --}}
+                            @switch($libro->categoria->id)
+                                @case(1)
+                                    <span
+                                    class="inline-flex items-center gap-1 rounded-full bg-sea-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
+                                        {{ $libro->categoria->categoria}}
+                                    </span>
+                                    @break
+                                @case(2)
+                                    <span
+                                    class="inline-flex items-center gap-1 rounded-full bg-indigo-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
+                                        {{ $libro->categoria->categoria}}
+                                    </span>
+                                    @break
+                                @case(3)
+                                    <span
+                                    class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
+                                        {{ $libro->categoria->categoria}}
+                                    </span>
+                                    @break
+                                @case(4)
+                                    <span
+                                    class="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
+                                        {{ $libro->categoria->categoria}}
+                                    </span>
+                                    @break
+                                @case(5)
+                                    <span
+                                    class="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
+                                        {{ $libro->categoria->categoria}}
+                                    </span>
+                                    @break
+                                @case(6)
+                                    <span
+                                    class="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
+                                        {{ $libro->categoria->categoria}}
+                                    </span>
+                                    @break
+                                @case(7)
+                                    <span
+                                    class="inline-flex items-center gap-1 rounded-full bg-orange-100 px-2 py-1 text-xs capitalize font-semibold text-blue-500">
+                                        {{ $libro->categoria->categoria}}
+                                    </span>
+                                    @break
+                                @default
+                            @endswitch
+                            {{-- <span
+                            class="inline-flex items-center gap-1 rounded-full bg-sea-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
+                                {{ $libro->categoria->categoria}}
+                            </span> --}}
+                        </div>
+                    </td>
+                    {{-- Herramientas --}}
+                    <td class="table-cell py-4">
+                        <div class="flex items-center gap-4 text-indigo-600 text-base">
+                            <a href="#">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                            {{-- pasa los nombres de los autores de cada libro --}}
+                            <button wire:click="$emit('delete', {{ $libro->id }})">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <a href="{{ route('dashboard.edit', $libro->id) }}">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
         @endforeach
     </table>
 

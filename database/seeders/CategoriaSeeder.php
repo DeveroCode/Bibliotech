@@ -22,7 +22,7 @@ class CategoriaSeeder extends Seeder
         ]);
 
         DB::table('categorias')->insert([
-            'categoria' => 'Contabilidad',
+            'categoria' => 'Contaduria',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
@@ -44,6 +44,20 @@ class CategoriaSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
+
+        DB::table('categorias')->insert([
+            'categoria' => 'Industrial',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+
+        DB::table('categorias')->insert([
+            'categoria' => 'Electronica',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
 
         DB::table('categorias')->insert([
             'categoria' => 'Revista',
