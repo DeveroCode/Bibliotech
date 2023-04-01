@@ -53,6 +53,10 @@ class LibroController extends Controller
         return view('administrator.edit', [
             'libro' => $libro
         ]);
+    }
 
+    public function print()
+    {
+        return view('administrator.print');
     }
 }
