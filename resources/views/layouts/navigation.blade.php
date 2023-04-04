@@ -47,6 +47,10 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
+
+                    <x-nav-link :href="route('dashboard.lending')" :active="request()->routeIs('dashboard.lending')">
+                        {{ __('Prestamos') }}
+                    </x-nav-link>
                     {{-- <x-nav-link :href="route('dashboard.show')" :active="request()->routeIs('dashboard.show')">
                         {{ __('Libros') }}
                     </x-nav-link>

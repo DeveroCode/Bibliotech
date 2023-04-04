@@ -45,7 +45,6 @@
                     {{-- Categoria --}}
                     <td class="hidden lg:table-cell px-2 py-2">
                         <div class="flex gap-2">
-                            {{-- changes the color depending on the category, i.e. if it is 1=bg-orange-600 --}}
                             @switch($libro->categoria->id)
                                 @case(1)
                                     <span
