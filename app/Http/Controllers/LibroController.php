@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Dompdf\Dompdf;
 use App\Models\Autor;
-use App\Models\Autor_libro;
 use App\Models\Libro;
+use App\Models\Autor_libro;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LibroController extends Controller
 {
@@ -53,6 +55,17 @@ class LibroController extends Controller
         return view('administrator.edit', [
             'libro' => $libro
         ]);
+    }
+
+    public function lending(){
+        return view('administrator.lending');
+    }
+
+    public function printPDF()
+    {
+        $libros = Libro::with('autores')->get();
+        $pdf = PDF::loadView('pdf.inventory', ['libros' => $libros])->setPaper('a4', 'portrait');
+        return $pdf->stream('inventory.pdf');
     }
 
     public function print()
