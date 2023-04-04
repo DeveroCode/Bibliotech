@@ -64,7 +64,7 @@ class LibroController extends Controller
     public function printPDF()
     {
         $libros = Libro::with('autores')->get();
-        $pdf = PDF::loadView('pdf.inventory', ['libros' => $libros])->setPaper('a4', 'portrait');
+        $pdf = PDF::loadView('pdf.inventory_2', ['libros' => $libros])->setPaper('a4', 'portrait');
         return $pdf->stream('inventory.pdf');
     }
 
