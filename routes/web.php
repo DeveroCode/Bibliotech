@@ -26,6 +26,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/{libro}/edit', [LibroController::class, 'edit'])->name('dashboard.edit');
     Route::get('/dashboard/show-list-books', [LibroController::class, 'showLibros'])->name('dashboard.show');
     Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
+    Route::get('/dashboard/print/PDF', [LibroController::class, 'printPDF'])->name('dashboard.printPDF');
+    Route::get('/dashboard/lending', [LibroController::class, 'lending'])->name('dashboard.lending');
 });
 // Route::get('/dashboard', [LibroController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
