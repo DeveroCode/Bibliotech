@@ -16,7 +16,7 @@
     </div>
     {{-- Information font-sans antialiased --}}
     <header class="header">
-        <h1 class="title">Instituto Técnologico Superior de Nuevo Casas Grandes Chihuahua</h1>
+        <h1 class="title">Instituto Tecnólogico Superior de Nuevo Casas Grandes Chihuahua</h1>
         <p class="subtitle">Av. Tecnologico No. 7100 C.P. 31700</p>
         <span class="text-info">Inventario de libros de la biblioteca</span>
     </header>
