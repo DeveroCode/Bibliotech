@@ -107,7 +107,8 @@ body{
 .table-group{
     width: 90%;
     margin: 0 auto;
-    margin-top: 5rem;
+    margin-top: 2.6rem;
+    margin-bottom: 1.5rem;
 }
 
 .table-group .group{
