@@ -46,7 +46,7 @@ class MostrarLibros extends Component
         if ($this->isbn) {
             $libros = Libro::where('isbn', 'LIKE', '%' . $this->isbn . '%')->paginate(50);
         } else {
-            $libros = Libro::paginate(50);
+            $libros = Libro::latest()->paginate(50);
         }
         // $libros = Libro::where('user_id', auth()->user()->id)->paginate(50);
         return view('livewire.mostrar-libros', [
