@@ -32,10 +32,10 @@ class Libro extends Model
         return $this->belongsTo(Categoria::class);
     }
 
-    // public function autores()
-    // {
-    //     return $this->belongsToMany(Autor::class, 'autor_libro', 'libros_id', 'autores_id');
-    // }
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function autores()
     {

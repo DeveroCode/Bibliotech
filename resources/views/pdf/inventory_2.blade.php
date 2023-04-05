@@ -25,13 +25,28 @@
         <h2 class="information__title p-1">Libros en existencia</h2>
         <div class="libros-count">
             <p class="information__sub p-1 fs-2 text-capitalize">expedición:  <span class="text-normal fs-1">{{ now()->format('d/m/Y') }}</span></p>
-            <span class="information__sub p-1 fs-2 text-capitalize">libros: <span class="text-normal fs-1">{{ now()->format('d/m/Y') }}</span>
+            <span class="information__sub p-1 fs-2 text-capitalize">libros: <span class="text-normal fs-1">{{ $count }}</span>
         </div>
+        @php
+            $lastUserId = null;
+        @endphp
 
-        <div class="libros-bibliotecario">
-            <p class="information__sub pr-1 fs-2 text-capitalize">expedido por: <span class="fs-1 text-normal text-capitalize">carlos alberto martinez bautista</span></p>
-            <p class="information__sub fs-2 text-capitalize">folio: <span class="text-normal fs-1">19CG0063</span></span>
-        </div>
+        @foreach ($libros as $libro)
+            <div class="libros-bibliotecario">
+                @if ($lastUserId != $libro->usuario->id)
+                    <p class="information__sub pr-1 fs-2 text-capitalize">expedido por:
+                        <span class="fs-1 text-normal text-capitalize">
+                            {{ $libro->usuario->name }}
+                        </span>
+                    </p>
+                    @php
+                        $lastUserId = $libro->usuario->id;
+                    @endphp
+
+                    <p class="information__sub fs-2 text-capitalize">folio: <span class="text-normal fs-1">{{ $libro->usuario->email }}</span></p>
+                @endif
+            </div>
+        @endforeach
     </div>
 
     {{-- Table --}}
