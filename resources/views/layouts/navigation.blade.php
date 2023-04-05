@@ -92,11 +92,6 @@
                                 {{ __('Salir') }}
                             </x-dropdown-link>
                         </form>
-
-                        {{-- Print reports --}}
-                        <x-dropdown-link :href="route('dashboard.print')">
-                            {{ __('Imprimir reporte') }}
-                        </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
             </div>
