@@ -35,9 +35,12 @@ class LibroController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function show(Libro $libro)
     {
         //
+        return view('home.show', [
+            'libro' => $libro,
+        ]);
     }
 
     public function showLibros()
