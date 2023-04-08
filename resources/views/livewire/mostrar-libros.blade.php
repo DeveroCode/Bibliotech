@@ -134,26 +134,26 @@
 {{-- Alert --}}
 <script>
     Livewire.on('delete', (libroId, autorIds) => {
-            Swal.fire({
-            title: 'esta seguro de eliminar este libro?',
-            text: "Recuerda que no se podra recuperar",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#4FA755',
-            cancelButtonColor: '#694A97',
-            confirmButtonText: 'Si, eliminar!',
-            cancelButtonText: 'Cancelar'
-            }).then((result) => {
-            if (result.isConfirmed) {
-                // Delete book and authors
-                Livewire.emit('deleteBook', libroId);
-                Swal.fire(
-                'Eliminado!',
-                'El libro ha sido eliminado.',
-                'success'
-                )
-            }
-            })
-        });
+        Swal.fire({
+        title: 'esta seguro de eliminar este libro?',
+        text: "Recuerda que no se podra recuperar",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#4FA755',
+        cancelButtonColor: '#694A97',
+        confirmButtonText: 'Si, eliminar!',
+        cancelButtonText: 'Cancelar'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            // Delete book and authors
+            Livewire.emit('deleteBook', libroId);
+            Swal.fire(
+            'Eliminado!',
+            'El libro ha sido eliminado.',
+            'success'
+            )
+        }
+        })
+    });
 </script>
 @endpush
