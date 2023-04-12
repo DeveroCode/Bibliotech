@@ -10,8 +10,7 @@ class HomeLibros extends Component
 {
     public function render()
     {
-
-        $libros =Libro::with('autores')->latest()->limit(6)->get();
+        $libros = Libro::with('autores')->orderByRaw('RAND()')->limit(6)->get();
         $categorias = Categoria::all();
         return view('livewire.home-libros', [
             'libros' => $libros,
