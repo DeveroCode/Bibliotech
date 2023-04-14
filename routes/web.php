@@ -31,6 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // show books for everyone
 Route::get('/books/show/{libro}', [LibroController::class, 'show'])->name('show.books');
+Route::get('/books/search', [LibroController::class, 'search'])->name('search.books');
 // Route::get('/dashboard', [LibroController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 

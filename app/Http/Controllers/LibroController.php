@@ -43,6 +43,13 @@ class LibroController extends Controller
         ]);
     }
 
+    public function search(){
+        $libros_en_existencia = Libro::where('cantidad', '>', 0)->count();
+        return view('home.search', [
+            'libros_en_existencia' => $libros_en_existencia
+        ]);
+    }
+
     public function showLibros()
     {
         $libros = Libro::with('autores')->get();
