@@ -33,9 +33,9 @@ class MostrarResultados extends Component
                 $query->where('edicion', $this->edicion);
             })->with('autores')->paginate(30);
         }else if(!is_null($this->categoria) && $this->categoria != 0 || !empty($this->edicion) && $this->edicion != 0){
-            $libros = Libro::paginate(30);
+            $libros = Libro::paginate(12);
         }else{
-            $libros = Libro::paginate(30);
+            $libros = Libro::paginate(12);
         }
 
         return view('livewire.mostrar-resultados', [
