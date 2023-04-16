@@ -16,13 +16,13 @@
 
                 <div class="flex flex-col lg:flex-row lg:justify-between">
                     <div>
-                        <a href="{{ route('home') }}"
+                        <button onclick="goBack()"
                                 class="inline-flex items-center px-10 py-2 bg-purple-600
                                 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest
                                 hover:bg-purple-700  focus:bg-purple-700 active:bg-purple-900 focus:outline-none focus:ring-2
                                 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                             regresar
-                        </a>
+                        </button>
                     </div>
 
                     <div class="mt-3">
@@ -105,29 +105,28 @@
             {{-- Inventory --}}
             <div class="swiper-wrapper mt-10 items-center">
                 @foreach ($librosRelacionados as $relacionado)
-                <div class="flex flex-col items-center swiper-slide max-w-sm m-4">
-                    <div class="w-28 h-32 absolute z-10">
-                        <img class="object-cover w-full h-full" src="{{ asset('storage/libros/' . $relacionado->imagen) }}" alt="Imagen {{ $libro->titulo }}">
-                    </div>
-                    <div class="bg-gray-100 rounded-lg shadow-md p-5 h-44 relative z-0 mt-28">
-                        <div class="h-24">
-                            <h5 class="text-gray-900 font-bold text-lg capitalize tracking-tight mb-2 dark:text-white">{{ Str::limit($relacionado->titulo, 31) }}</h5>
-                            <p class="font-normal text-gray-700 mb-3 dark:text-gray-400 capitalize">
-                                @foreach($relacionado->autores as $autor)
-                                    {{ $autor->autor }}
-                                @endforeach
-                            </p>
+                    <div class="flex flex-col items-center swiper-slide max-w-sm m-4">
+                        <div class="w-28 h-32 absolute z-10">
+                            <img class="object-cover w-full h-full" src="{{ asset('storage/libros/' . $relacionado->imagen) }}" alt="Imagen {{ $libro->titulo }}">
                         </div>
+                        <div class="bg-gray-100 rounded-lg shadow-md p-5 h-44 relative z-0 mt-28">
+                            <div class="h-24">
+                                <h5 class="text-gray-900 font-bold text-lg capitalize tracking-tight mb-2 dark:text-white">{{ Str::limit($relacionado->titulo, 31) }}</h5>
+                                <p class="font-normal text-gray-700 mb-3 dark:text-gray-400 capitalize">
+                                    @foreach($relacionado->autores as $autor)
+                                        {{ $autor->autor }}
+                                    @endforeach
+                                </p>
+                            </div>
 
-                        <div class="h-20 py-2">
-                            <a href="{{ route('show.books', $relacionado->id) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Mas información
-                                <svg class="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                            </a>
+                            <div class="h-20 py-2">
+                                <a href="{{ route('show.books', $relacionado->id) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Mas información
+                                    <svg class="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
                 @endforeach
             </div>
 
@@ -171,5 +170,11 @@
                 }
             }
         });
+    </script>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
     </script>
 @endpush
