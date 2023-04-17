@@ -10,8 +10,8 @@
                     </div>
                     <h3 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Inventario</h3>
                     <div class="flex mt-4 space-x-3 lg:mt-6">
-                      <a type="submit" href="{{ route('dashboard.printPDF') }}" target="_blank" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 uppercase">pdf</a>
-                      <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-indigo-100 focus:ring-4 focus:ring-blue-300 uppercase">Excel</a>
+                      <a type="submit" href="{{ route('dashboard.printPDF') }}" target="_blank" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-500 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 uppercase">pdf</a>
+                      <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-indigo-100 focus:ring-4 focus:ring-indigo-300 uppercase">Excel</a>
                     </div>
                   </div>
                 </div>
@@ -26,8 +26,8 @@
                       <span class="text-sm text-gray-500"></span>
                     </div>
                     <div class="flex mt-4 space-x-3 lg:mt-6">
-                      <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 uppercase">pdf</a>
-                      <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-indigo-100 focus:ring-4 focus:ring-blue-300 uppercase">Excel</a>
+                      <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-500 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-blueindigo-300 uppercase">pdf</a>
+                      <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-indigo-100 focus:ring-4 focus:ring-indigo-300 uppercase">Excel</a>
                     </div>
                   </div>
                 </div>
@@ -43,9 +43,9 @@
                         </div>
                         <div class="flex mt-4 space-x-3 lg:mt-6">
                             <a href="#"
-                                class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 uppercase">pdf</a>
+                                class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-500 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 uppercase">pdf</a>
                             <a href="#"
-                                class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-indigo-100 focus:ring-4 focus:ring-blue-300 uppercase">Excel</a>
+                                class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-indigo-100 focus:ring-4 focus:ring-indigo-300 uppercase">Excel</a>
                         </div>
                     </div>
                 </div>

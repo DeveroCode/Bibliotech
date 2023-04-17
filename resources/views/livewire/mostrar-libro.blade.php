@@ -6,7 +6,7 @@
                 src="{{ asset('storage/libros/' . $libro->imagen) }}" />
         </div>
 
-        <div class="p-4 sm:p-6 w-full md:w-2/3 md:order-1 flex flex-row md:flex-col">
+        <div class="p-4 sm:p-6 w-full md:w-2/3 lg:w-3/5 lg:mx-auto md:order-1 flex flex-row md:flex-col">
             <div class="md:px-10">
                 <div class="text-center md:text-start">
                     <h2 class="text-4xl font-bold capitalize">{{ $libro->titulo }}</h2>
@@ -99,7 +99,7 @@
         </div>
     </article>
 
-    <div class="py-10 max-w-7xl">
+    <div class="py-10 max-w-8xl">
         <h3 class="text-3xl uppercase font-bold text-center">Recomendaciones para ti</h3>
         <div class="flex flex-wrap justify-center swiper mySwiper">
             {{-- Inventory --}}
@@ -120,7 +120,7 @@
                             </div>
 
                             <div class="h-20 py-2">
-                                <a href="{{ route('show.books', $relacionado->id) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <a href="{{ route('show.books', $relacionado->id) }}" class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Mas información
                                     <svg class="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                 </a>
