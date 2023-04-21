@@ -11,7 +11,7 @@
                     <h3 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Inventario</h3>
                     <div class="flex mt-4 space-x-3 lg:mt-6">
                       <a type="submit" href="{{ route('dashboard.printPDF') }}" target="_blank" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-500 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 uppercase">pdf</a>
-                      <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-indigo-100 focus:ring-4 focus:ring-indigo-300 uppercase">Excel</a>
+                      <a href="{{ route('dashboard.pie') }}" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-indigo-100 focus:ring-4 focus:ring-indigo-300 uppercase">Pie de pagina</a>
                     </div>
                   </div>
                 </div>
@@ -51,6 +51,5 @@
                 </div>
             </div>
         </div>
-        {{-- <livewire:generar-pdf/> --}}
     </div>
 </div>
