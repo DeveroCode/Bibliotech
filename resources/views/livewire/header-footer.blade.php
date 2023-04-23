@@ -1,6 +1,10 @@
 {{-- Header image --}}
 <header class="header-image">
-    <img src="{{ public_path('imgs/header-tec.png') }}" alt="" class="img-footer">
+    <div class="header-image__container">
+        {{-- <img src="{{ asset('storage/logos/' . $header->imagen) }}"> --}}
+        {{-- <h2>{{ $header->imagen }}</h2> --}}
+        {{-- <h1 class="header-image__container__text__title">{{ $header->id }}</h1> --}}
+    </div>
 </header>
 
 {{-- footer --}}

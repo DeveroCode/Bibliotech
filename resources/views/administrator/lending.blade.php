@@ -8,10 +8,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <h2 class="mb-10 text-center text-2xl mt-10 font-bold uppercase">Solicitud para prestamo de <span class="text-indigo-700">material bibliotecario</span></h2>
+                <h2 class="mb-10 text-center text-2xl mt-10 font-bold uppercase">Solicitud para prestamo de material
+                    bibliotecario
+                </h2>
 
                 <div class="p-5">
-                    <livewire:prestamos-libros/>
+                    <livewire:prestamos-libros />
                 </div>
             </div>
         </div>

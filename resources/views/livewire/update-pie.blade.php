@@ -1,8 +1,6 @@
 <div class="flex items-center justify-center p-12 w-full">
     <div class="mx-auto w-full max-w-[550px] bg-white">
-      <form class="py-6 px-9"
-        action="#"
-        method="POST" >
+      <form class="py-6 px-9" wire:submit.prevent='updatePie'>
 
         <div class="mb-6 pt-4">
           <label class="mb-5 block text-xl font-semibold lg:text-3xl">
