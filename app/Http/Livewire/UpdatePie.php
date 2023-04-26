@@ -9,27 +9,44 @@ use Livewire\WithFileUploads;
 class UpdatePie extends Component
 {
 
-    public $imagen;
+    public $header;
+    public $footer;
 
     use WithFileUploads;
 
     protected $rules = [
-        'imagen' => 'required|image|max:1024',
+        'header' => 'required|image|max:1024',
+        'footer' => 'required|image|max:1024',
     ];
 
     public function updatePie()
     {
         $datos = $this->validate();
         // Guardar imagen
-        $imagen = $this->imagen->store('public/logos');
-        $datos['imagen'] = str_replace('public/logos/', '', $imagen);
+        $header = $this->header->store('public/logos');
+        $datos['header'] = str_replace('public/logos/', '', $header);
+        // Save footer
+        $footer = $this->footer->store('public/logos');
+        $datos['footer'] = str_replace('public/logos/', '', $footer);
 
-        Headers::create([
-            'imagen' => $datos['imagen'],
-        ]);
+        $updateImages = Headers::find(1);
+        if ($updateImages) {
+            $updateImages->update([
+                'header' => $datos['header'],
+                'footer' => $datos['footer'],
+            ]);
 
-        session()->flash('message', 'Libro creado con éxito');
-        return redirect()->route('dashboard.print');
+            session()->flash('message', 'Encabezado actualizado');
+            return redirect()->route('dashboard.print');
+        } else {
+            Headers::create([
+                'header' => $datos['header'],
+                'footer' => $datos['footer'],
+            ]);
+
+            session()->flash('message', 'Encabezado colocado correctamente');
+            return redirect()->route('dashboard.print');
+        }
     }
 
     public function render()

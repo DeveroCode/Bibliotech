@@ -28,10 +28,9 @@
             <div class="libros-count">
                 <p class="information__sub p-1 fs-2 text-capitalize">expedición: <span class="text-normal fs-1">{{
                         now()->format('d/m/Y') }}</span></p>
-                <span class="information__sub p-1 fs-2 text-capitalize">libros: <span class="text-normal fs-1">{{ $count
-                        }}</span>
-
-                    <h2>{{ $headers }}</h2>
+                <span class="information__sub p-1 fs-2 text-capitalize">libros: <span class="text-normal fs-1">{{
+                        $count}}
+                    </span>
             </div>
             @php
             $lastUserId = null;

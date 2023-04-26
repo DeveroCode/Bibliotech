@@ -10,6 +10,7 @@ class Headers extends Model
     use HasFactory;
 
     protected $fillable = [
+        'header',
         'footer',
     ];
 }

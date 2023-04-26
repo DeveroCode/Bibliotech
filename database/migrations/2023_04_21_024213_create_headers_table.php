@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('headers', function (Blueprint $table) {
             $table->id();
-            $table->string('imagen');
+            $table->string('header');
+            $table->string('footer');
             $table->timestamps();
         });
     }
