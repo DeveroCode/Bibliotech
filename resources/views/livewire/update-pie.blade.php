@@ -1,5 +1,5 @@
 <div class="flex items-center justify-center p-12 w-full">
-    <div class="mx-auto w-full max-w-[550px] bg-white">
+    <div class="mx-auto md:w-[500px] w-[350px] bg-white">
         <form class="py-6 px-9" wire:submit.prevent='updatePie'>
             <div class="mb-6 pt-4">
                 <label class="mb-5 block text-xl font-semibold lg:text-3xl">
@@ -14,7 +14,7 @@
                                 Seleccione el encabezado
                             </span>
                             <input id="header"
-                                class="mt-1 w-full inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] cursor-pointer bg-transparent"
+                                class="mt-1 md:w-72 w-[250px] inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] cursor-pointer bg-transparent"
                                 type="file" wire:model="header" accept="image/*" />
 
                             {{-- Preview image --}}
@@ -32,7 +32,7 @@
                                 Seleccione el pie de página
                             </span>
                             <input id="footer"
-                                class="mt-1 w-full inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] cursor-pointer bg-transparent"
+                                class="mt-1 md:w-72 w-[250px] inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] cursor-pointer bg-transparent"
                                 type="file" wire:model="footer" accept="image/*" />
 
                             {{-- Preview image --}}
@@ -42,16 +42,16 @@
                                 @endif
                             </div>
 
-                            <x-input-error :messages="$errors->get('footer')" class="mt-2" />
+                            <x-input-error :messages=" $errors->get('footer')" class="mt-2" />
                         </div>
                     </label>
                 </div>
             </div>
 
-            <div>
+            <div class="flex justify-center">
                 <button
-                    class="hover:shadow-form w-full rounded-md bg-indigo-600 hover:bg-indigo-800 hover:transition-all hover:ease-linear hover:duration-200 py-3 px-8 text-center text-xl font-semibold text-white outline-none">
-                    Subir images
+                    class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-500 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 uppercase">
+                    Subir imagenes
                 </button>
             </div>
         </form>
