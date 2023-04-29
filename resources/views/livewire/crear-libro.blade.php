@@ -34,12 +34,26 @@
                 :value="old('paginas')" placeholder="Ej: 564 Páginas" />
             <x-input-error :messages="$errors->get('paginas')" class="mt-2" />
         </div>
+    </div>
 
-        <div class="w-1/2">
+    <div class="mt-5 flex">
+        <div class="w-1/2 mr-2">
             <x-input-label for="categoria" :value="__('categoria')" class="uppercase" />
             <select id="categoria" class="rounded-md  mt-1 w-full border-gray-300" type="text" wire:model="categoria"
                 :value="old('categoria')">
-                <option> ---Seleccion--- </option>
+                <option> ---Selección--- </option>
+                @foreach ($categorias as $categoria)
+                <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('categoria')" class="mt-2" />
+        </div>
+
+        <div class="w-1/2">
+            <x-input-label for="estante" :value="__('Estante')" class="uppercase" />
+            <select id="estante" class="rounded-md mt-1 w-full border-gray-300" type="text" wire:model="estante"
+                :value="old('estante')">
+                <option> ---Selección--- </option>
                 @foreach ($categorias as $categoria)
                 <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
                 @endforeach
