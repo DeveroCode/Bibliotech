@@ -42,4 +42,9 @@ class Libro extends Model
     {
         return $this->belongsToMany(Autor::class, 'autor_libro', 'libros_id', 'autores_id');
     }
+
+    public function estantes()
+    {
+        return $this->belongsTo(Estante::class);
+    }
 }

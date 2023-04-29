@@ -18,6 +18,7 @@ class CrearLibro extends Component
     public $tomo;
     public $paginas;
     public $categoria;
+    public $estante;
     public $fecha;
     public $cantidad;
     public $isbn;
@@ -33,6 +34,7 @@ class CrearLibro extends Component
         'tomo' => 'nullable|string',
         'paginas' => 'required|string',
         'categoria' => 'required|integer',
+        'estante' => 'required|integer',
         'fecha' => 'required|date',
         'cantidad' => 'required|integer',
         'isbn' => 'required|string|unique:libros,isbn',
@@ -48,6 +50,7 @@ class CrearLibro extends Component
         $datos['titulo'] = strtolower($datos['titulo']);
         $datos['edicion'] = strtolower($datos['edicion']);
         $datos['categoria_id'] = strtolower($datos['categoria']);
+        $datos['estante_id'] = strtolower($datos['estante']);
         $datos['descripcion'] = strtolower($datos['descripcion']);
         $autores = explode(',', $datos['autores']);
         $autores_ids = [];
@@ -76,6 +79,7 @@ class CrearLibro extends Component
             'tomo' => $datos['tomo'],
             'paginas' => $datos['paginas'],
             'categoria_id' => $datos['categoria'],
+            'estante_id' => $datos['estante'],
             'fecha' => $datos['fecha'],
             'cantidad' => $datos['cantidad'],
             'isbn' => $datos['isbn'],
