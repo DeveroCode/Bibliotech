@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->string('edicion');
             $table->string('tomo')->nullable();
+            $table->string('paginas');
             $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
             $table->date('fecha');
             $table->integer('cantidad');
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->string('imagen');
             $table->integer('publicado')->default(1);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
         });
     }
 

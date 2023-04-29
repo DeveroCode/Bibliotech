@@ -3,11 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Models\Autor;
-use App\Models\Libro;
-use Livewire\Component;
 use App\Models\Categoria;
-use Livewire\WithFileUploads;
+use App\Models\Libro;
 use Illuminate\Support\Facades\DB;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CrearLibro extends Component
 {
@@ -16,6 +16,7 @@ class CrearLibro extends Component
     public $autores;
     public $edicion;
     public $tomo;
+    public $paginas;
     public $categoria;
     public $fecha;
     public $cantidad;
@@ -30,6 +31,7 @@ class CrearLibro extends Component
         'autores' => 'required|string',
         'edicion' => 'required|string',
         'tomo' => 'nullable|string',
+        'paginas' => 'required|string',
         'categoria' => 'required|integer',
         'fecha' => 'required|date',
         'cantidad' => 'required|integer',
@@ -37,8 +39,6 @@ class CrearLibro extends Component
         'descripcion' => 'required|string',
         'imagen' => 'required|image|max:1024',
     ];
-
-
 
     public function crearLibro()
     {
@@ -69,15 +69,15 @@ class CrearLibro extends Component
             return redirect()->back();
         }
 
-
         // Crear el libro
         $libro = Libro::create([
             'titulo' => $datos['titulo'],
             'edicion' => $datos['edicion'],
             'tomo' => $datos['tomo'],
+            'paginas' => $datos['paginas'],
             'categoria_id' => $datos['categoria'],
             'fecha' => $datos['fecha'],
-            'cantidad'  => $datos['cantidad'],
+            'cantidad' => $datos['cantidad'],
             'isbn' => $datos['isbn'],
             'descripcion' => $datos['descripcion'],
             'imagen' => $datos['imagen'],
