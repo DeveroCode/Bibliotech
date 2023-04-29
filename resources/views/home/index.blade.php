@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="py-24 bg-white overflow-hidden">
-        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl flex flex-row-reverse mb-32">
+        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:my-auto lg:max-w-7xl flex flex-row-reverse mb-32">
             <div class="w-full flex justify-center items-center ">
                 <div class="relative">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
@@ -22,14 +22,16 @@
                 {{-- Barra de busqueda --}}
                 <div class="relative inset-0 bg-opacity-75 z-10 flex items-center">
                     <div class="flex mt-4 space-x-3 lg:mt-6">
-                        <a type="submit" href="{{ route('search.books') }}" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-inidgo-800 focus:ring-4 focus:ring-blue-300 uppercase">Iniciar busqueda</a>
+                        <a type="submit" href="{{ route('search.books') }}"
+                            class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-inidgo-800 focus:ring-4 focus:ring-blue-300 uppercase">Iniciar
+                            busqueda</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="bg-white overflow-hidden">
+    <div class="bg-white overflow-hidden lg:py-24">
         <h3 class="px-5 md:px-0 md:text-center font-bold text-5xl">Nos preocupamos por una mejor navegación</h3>
         <p class="px-5 md:px-0 text-lg md:text-center font-semibold capitalize text-indigo-700 mt-2">Por eso hemos
             incluido</p>
@@ -102,7 +104,8 @@
                                 d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                         </svg>
                     </span>
-                    <span class="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white">Enviar</span>
+                    <span
+                        class="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white">Enviar</span>
                 </a>
             </div>
         </div>

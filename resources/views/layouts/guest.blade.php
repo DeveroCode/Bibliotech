@@ -1,38 +1,60 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        {{-- Livewire --}}
-    </head>
-    <body class="font-sans text-gray-900 bg-gray-100 antialiased">
-        <div class="flex flex-col sm:flex-row h-screen justify-center">
-            <div class="w-full sm:w-10/12 bg-cover bg-center" style="background-image:url('{{ asset('imgs/backgroun-biblioteca.jpg') }}');">
-                <a href="http://www.itsncg.edu.mx/"><img src="{{ asset('imgs/logo.png') }}" alt="Logo" class="hidden sm:block absolute bottom-0 left-3 w-16 h-30 p-2"></a>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- Livewire --}}
+</head>
+
+<body class="font-sans text-gray-900 bg-gray-100 antialiased">
+    <div class="flex flex-col sm:flex-row h-screen justify-center">
+        <div class="relative w-full sm:w-10/12 h-full">
+            <div class="bg-cover bg-center h-full"
+                style="background-image:url('{{ asset('imgs/backgroun-biblioteca.jpg') }}');">
+                <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
             </div>
-            <div class="w-full sm:w-1/2 flex flex-col justify-center items-center mx-auto">
-                <div class="mt-8">
-                    <a href="/">
-                        <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                    </a>
-                </div>
-                <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-                    {{ $slot }}
-                </div>
-                <div class="sm:hidden">
-                    <a href="http://www.itsncg.edu.mx/"><img src="{{ asset('imgs/logo.png') }}" alt="Logo" class="w-16 h-30 p-2"></a>
-                </div>
+            <div class="absolute bottom-0 left-0 right-0 p-10 z-20 text-white flex flex-col items-start justify-end">
+                <h2 class="font-bold text-3xl uppercase">Imagen publicada por</h2>
+                <span class="text-lg">Jhonathan Francisca</span>
+                <p class="capitalize text-lg">Prague, Czechia</p>
+                <span>Imagen gratuita bajo la licencia de: <a href="https://unsplash.com/es/fotos/BpbkLACP64M"
+                        target="_blank" class="font-bold">Unsplash</a></span>
             </div>
         </div>
-    </body>
+
+        <div class="w-full sm:w-1/2 flex flex-col justify-center items-center mx-auto">
+            <div class="mt-8">
+                <div class="im-logo">
+                    <a href="http://www.itsncg.edu.mx/" target="_blank">
+                        <img src="{{ asset('imgs/logo.png') }}" alt="Logo del instituto" class="h-20 mx-auto">
+                    </a>
+                </div>
+
+                <a href="/">
+                    <h1 class="text-3xl">Biblioteca <span class="font-bold">Virtual</span></h1>
+                </a>
+            </div>
+            <div
+                class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+                {{ $slot }}
+            </div>
+            <div class="sm:hidden">
+                <a href="http://www.itsncg.edu.mx/"><img src="{{ asset('imgs/logo.png') }}" alt="Logo"
+                        class="w-16 h-30 p-2"></a>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>

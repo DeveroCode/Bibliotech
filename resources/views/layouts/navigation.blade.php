@@ -57,7 +57,7 @@
                     </div>
 
                     <x-nav-link :href="route('dashboard.lending')" :active="request()->routeIs('dashboard.lending')">
-                        {{ __('Prestamos') }}
+                        {{ __('Préstamos') }}
                     </x-nav-link>
                     {{-- <x-nav-link :href="route('dashboard.show')" :active="request()->routeIs('dashboard.show')">
                         {{ __('Libros') }}
