@@ -1,1 +1,1 @@
-<h1 class="text-3xl">Biblioteca <span class="font-bold">Virtual</span></h1>
+<h1 class="text-3xl text-white">Biblioteca <span class="font-bold">Virtual</span></h1>

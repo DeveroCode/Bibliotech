@@ -10,7 +10,7 @@ class Libro extends Model
     use HasFactory;
 
     protected $casts = [
-        'fecha' => 'datetime:d-m-Y'
+        'fecha' => 'datetime:d-m-Y',
     ];
 
     protected $fillable = [
@@ -18,13 +18,14 @@ class Libro extends Model
         'edicion',
         'autores_id',
         'tomo',
+        'paginas',
         'categoria_id',
         'fecha',
         'cantidad',
         'isbn',
         'descripcion',
         'imagen',
-        'user_id'
+        'user_id',
     ];
 
     public function categoria()
@@ -40,5 +41,10 @@ class Libro extends Model
     public function autores()
     {
         return $this->belongsToMany(Autor::class, 'autor_libro', 'libros_id', 'autores_id');
+    }
+
+    public function estantes()
+    {
+        return $this->belongsTo(Estante::class);
     }
 }
