@@ -20,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+        // Enlazando y haciendo a que sea por medio de http
         if ($this->app->environment('production')) {
             # code...
             URL::forceScheme('https');
