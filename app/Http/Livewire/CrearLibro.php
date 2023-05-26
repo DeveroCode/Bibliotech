@@ -34,7 +34,7 @@ class CrearLibro extends Component
         'tomo' => 'nullable|string',
         'paginas' => 'required|string',
         'categoria' => 'required|integer',
-        'estante' => 'required|integer',
+        'estante' => 'nullable|string',
         'fecha' => 'required|date',
         'cantidad' => 'required|integer',
         'isbn' => 'required|string|unique:libros,isbn',

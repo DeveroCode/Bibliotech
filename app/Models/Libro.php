@@ -20,6 +20,7 @@ class Libro extends Model
         'tomo',
         'paginas',
         'categoria_id',
+        'estante_id',
         'fecha',
         'cantidad',
         'isbn',
