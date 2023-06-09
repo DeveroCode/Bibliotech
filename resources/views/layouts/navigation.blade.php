@@ -22,11 +22,7 @@
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button
-<<<<<<< HEAD
                                     class="inline-flex items-center px-1 pt-1 border border-transparent text-sm leading-4 font-medium rounded-md text-white   focus:outline-none transition ease-in-out duration-150">
-=======
-                                    class="inline-flex items-center px-1 pt-1 border border-transparent text-sm leading-4 font-medium rounded-md text-white focus:outline-none transition ease-in-out duration-150">
->>>>>>> deployment
                                     <div>Inventario</div>
 
                                     <div class="ml-1">
