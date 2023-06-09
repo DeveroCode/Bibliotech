@@ -8,9 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Estante extends Model
 {
     use HasFactory;
-
-    protected $table = "estantes";
-    protected $fillable = [
-        'estante',
-    ];
 }

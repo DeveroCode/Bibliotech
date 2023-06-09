@@ -48,14 +48,14 @@
             </select>
             <x-input-error :messages="$errors->get('categoria')" class="mt-2" />
         </div>
-
+        {{-- Start estantes --}}
         <div class="w-1/2">
             <x-input-label for="estante" :value="__('Estante')" class="uppercase" />
             <select id="estante" class="rounded-md mt-1 w-full border-gray-300" type="text" wire:model="estante"
                 :value="old('estante')">
                 <option> ---Selección--- </option>
-                @foreach ($categorias as $categoria)
-                <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
+                @foreach ($estantes as $estante)
+                <option value="{{ $estante->id }}">{{ $estante->estante }}</option>
                 @endforeach
             </select>
             <x-input-error :messages="$errors->get('categoria')" class="mt-2" />

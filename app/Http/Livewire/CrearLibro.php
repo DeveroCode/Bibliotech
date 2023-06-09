@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Autor;
 use App\Models\Categoria;
+use App\Models\Estante;
 use App\Models\Libro;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -34,7 +35,7 @@ class CrearLibro extends Component
         'tomo' => 'nullable|string',
         'paginas' => 'required|string',
         'categoria' => 'required|integer',
-        'estante' => 'required|integer',
+        'estante' => 'nullable|string',
         'fecha' => 'required|date',
         'cantidad' => 'required|integer',
         'isbn' => 'required|string|unique:libros,isbn',
@@ -107,8 +108,10 @@ class CrearLibro extends Component
     {
         // DB
         $categorias = Categoria::all();
+        $estantes = Estante::all();
         return view('livewire.crear-libro', [
             'categorias' => $categorias,
+            'estantes' => $estantes,
         ]);
     }
 }
