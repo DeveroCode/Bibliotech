@@ -2,14 +2,14 @@
     <div class="mx-auto py-5">
         <form class="flex flex-wrap justify-end items-center">
             <div class="relative z-0 mb-5 w-full md:w-1/3 md:mr-4">
-                <input type="text" name="no_institutcional" id="no_institutcional"
+                <input type="text" name="no_institucional" id="no_institucional"
                     class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" " />
                 <label
                     class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                    No. Institutcional
+                    No. Institucional
                 </label>
-                @error('no_institutcional') <span class="error text-red-500">{{ $message }}</span> @enderror
+                @error('no_institucional') <span class="error text-red-500">{{ $message }}</span> @enderror
             </div>
 
             <div>
@@ -63,7 +63,7 @@
         </form>
 
         {{-- End form for students --}}
-        <span class="text-xl font-bold">Datos del prestamista y material didactico</span>
+        <span class="text-xl font-bold">Datos del prestamista y material didáctico</span>
         <hr class="bg-indigo-800 mt-3">
 
         {{-- Search ISB --}}
@@ -148,7 +148,7 @@
                         placeholder=" " />
                     <label
                         class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                        No. adquisicon
+                        No. adquisición
                     </label>
                 </div>
 
@@ -159,7 +159,7 @@
                         placeholder=" " />
                     <label
                         class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                        Renovacion
+                        Renovación
                     </label>
                 </div>
 
@@ -182,4 +182,4 @@
                 value="Enviar e Imprimir">
         </div>
     </div>
-</div>clear
+</div>
