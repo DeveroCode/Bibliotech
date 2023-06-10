@@ -14,6 +14,7 @@
                 <!-- Navigation Links -->
                 @auth
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if (Auth::user()->rol === 1)
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('General') }}
                     </x-nav-link>
@@ -59,6 +60,8 @@
                     <x-nav-link :href="route('dashboard.lending')" :active="request()->routeIs('dashboard.lending')">
                         {{ __('Préstamos') }}
                     </x-nav-link>
+
+                    @endif
                     {{-- <x-nav-link :href="route('dashboard.show')" :active="request()->routeIs('dashboard.show')">
                         {{ __('Libros') }}
                     </x-nav-link>
@@ -102,9 +105,11 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        {{-- <x-dropdown-link :href="route('profile.edit')">
+                        @if (Auth::user()->rol === 2)
+                        <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
-                        </x-dropdown-link> --}}
+                        </x-dropdown-link>
+                        @endif
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -154,6 +159,7 @@
         @endguest
         @auth
         <div class="pt-2 pb-3 space-y-1">
+            @if (Auth::user()->rol === 1)
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('General') }}
             </x-responsive-nav-link>
@@ -166,6 +172,7 @@
             <x-responsive-nav-link :href="route('dashboard.print')" :active="request()->routeIs('dashboard.print')">
                 {{ __('Reportes') }}
             </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
@@ -176,9 +183,11 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                {{-- <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                @if (Auth::user()->rol === 2)
+                <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                     {{ __('Perfil') }}
-                </x-responsive-nav-link> --}}
+                </x-responsive-nav-link>
+                @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

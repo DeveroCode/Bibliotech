@@ -14,28 +14,50 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+ */
 
 Route::get('/', HomeController::class)->name('home');
 // Grouping routes
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [LibroController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/create', [LibroController::class, 'create'])->name('dashboard.create');
-    Route::get('/dashboard/{libro}/edit', [LibroController::class, 'edit'])->name('dashboard.edit');
-    Route::get('/dashboard/show-list-books', [LibroController::class, 'showLibros'])->name('dashboard.show');
-    Route::get('/dashboard/cambiar-cabezera-footer', [LibroController::class, 'pie'])->name('dashboard.pie');
-    Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
-    Route::get('/dashboard/print/PDF', [LibroController::class, 'printPDF'])->name('dashboard.printPDF');
-    Route::get('/dashboard/lending', [LibroController::class, 'lending'])->name('dashboard.lending');
-});
+// Admin
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('/dashboard', [LibroController::class, 'index'])->name('dashboard');
+//     Route::get('/dashboard/create', [LibroController::class, 'create'])->name('dashboard.create');
+//     Route::get('/dashboard/{libro}/edit', [LibroController::class, 'edit'])->name('dashboard.edit');
+//     Route::get('/dashboard/show-list-books', [LibroController::class, 'showLibros'])->name('dashboard.show');
+//     Route::get('/dashboard/cambiar-cabezera-footer', [LibroController::class, 'pie'])->name('dashboard.pie');
+//     Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
+//     Route::get('/dashboard/print/PDF', [LibroController::class, 'printPDF'])->name('dashboard.printPDF');
+//     Route::get('/dashboard/lending', [LibroController::class, 'lending'])->name('dashboard.lending');
+// })->middleware('role:1');
 
+// // Super admin
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+// })->middleware('role:2');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Rutas para usuarios con rol 1 (dashboard)
+    Route::middleware('role:1')->group(function () {
+        Route::get('/dashboard', [LibroController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard/create', [LibroController::class, 'create'])->name('dashboard.create');
+        Route::get('/dashboard/{libro}/edit', [LibroController::class, 'edit'])->name('dashboard.edit');
+        Route::get('/dashboard/show-list-books', [LibroController::class, 'showLibros'])->name('dashboard.show');
+        Route::get('/dashboard/cambiar-cabezera-footer', [LibroController::class, 'pie'])->name('dashboard.pie');
+        Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
+        Route::get('/dashboard/print/PDF', [LibroController::class, 'printPDF'])->name('dashboard.printPDF');
+        Route::get('/dashboard/lending', [LibroController::class, 'lending'])->name('dashboard.lending');
+    });
+
+    // Rutas para usuarios con rol 2 (admin)
+    Route::middleware('role:2')->group(function () {
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    });
+});
 // show books for everyone
 Route::get('/books/show/{libro}', [LibroController::class, 'show'])->name('show.books');
 Route::get('/books/search', [LibroController::class, 'search'])->name('search.books');
 // Route::get('/dashboard', [LibroController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -43,4 +65,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
