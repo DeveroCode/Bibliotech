@@ -20,6 +20,6 @@ class RoleMiddleware
             return $next($request);
         }
 
-        abort(401);
+        return response()->view('error.error');
     }
 }
