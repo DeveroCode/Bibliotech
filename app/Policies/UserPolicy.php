@@ -19,20 +19,19 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        // Uusario bibliotecario CRUD
+        // Usuario bibliotecario CRUD (rol === 1)
         if ($user->rol === 1) {
             return true;
         }
 
-        // Super-Usuario [Creacion de usuario y actualizacion de BD]
+        // Super-Usuario [Creación de usuario y actualización de BD] (rol === 2)
         if ($user->rol === 2) {
-            // Verificar si es el mismo usario
+            // Verificar si es el mismo usuario
             if ($user->id === $model->id) {
                 return true;
             }
-
-            return true;
         }
+
         return false;
     }
 

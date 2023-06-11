@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\ProfileController;
@@ -19,41 +20,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('home');
 // Grouping routes
 
-// Admin
-// Route::middleware(['auth', 'verified'])->group(function () {
-//     Route::get('/dashboard', [LibroController::class, 'index'])->name('dashboard');
-//     Route::get('/dashboard/create', [LibroController::class, 'create'])->name('dashboard.create');
-//     Route::get('/dashboard/{libro}/edit', [LibroController::class, 'edit'])->name('dashboard.edit');
-//     Route::get('/dashboard/show-list-books', [LibroController::class, 'showLibros'])->name('dashboard.show');
-//     Route::get('/dashboard/cambiar-cabezera-footer', [LibroController::class, 'pie'])->name('dashboard.pie');
-//     Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
-//     Route::get('/dashboard/print/PDF', [LibroController::class, 'printPDF'])->name('dashboard.printPDF');
-//     Route::get('/dashboard/lending', [LibroController::class, 'lending'])->name('dashboard.lending');
-// })->middleware('role:1');
-
-// // Super admin
-// Route::middleware(['auth', 'verified'])->group(function () {
-//     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-// })->middleware('role:2');
-
+// (Usuario bibliotecario CRUD)
 Route::middleware(['auth', 'verified'])->group(function () {
-    // Rutas para usuarios con rol 1 (dashboard)
-    Route::middleware('role:1')->group(function () {
-        Route::get('/dashboard', [LibroController::class, 'index'])->name('dashboard');
-        Route::get('/dashboard/create', [LibroController::class, 'create'])->name('dashboard.create');
-        Route::get('/dashboard/{libro}/edit', [LibroController::class, 'edit'])->name('dashboard.edit');
-        Route::get('/dashboard/show-list-books', [LibroController::class, 'showLibros'])->name('dashboard.show');
-        Route::get('/dashboard/cambiar-cabezera-footer', [LibroController::class, 'pie'])->name('dashboard.pie');
-        Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
-        Route::get('/dashboard/print/PDF', [LibroController::class, 'printPDF'])->name('dashboard.printPDF');
-        Route::get('/dashboard/lending', [LibroController::class, 'lending'])->name('dashboard.lending');
-    });
-
-    // Rutas para usuarios con rol 2 (admin)
-    Route::middleware('role:2')->group(function () {
-        Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-    });
+    Route::get('/dashboard', [LibroController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/create', [LibroController::class, 'create'])->name('dashboard.create');
+    Route::get('/dashboard/{libro}/edit', [LibroController::class, 'edit'])->name('dashboard.edit');
+    Route::get('/dashboard/show-list-books', [LibroController::class, 'showLibros'])->name('dashboard.show');
+    Route::get('/dashboard/cambiar-cabezera-footer', [LibroController::class, 'pie'])->name('dashboard.pie');
+    Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
+    Route::get('/dashboard/print/PDF', [LibroController::class, 'printPDF'])->name('dashboard.printPDF');
+    Route::get('/dashboard/lending', [LibroController::class, 'lending'])->name('dashboard.lending');
 });
+
+// (Super-Usuario: Crea usuarios nuevos y actualiza la base de datos)
+Route::middleware(['auth', 'verified', 'role'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+});
+
 // show books for everyone
 Route::get('/books/show/{libro}', [LibroController::class, 'show'])->name('show.books');
 Route::get('/books/search', [LibroController::class, 'search'])->name('search.books');

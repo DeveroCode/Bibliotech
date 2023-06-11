@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Dompdf\Dompdf;
-use App\Models\Autor;
 use App\Models\Libro;
 use App\Models\Headers;
-use App\Models\Autor_libro;
-use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 
 class LibroController extends Controller
 {
@@ -18,10 +15,18 @@ class LibroController extends Controller
     public function index()
     {
         //
-        $libros_en_existencia = Libro::where('cantidad', '>', 0)->count();
-        return view('administrator.index', [
-            'libros_en_existencia' => $libros_en_existencia
-        ]);
+
+        $user = Auth::user();
+
+        if ($user->rol == 1) {
+            $libros_en_existencia = Libro::where('cantidad', '>', 0)->count();
+            return view('administrator.index', [
+                'libros_en_existencia' => $libros_en_existencia,
+            ]);
+        } elseif ($user->rol == 2) {
+            return redirect()->route('admin.index');
+        }
+
     }
 
     /**
@@ -44,17 +49,18 @@ class LibroController extends Controller
         ]);
     }
 
-    public function search(){
+    public function search()
+    {
         $libros_en_existencia = Libro::where('cantidad', '>', 0)->count();
         return view('home.search', [
-            'libros_en_existencia' => $libros_en_existencia
+            'libros_en_existencia' => $libros_en_existencia,
         ]);
     }
 
     public function showLibros()
     {
         $libros = Libro::with('autores')->get();
-        return view('administrator.show',  ['libros' => $libros]);
+        return view('administrator.show', ['libros' => $libros]);
     }
 
     /**
@@ -64,15 +70,17 @@ class LibroController extends Controller
     {
         //
         return view('administrator.edit', [
-            'libro' => $libro
+            'libro' => $libro,
         ]);
     }
 
-    public function lending(){
+    public function lending()
+    {
         return view('administrator.lending');
     }
 
-    public function pie(){
+    public function pie()
+    {
         return view('administrator.piepagina');
     }
 
@@ -82,12 +90,11 @@ class LibroController extends Controller
         $headers = Headers::first();
         $count = $libros->count();
         $pdf = PDF::loadView('pdf.inventory_2', ['libros' => $libros, 'count' => $count, 'headers' => $headers])->setPaper('a4', 'portrait')
-        ->set_option('isPhpEnabled', true);
+            ->set_option('isPhpEnabled', true);
         return $pdf->stream('inventory.pdf');
     }
 
-    public function print()
-    {
+    function print() {
         return view('administrator.print');
     }
 }
