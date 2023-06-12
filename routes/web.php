@@ -36,6 +36,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified', 'role'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
+    Route::post('/admin/importar', [AdminController::class, 'importar'])->name('admin.importar');
 });
 
 // show books for everyone
