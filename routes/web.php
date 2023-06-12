@@ -35,6 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // (Super-Usuario: Crea usuarios nuevos y actualiza la base de datos)
 Route::middleware(['auth', 'verified', 'role'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
 });
 
 // show books for everyone
