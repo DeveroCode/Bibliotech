@@ -15,6 +15,7 @@ class AlumnosImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
+        // in case an array is empty, it is removed
         if (empty($row[0])) {
             return null;
         }

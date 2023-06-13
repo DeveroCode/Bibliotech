@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\AlumnosImport;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -65,23 +63,5 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function importar(Request $request)
-    {
-
-        $request->validate([
-            'archivo' => 'required|mimes:xls,xlsx',
-        ]);
-
-        $file = $request->file('archivo');
-
-        Excel::import(new AlumnosImport, $file);
-
-        return redirect()->route('admin.index');
-
-        Excel::import(new AlumnosImport, $request->file('archivo'));
-
-        return redirect()->route('admin.index');
     }
 }

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('home');
 // Grouping routes
 
-// (Usuario bibliotecario CRUD)
+// (Library user => CRUD)
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [LibroController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/create', [LibroController::class, 'create'])->name('dashboard.create');
@@ -32,17 +32,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/lending', [LibroController::class, 'lending'])->name('dashboard.lending');
 });
 
-// (Super-Usuario: Crea usuarios nuevos y actualiza la base de datos)
+// (Super-User => you can update the student database and delete other inactive users)
 Route::middleware(['auth', 'verified', 'role'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
-    Route::post('/admin/importar', [AdminController::class, 'importar'])->name('admin.importar');
 });
 
 // show books for everyone
 Route::get('/books/show/{libro}', [LibroController::class, 'show'])->name('show.books');
 Route::get('/books/search', [LibroController::class, 'search'])->name('search.books');
-// Route::get('/dashboard', [LibroController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
