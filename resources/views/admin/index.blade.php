@@ -60,10 +60,11 @@
 
                                         </div>
                                         <div class="flex flex-col flex-grow ml-4">
-                                            <a href="#" class="text-lg font-bold underline text-blue-700">Administrar
+                                            <a href="{{ route('admin.cuser') }}"
+                                                class="text-lg font-bold underline text-blue-700">Crear nuevos
                                                 usuarios</a>
-                                            <span class="text-sm text-gray-500">Modifica usuarios y designa sus
-                                                privilegios</span>
+                                            <span class="text-sm text-gray-500">Crea bibliotecarios, usarios
+                                                fantasmas, etc</span>
                                         </div>
                                     </div>
                                 </div>

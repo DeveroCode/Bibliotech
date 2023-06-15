@@ -64,4 +64,9 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function createUser()
+    {
+        return view('admin.create');
+    }
 }
