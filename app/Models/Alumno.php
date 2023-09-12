@@ -18,6 +18,7 @@ class Alumno extends Model
         'email',
         'telefono',
         'direccion',
+        'no_institucional',
         'fecha_nacimiento',
         'anio_ingreso',
         'carrera',

@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Autor;
 use App\Models\Libro;
 use Livewire\Component;
 
@@ -32,8 +31,6 @@ class MostrarLibros extends Component
         // Eliminar el libro
         $libro->delete();
 
-
-
     }
 
     public function buscar($isbn)
@@ -50,7 +47,7 @@ class MostrarLibros extends Component
         }
         // $libros = Libro::where('user_id', auth()->user()->id)->paginate(50);
         return view('livewire.mostrar-libros', [
-            'libros' => $libros
+            'libros' => $libros,
         ]);
     }
 }

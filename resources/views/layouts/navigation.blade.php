@@ -62,6 +62,13 @@
                     </x-nav-link>
 
                     @endif
+
+                    @if (Auth::user()->rol === 2)
+                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('dashboard')">
+                        {{ __('General') }}
+                    </x-nav-link>
+
+                    @endif
                     {{-- <x-nav-link :href="route('dashboard.show')" :active="request()->routeIs('dashboard.show')">
                         {{ __('Libros') }}
                     </x-nav-link>
@@ -171,6 +178,12 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('dashboard.print')" :active="request()->routeIs('dashboard.print')">
                 {{ __('Reportes') }}
+            </x-responsive-nav-link>
+            @endif
+
+            @if (Auth::user()->rol === 2)
+            <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('dashboard')">
+                {{ __('General') }}
             </x-responsive-nav-link>
             @endif
         </div>
