@@ -10,7 +10,7 @@
                 <tr>
                     <th class="w-1/3 px-3 py-4  font-medium text-gray-900">Título</th>
                     <th class="px-3 py-4  font-medium text-gray-900">Estado</th>
-                    <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Edicion</th>
+                    <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Edición</th>
                     <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Categoría</th>
                     <th class="px-3 py-4  font-medium text-gray-900">Herramientas</th>
                 </tr>

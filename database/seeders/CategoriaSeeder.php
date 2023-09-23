@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CategoriaSeeder extends Seeder
 {
@@ -22,25 +21,25 @@ class CategoriaSeeder extends Seeder
         ]);
 
         DB::table('categorias')->insert([
-            'categoria' => 'Contaduria',
+            'categoria' => 'Contaduría',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('categorias')->insert([
-            'categoria' => 'Mecatronica',
+            'categoria' => 'Mecatrónica',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('categorias')->insert([
-            'categoria' => 'Electromecanica',
+            'categoria' => 'Electromecánica',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('categorias')->insert([
-            'categoria' => 'Gestion empresarial',
+            'categoria' => 'Gestión empresarial',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
@@ -51,13 +50,11 @@ class CategoriaSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
-
         DB::table('categorias')->insert([
             'categoria' => 'Electronica',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-
 
         DB::table('categorias')->insert([
             'categoria' => 'Revista',

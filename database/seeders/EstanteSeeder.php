@@ -26,13 +26,13 @@ class EstanteSeeder extends Seeder
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Etica BJ',
+            'estante' => 'Ética BJ',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Economia HB',
+            'estante' => 'Economía HB',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
@@ -44,18 +44,12 @@ class EstanteSeeder extends Seeder
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Estadistica',
+            'estante' => 'Estadística',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
         DB::table('estantes')->insert([
             'estante' => 'Mercadotecnia',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-        ]);
-
-        DB::table('estantes')->insert([
-            'estante' => 'Estadistica',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
@@ -66,19 +60,19 @@ class EstanteSeeder extends Seeder
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Contaduria HF',
+            'estante' => 'Contaduría HF',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Audoria HF',
+            'estante' => 'Auditoria HF',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Matematicas Financieras HF',
+            'estante' => 'Matemáticas Financieras HF',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
@@ -90,7 +84,7 @@ class EstanteSeeder extends Seeder
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Sociologia HM',
+            'estante' => 'Sociología HM',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
@@ -108,13 +102,13 @@ class EstanteSeeder extends Seeder
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Metodologia de la investigacion Q',
+            'estante' => 'Metodología de la investigación Q',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Matematicas Discretas QA',
+            'estante' => 'Matemáticas Discretas QA',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
@@ -126,7 +120,7 @@ class EstanteSeeder extends Seeder
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Fisica QD',
+            'estante' => 'Física QD',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
@@ -138,7 +132,7 @@ class EstanteSeeder extends Seeder
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Investigacion de Operaciones T',
+            'estante' => 'Investigación de Operaciones T',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
@@ -150,7 +144,7 @@ class EstanteSeeder extends Seeder
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Ingenieria Economica',
+            'estante' => 'Ingeniería Economica',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
@@ -162,43 +156,43 @@ class EstanteSeeder extends Seeder
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Mecatronica TJ',
+            'estante' => 'Mecatrónica TJ',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Guia Para Mediciones Electricas TK',
+            'estante' => 'Guía Para Mediciones Eléctricas TK',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Circutos Electricos TK',
+            'estante' => 'Circuitos Eléctricos TK',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Dispositivos Electronicos TK',
+            'estante' => 'Dispositivos Electrónicos TK',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Refrigeracion TP',
+            'estante' => 'Refrigeración TP',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Manual de Ingenieria Indusrial TS',
+            'estante' => 'Manual de Ingeniería Industrial TS',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Administracion de operaciones TS',
+            'estante' => 'Administración de operaciones TS',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
@@ -216,7 +210,7 @@ class EstanteSeeder extends Seeder
         ]);
 
         DB::table('estantes')->insert([
-            'estante' => 'Clasificacion Pendiente',
+            'estante' => 'Clasificación Pendiente',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);

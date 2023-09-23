@@ -47,7 +47,7 @@
                                             <i class="fa-solid fa-user-minus"></i>
                                         </div>
                                         <div class="flex flex-col flex-grow ml-4">
-                                            <div class="text-sm text-gray-500">Prestamos</div>
+                                            <div class="text-sm text-gray-500">Préstamos</div>
                                             <div class="font-bold text-lg">1259</div>
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@
                                             <i class="fa-solid fa-file"></i>
                                         </div>
                                         <div class="flex flex-col flex-grow ml-4">
-                                            <div class="text-sm text-gray-500">Prestamos</div>
+                                            <div class="text-sm text-gray-500">Préstamos</div>
                                             <div class="font-bold text-lg">1259</div>
                                         </div>
                                     </div>
