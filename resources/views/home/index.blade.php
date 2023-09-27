@@ -24,7 +24,7 @@
                     <div class="flex mt-4 space-x-3 lg:mt-6">
                         <a type="submit" href="{{ route('search.books') }}"
                             class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-inidgo-800 focus:ring-4 focus:ring-blue-300 uppercase">Iniciar
-                            busqueda</a>
+                            búsqueda</a>
                     </div>
                 </div>
             </div>
