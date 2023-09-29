@@ -63,12 +63,13 @@
 
         {{-- form for librarian--}}
         <form class="flex flex-col md:flex-row py-6 gap-10">
+            @if (isset($isbn))
             <div class="block-primary w-full flex flex-col gap-5">
                 {{-- nombre --}}
                 <div class="relative z-0 md:w-full">
                     <input type="text" name="name_prestamista"
                         class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " />
+                        placeholder=" " value="{{ isset($isbn) ? auth()->user()->name :  '' }}" />
                     <label
                         class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
                         Nombre del prestamista
@@ -78,7 +79,7 @@
                 <div class="relative z-0 md:w-full">
                     <input type="text" name="name_prestamista"
                         class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " />
+                        placeholder=" " value="" />
                     <label
                         class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
                         No. Folio
@@ -102,7 +103,7 @@
                 <div class="relative z-0 w-full">
                     <input type="text" name="nombre_liro"
                         class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " />
+                        placeholder=" " value="{{ isset($isbn[0]->titulo) ? $isbn[0]->titulo : '' }} " />
                     <label
                         class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
                         Libro
@@ -112,7 +113,8 @@
                 <div class="relative z-0 w-full">
                     <input type="text" name="autores"
                         class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " />
+                        placeholder=" "
+                        value="{{ isset($isbn[0]->autores[0]->autor) ? $isbn[0]->autores[0]->autor : '' }}" />
                     <label
                         class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
                         Autores
@@ -122,7 +124,7 @@
                 <div class="relative z-0 w-full">
                     <input type="text" name="isbn"
                         class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " />
+                        placeholder=" " value="{{ isset($isbn[0]->isbn) ? $isbn[0]->isbn : '' }}" />
                     <label
                         class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
                         ISBN
@@ -157,13 +159,14 @@
                 <div class="relative z-0 w-full">
                     <input type="text" name="Estatus"
                         class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " />
+                        placeholder=" " value="{{ isset($isbn[0]->cantidad) ? $isbn[0]->cantidad : '' }}" />
                     <label
                         class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
                         Estatus
                     </label>
                 </div>
             </div>
+            @endif
         </form>
 
         <div class="pt-10 flex justify-end">
