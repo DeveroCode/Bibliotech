@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::table('prestamos', function (Blueprint $table) {
             //
+            $table->string('numero_adquisicion');
+            $table->integer('tipo_prestamo')->default(1);
+            $table->date('fecha_devolucion');
+            $table->date('fecha_prestamo');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 
