@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LibroController;
+use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/cambiar-cabezera-footer', [LibroController::class, 'pie'])->name('dashboard.pie');
     Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
     Route::get('/dashboard/print/PDF', [LibroController::class, 'printPDF'])->name('dashboard.printPDF');
-    Route::get('/dashboard/lending', [LibroController::class, 'lending'])->name('dashboard.lending');
+    Route::get('/dashboard/lending', [PrestamoController::class, 'index'])->name('dashboard.lending');
 });
 
 // (Super-User => you can update the student database and delete other inactive users)
