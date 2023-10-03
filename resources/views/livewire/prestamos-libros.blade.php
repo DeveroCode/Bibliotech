@@ -1,53 +1,51 @@
 <div>
-    <div class="mx-auto py-5">
-        <div class="flex flex-wrap justify-end items-center">
-            <div class="mt-10 mb-5 w-full justify-end md:mr-4">
-                <label for="word" class="block mb-1 text-sm text-gray-500 uppercase font-bold">No. Control</label>
-                <livewire:search-user />
-            </div>
-        </div>
-    </div>
-
     {{-- Form alumno --}}
     <div class="mt-2">
         {{-- Start form for students --}}
         <span class="text-xl font-bold mb-10">Datos del alumno</span>
         <hr class="bg-indigo-800 mt-3">
+        <div class="mx-auto py-5">
+            <div class="flex flex-wrap justify-end items-center">
+                <div class="mt-10 mb-5 w-full justify-end md:mr-4">
+                    <label for="word" class="block mb-1 text-sm text-gray-500 uppercase font-bold">No. Control</label>
+                    <livewire:search-user />
+                </div>
+            </div>
+        </div>
+
 
         <form class="flex gap-5 md:flex-row flex-col py-6 justify-center items-center mb-20">
-            @if (isset($alumno))
+            @if (count($alumno) > 0 )
             {{-- nombre --}}
             <div class="relative z-0 w-full md:w-1/3">
-                <input type="text" name="name" id="name"
-                    class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                    placeholder=" " value="{{ isset($alumno[0]->nombre) ? $alumno[0]->nombre : '' }}" />
-                <label
-                    class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                    Nombre del alumno
-                </label>
+
+                <x-text-input id="name" wire:model="nombre"
+                    class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                    placeholder=" " :value="$alumno[0]->nombre" />
+                <x-input-label
+                    class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                    :value="__('Nombre del alumno')" />
                 @error('name') <span class="error text-red-500">{{ $message }}</span> @enderror
             </div>
             {{-- carrera --}}
             <div class="relative z-0 w-full md:w-1/3">
-                <input type="text" name="carrera" id="carrera"
-                    class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                    placeholder=" " value="{{ isset($alumno[0]->carrera) ? $alumno[0]->carrera : '' }}" />
-                <label
-                    class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                    Carrera
-                </label>
+                <x-text-input id="carrera" wire:model="carrera"
+                    class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                    placeholder=" " :value="$alumno[0]->carrera" />
+                <x-input-label
+                    class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                    :value="__('Carrera')" />
                 @error('carrera') <span class="error text-red-500">{{ $message }}</span> @enderror
             </div>
-            {{-- Escuela --}}
+            {{-- Correo --}}
             <div class="relative z-0 w-full md:w-1/3">
-                <input type="text" name="escuela" id="escuela"
-                    class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                    placeholder=" " value="{{ isset($alumno[0]->email) ? $alumno[0]->email : '' }}" />
-                <label
-                    class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                    Correo institucional
-                </label>
-                @error('escuela') <span class="error text-red-500">{{ $message }}</span> @enderror
+                <x-text-input id="correo" wire:model="correo"
+                    class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                    placeholder=" " :value="$alumno[0]->correo" />
+                <x-input-label
+                    class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                    :value="__('Correo institucional')" />
+                @error('correo') <span class="error text-red-500">{{ $message }}</span> @enderror
             </div>
             @endif
         </form>
@@ -63,110 +61,110 @@
 
         {{-- form for librarian--}}
         <form class="flex flex-col md:flex-row py-6 gap-10">
-            @if (isset($isbn))
             <div class="block-primary w-full flex flex-col gap-5">
+                @if (isset($isbn))
                 {{-- nombre --}}
                 <div class="relative z-0 md:w-full">
-                    <input type="text" name="name_prestamista"
-                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " value="{{ isset($isbn) ? auth()->user()->name :  '' }}" />
-                    <label
-                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                        Nombre del prestamista
-                    </label>
+                    <x-text-input id="user_biblio" wire:model="user_biblio"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                        placeholder=" " :value="$isbn[0]->user_biblio" />
+                    <x-input-label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                        :value="__('Nombre del bibliotecario')" />
+                    @error('user_biblio') <span class="error text-red-500">{{ $message }}</span> @enderror
                 </div>
                 {{-- folio --}}
                 <div class="relative z-0 md:w-full">
-                    <input type="text" name="name_prestamista"
-                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " value="" />
-                    <label
-                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                        No. Folio
-                    </label>
+                    <div class="relative z-0 md:w-full">
+                        <x-text-input id="folio" wire:model="folio"
+                            class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                            placeholder=" " :value="$isbn[0]->folio" />
+                        <x-input-label
+                            class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                            :value="__('No. Folio')" />
+                        @error('folio') <span class="error text-red-500">{{ $message }}</span> @enderror
+                    </div>
                 </div>
                 {{-- date --}}
                 <div class="relative z-0 md:w-full">
-                    <input type="text" name="fecha_prestamo"
-                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " value="{{
-                            now()->format('d/m/Y') }}" />
-                    <label
-                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                        Fecha
-                    </label>
+                    <x-text-input id="fecha_inicial" wire:model="fecha_inicial"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                        placeholder=" " :value="$isbn[0]->fecha_inicial" />
+                    <x-input-label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                        :value="__('Fecha')" />
+                    @error('fecha_inicial') <span class="error text-red-500">{{ $message }}</span> @enderror
                 </div>
             </div>
 
             <div class="block-secondary w-full flex flex-col gap-5">
                 {{-- Name Book --}}
                 <div class="relative z-0 w-full">
-                    <input type="text" name="nombre_liro"
-                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " value="{{ isset($isbn[0]->titulo) ? $isbn[0]->titulo : '' }} " />
-                    <label
-                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                        Libro
-                    </label>
+                    <x-text-input id="titulo" wire:model="titulo"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                        placeholder=" " :value="$isbn[0]->titulo" />
+                    <x-input-label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                        :value="__('Titulo')" />
+                    @error('titulo') <span class="error text-red-500">{{ $message }}</span> @enderror
                 </div>
                 {{-- Autores --}}
                 <div class="relative z-0 w-full">
-                    <input type="text" name="autores"
-                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" "
-                        value="{{ isset($isbn[0]->autores[0]->autor) ? $isbn[0]->autores[0]->autor : '' }}" />
-                    <label
-                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                        Autores
-                    </label>
+                    <x-text-input id="autores" wire:model="autores"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                        placeholder=" " :value="$isbn[0]->autores" />
+                    <x-input-label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                        :value="__('Autor || Autores')" />
+                    @error('autores') <span class="error text-red-500">{{ $message }}</span> @enderror
                 </div>
                 {{-- ISBN--}}
                 <div class="relative z-0 w-full">
-                    <input type="text" name="isbn"
-                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " value="{{ isset($isbn[0]->isbn) ? $isbn[0]->isbn : '' }}" />
-                    <label
-                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                        ISBN
-                    </label>
+                    <x-text-input id="identificacion" wire:model="identificacion"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                        placeholder=" " :value="$isbn[0]->identificacion" />
+                    <x-input-label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                        :value="__('ISBN')" />
+                    @error('identificacion') <span class="error text-red-500">{{ $message }}</span> @enderror
                 </div>
             </div>
 
             <div class="block-trhee w-full flex flex-col gap-5">
                 {{-- No. adquisicion --}}
                 <div class="relative z-0 w-full">
-                    <input type="text" name="no.adquisicion"
-                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " />
-                    <label
-                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                        No. adquisición
-                    </label>
+                    <x-text-input id="no_adquisicion" wire:model="no_adquisicion"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                        placeholder=" " :value="$isbn[0]->no_adquisicion" />
+                    <x-input-label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                        :value="__('No. Adquisición')" />
+                    @error('no_adquisicion') <span class="error text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 {{-- Renovacion --}}
                 <div class="relative z-0 w-full">
-                    <input type="text" name="fecha_prestamo"
-                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " />
-                    <label
-                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                        Renovación
-                    </label>
+                    <x-text-input id="fecha_renovacion" wire:model="fecha_renovacion"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                        placeholder=" " :value="$isbn[0]->fecha_renovacion" />
+                    <x-input-label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                        :value="__('Fecha de renovacion')" />
+                    @error('fecha_renovacion') <span class="error text-red-500">{{ $message }}</span> @enderror
                 </div>
 
-                {{-- Estatus --}}
+                {{-- Cantidad --}}
                 <div class="relative z-0 w-full">
-                    <input type="text" name="Estatus"
-                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                        placeholder=" " value="{{ isset($isbn[0]->cantidad) ? $isbn[0]->cantidad : '' }}" />
-                    <label
-                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                        Estatus
-                    </label>
+                    <x-text-input id="cantidad" wire:model="cantidad"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
+                        placeholder=" " :value="$isbn[0]->cantidad" />
+                    <x-input-label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
+                        :value="__('No. de Libros')" />
+                    @error('cantidad') <span class="error text-red-500">{{ $message }}</span> @enderror
                 </div>
+                @endif
             </div>
-            @endif
         </form>
 
         <div class="pt-10 flex justify-end">
