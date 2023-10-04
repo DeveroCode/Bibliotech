@@ -21,15 +21,13 @@
     <div class="flex flex-col sm:flex-row h-screen justify-center">
         <div class="relative w-full sm:w-10/12 h-full">
             <div class="bg-cover bg-center h-full"
-                style="background-image:url('{{ asset('imgs/backgroun-biblioteca.jpg') }}');">
+                style="background-image:url('{{ asset('imgs/backgroun-biblioteca.jpeg') }}');">
                 <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
             </div>
             <div class="absolute bottom-0 left-0 right-0 p-10 z-20 text-white flex flex-col items-start justify-end">
-                <h2 class="font-bold text-3xl uppercase">Imagen publicada por</h2>
-                <span class="text-lg">Jhonathan Francisca</span>
-                <p class="capitalize text-lg">Prague, Czechia</p>
-                <span>Imagen gratuita bajo la licencia de: <a href="https://unsplash.com/es/fotos/BpbkLACP64M"
-                        target="_blank" class="font-bold">Unsplash</a></span>
+                <h2 class="text-3xl uppercase font-extrabold">Instituto Tecnológico Superior</h2>
+                <a href="https://unsplash.com/es/fotos/BpbkLACP64M" target="_blank">Nuevo Casas
+                    Grandes</a>
             </div>
         </div>
 
