@@ -9,6 +9,7 @@ use Livewire\Component;
 class ViewBookDetails extends Component
 {
 
+    public $libro_id;
     public $user_biblio;
     public $fecha_inicial;
     public $titulo;
@@ -36,6 +37,7 @@ class ViewBookDetails extends Component
         //concatenating variables to the front-end
         $datos = $this->isbn;
 
+        $this->libro_id = $datos[0]->id;
         $this->user_biblio = auth()->user()->name;
         // $this->folio =
         $this->fecha_inicial = Carbon::now()->format('Y-m-d');
@@ -45,6 +47,18 @@ class ViewBookDetails extends Component
         $this->no_adquisicion = $datos[0]->no_adquisicion;
         // $this->fecha_renovacion = $datos[0]->fecha_renovacion;
         $this->cantidad = $datos[0]->cantidad;
+
+        $this->emit('dataBook', [
+            'id' => $this->libro_id,
+            'user_biblio' => $this->user_biblio,
+            'fecha_inicial' => $this->fecha_inicial,
+            'titulo' => $this->titulo,
+            'autores' => $this->autores,
+            'identificacion' => $this->identificacion,
+            'no_adquisicion' => $this->no_adquisicion,
+            'fecha_renovacion' => $this->fecha_renovacion,
+            'cantidad' => $this->cantidad,
+        ]);
     }
     public function render()
     {

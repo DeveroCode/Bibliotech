@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Libro;
 use App\Models\Headers;
+use App\Models\Libro;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 
@@ -73,12 +73,6 @@ class LibroController extends Controller
             'libro' => $libro,
         ]);
     }
-
-    public function lending()
-    {
-        return view('administrator.lending');
-    }
-
     public function pie()
     {
         return view('administrator.piepagina');
@@ -94,7 +88,8 @@ class LibroController extends Controller
         return $pdf->stream('inventory.pdf');
     }
 
-    function print() {
+    public function print()
+    {
         return view('administrator.print');
     }
 }
