@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('prestamos', function (Blueprint $table) {
-            //
-            $table->date('fecha_inicio');
-            $table->date('fecha_limite');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->integer('cantidad')->default(1);
+        Schema::create('tipo_prestamos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -26,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('prestamos', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('tipo_prestamos');
     }
 };

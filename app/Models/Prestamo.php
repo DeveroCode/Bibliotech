@@ -10,11 +10,11 @@ class Prestamo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'numero_adquisicion',
-        'tipo_prestamo',
-        'fecha_devolucion',
-        'fecha_prestamo',
+        'fecha_inicio',
+        'fecha_limite',
         'user_id',
+        'tipo_prestamo_id',
+        'cantidad',
     ];
 
     public function alumnos()
@@ -25,6 +25,11 @@ class Prestamo extends Model
     public function libros()
     {
         return $this->belongsToMany(Libro::class);
+    }
+
+    public function tipo_prestamo()
+    {
+        return $this->belongsTo(Tipo_prestamo::class, 'tipo_prestamo_id');
     }
 
     public function alumnos_libros_prestamos()

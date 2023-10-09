@@ -79,15 +79,13 @@
         </div>
 
         <div class="block-trhee w-full flex flex-col gap-5">
-            {{-- No. adquisicion --}}
+            {{-- Tipo de prestamo --}}
             <div class="relative z-0 w-full">
-                <x-text-input id="no_adquisicion" wire:model="no_adquisicion"
+                <select id="no_adquisicion" wire:model="no_adquisicion"
                     class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
-                    placeholder=" " :value="$isbn[0]->no_adquisicion" />
-                <x-input-label
-                    class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
-                    :value="__('No. Adquisición')" />
-                @error('no_adquisicion') <span class="error text-red-500">{{ $message }}</span> @enderror
+                    placeholder=" ">
+                    <option value="0">Tipo préstamo</option>
+                </select>
             </div>
 
             {{-- Renovacion --}}
