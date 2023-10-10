@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Http\Livewire;
 
 use App\Models\Libro;
+use App\Models\Tipo_prestamo;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
 
@@ -15,8 +15,8 @@ class ViewBookDetails extends Component
     public $titulo;
     public $autores;
     public $identificacion;
-    public $no_adquisicion;
-    public $fecha_renovacion;
+    public $tipo_prestamo;
+    public $fecha_limite;
     public $cantidad;
 
     public $isbn;
@@ -25,7 +25,6 @@ class ViewBookDetails extends Component
     public function isb($isbn)
     {
         $this->isbn = $isbn;
-
         if (empty($this->isbn)) {
             $this->isbn = [];
             return;
@@ -44,25 +43,22 @@ class ViewBookDetails extends Component
         $this->titulo = $datos[0]->titulo;
         $this->autores = $datos[0]->autores[0]->autor;
         $this->identificacion = $datos[0]->isbn;
-        $this->no_adquisicion = $datos[0]->no_adquisicion;
-        // $this->fecha_renovacion = $datos[0]->fecha_renovacion;
+        $this->fecha_limite = $datos[0]->fecha_limite;
         $this->cantidad = $datos[0]->cantidad;
 
         $this->emit('dataBook', [
             'id' => $this->libro_id,
-            'user_biblio' => $this->user_biblio,
-            'fecha_inicial' => $this->fecha_inicial,
-            'titulo' => $this->titulo,
-            'autores' => $this->autores,
-            'identificacion' => $this->identificacion,
-            'no_adquisicion' => $this->no_adquisicion,
-            'fecha_renovacion' => $this->fecha_renovacion,
+            'user_id' => $this->user_biblio,
+            'fecha_inicio' => $this->fecha_inicial,
+            'fecha_limite' => $this->fecha_limite,
             'cantidad' => $this->cantidad,
         ]);
     }
     public function render()
     {
+        $tipo_prestamos = Tipo_prestamo::all();
         return view('livewire.view-book-details', [
+            'tipo_prestamos' => $tipo_prestamos,
             'isbn' => $this->isbn,
         ]);
     }
