@@ -15,7 +15,7 @@
             <x-input-label
                 class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
                 :value="__('Nombre del alumno')" />
-            @error('name') <span class="error text-red-500">{{ $message }}</span> @enderror
+            <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
         </div>
         {{-- carrera --}}
         <div class="relative z-0 w-full md:w-1/3">

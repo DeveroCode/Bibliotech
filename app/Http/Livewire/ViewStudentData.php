@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Alumno;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class ViewStudentData extends Component
@@ -11,6 +12,7 @@ class ViewStudentData extends Component
     public $carrera;
     public $correo;
     public $id_student;
+    public $no_folio;
 
     // Datas for search the books and alumnos
     public $no_institucional;
@@ -18,6 +20,16 @@ class ViewStudentData extends Component
     // Iniciar vació el array
     public $alumno = [];
     protected $listeners = ['searchWord' => 'buscar'];
+
+    public function createFolio($no, $name)
+    {
+        $first = substr($no, 0, 2);
+        $second = substr($name, 0, 3);
+        $third = Carbon::now()->format('ss');
+        $folio = $first . strtoupper($second) . $third;
+
+        return $folio;
+    }
 
     public function buscar($no_institucional)
     {
@@ -35,6 +47,7 @@ class ViewStudentData extends Component
         $datos = $this->alumno;
 
         $this->id_student = $datos[0]->id;
+        $this->no_folio = $this->createFolio($datos[0]->no_institucional, $datos[0]->nombre);
         $this->nombre = $datos[0]->nombre;
         $this->carrera = $datos[0]->carrera;
         $this->correo = $datos[0]->email;
@@ -46,7 +59,13 @@ class ViewStudentData extends Component
             'carrera' => $this->carrera,
             'correo' => $this->correo,
         ]);
+
+        $this->emit('dataFolio', [
+            'folio' => $this->no_folio,
+        ]);
     }
+
+    // Create folio
 
     public function render()
     {

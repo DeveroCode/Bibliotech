@@ -1,6 +1,14 @@
 <div>
     {{-- Form alumno --}}
     <div class="mt-2">
+        @if (session()->has('message'))
+        <div x-data="{show: true}" x-init="setTimeout(() => show = false, 3000)" x-show="show">
+            <div
+                class="uppercase border border-green-600 bg-green-100 text-green-600 font-bold p-2 my-3 text-sm text-center">
+                {{ session('message') }}
+            </div>
+        </div>
+        @endif
         {{-- Start form for students --}}
         <span class="text-xl font-bold mb-10">Datos del alumno</span>
         <hr class="bg-indigo-800 mt-3">
