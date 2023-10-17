@@ -73,10 +73,7 @@ class LibroController extends Controller
             'libro' => $libro,
         ]);
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> features
     public function pie()
     {
         return view('administrator.piepagina');
