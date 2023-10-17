@@ -13,11 +13,7 @@ return new class extends Migration
     {
         Schema::table('prestamos', function (Blueprint $table) {
             //
-            $table->date('fecha_inicio')->required();
-            $table->date('fecha_limite')->required();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->integer('cantidad')->required();
-            $table->timestamps();
+            $table->foreignId('tipo_prestamo_id')->constrained()->onDelete('cascade');
         });
     }
 

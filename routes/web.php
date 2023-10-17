@@ -30,7 +30,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/cambiar-cabezera-footer', [LibroController::class, 'pie'])->name('dashboard.pie');
     Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
     Route::get('/dashboard/print/PDF', [LibroController::class, 'printPDF'])->name('dashboard.printPDF');
+<<<<<<< HEAD
     Route::get('/dashboard/lending', [PrestamoController::class, 'index'])->name('dashboard.lending');
+=======
+
+    // Routes for loans
+    Route::get('/dashboard/loans', [PrestamoController::class, 'index'])->name('loans.index');
+    Route::get('/dashboard/loans/view', [PrestamoController::class, 'show'])->name('loans.view');
+>>>>>>> features
 });
 
 // (Super-User => you can update the student database and delete other inactive users)

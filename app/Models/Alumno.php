@@ -23,4 +23,19 @@ class Alumno extends Model
         'anio_ingreso',
         'carrera',
     ];
+
+    public function libros()
+    {
+        return $this->belongsToMany(Libro::class);
+    }
+
+    public function libro_prestamo()
+    {
+        return $this->belongsToMany(Libro_prestamo::class, 'alumnno_id', 'libros_id', 'prestamo_id');
+    }
+
+    public function prestamos()
+    {
+        return $this->hasMany(Prestamo::class);
+    }
 }

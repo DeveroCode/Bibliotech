@@ -1,7 +1,7 @@
 <div class="max-w-7xl mx-auto">
     <form wire:submit.prevent="leerDatosBuscar" class="flex flex-wrap justify-between items-center">
         <div class="mb-5 w-full md:w-1/3 md:mr-4">
-            <input type="text" placeholder="Buscar por: Libros o Alumnos" name="word"
+            <input type="text" placeholder="No. Control" name="word"
                 class="rounded-md shadow-sm border-indigo-500 focus:border-indigo-400 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
                 wire:model="no_institucional">
         </div>
