@@ -32,8 +32,8 @@ class Prestamo extends Model
         return $this->belongsTo(Tipo_prestamo::class, 'tipo_prestamo_id');
     }
 
-    public function alumnos_libros_prestamos()
+    public function libro_prestamo()
     {
-        return $this->belongsToMany(Alumno_libro_prestamo::class, 'alumnno_id', 'libros_id', 'prestamo_id');
+        return $this->belongsToMany(Libro_prestamo::class, 'alumnno_id', 'libros_id', 'prestamo_id');
     }
 }

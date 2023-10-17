@@ -69,7 +69,7 @@ class PrestamosLibros extends Component
                 'tipo_prestamo_id' => $datos['tipo_prestamo_id'],
             ]);
 
-            DB::table('alumno_libro_prestamos')->insert([
+            DB::table('libro_prestamo')->insert([
                 'alumno_id' => $this->id_student,
                 'libro_id' => $this->libro_id,
                 'prestamo_id' => $prestamo->id,

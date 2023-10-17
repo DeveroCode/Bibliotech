@@ -34,9 +34,13 @@ class PrestamoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Prestamo $prestamo)
+    public function show()
     {
-        //
+        $loans = Prestamo::with('libros')->get();
+        return view('administrator.view-loans',
+            [
+                'loans' => $loans,
+            ]);
     }
 
     /**

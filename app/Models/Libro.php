@@ -49,8 +49,8 @@ class Libro extends Model
         return $this->belongsTo(Estante::class);
     }
 
-    public function alumnos_libros_prestamos()
+    public function libros()
     {
-        return $this->belongsToMany(Alumno_libro_prestamo::class, 'alumnno_id', 'libros_id', 'prestamo_id');
+        return $this->belongsToMany(Libro::class, 'alumnno_id', 'libros_id', 'prestamo_id');
     }
 }
