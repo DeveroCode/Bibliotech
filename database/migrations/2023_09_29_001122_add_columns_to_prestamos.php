@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('fecha_limite')->required();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('cantidad')->required();
+            $table->string('folio')->required();
             $table->timestamps();
         });
     }

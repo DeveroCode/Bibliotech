@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Prestamo;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
@@ -15,6 +16,7 @@ class PrestamosLibros extends Component
     public $fecha_limite;
     public $user_id;
     public $cantidad;
+    public $folio;
     public $tipo_prestamo_id;
 
     protected $rules = [
@@ -22,6 +24,7 @@ class PrestamosLibros extends Component
         'fecha_limite' => 'required|string',
         'user_id' => 'required|int',
         'cantidad' => 'required|int',
+        'folio' => 'required|string',
     ];
 
     protected $listeners = ['dataStudent' => 'loadDataStudent', 'dataBook' => 'loadDataBook', 'dataLoan' => 'mountTypeLoan', 'total_books' => 'mount_total_books'];
@@ -29,14 +32,6 @@ class PrestamosLibros extends Component
     public function loadDataStudent($datos)
     {
         $this->id_student = $datos['id'];
-    }
-
-    public function loadDataBook($datos)
-    {
-        $this->libro_id = $datos['id'];
-        $this->fecha_inicio = date('Y-m-d', strtotime($datos['fecha_inicio']));
-        $this->fecha_limite = date('Y-m-d', strtotime($datos['fecha_limite']));
-        $this->user_id = auth()->user()->id;
     }
 
     public function mountTypeLoan($datos)
@@ -49,6 +44,15 @@ class PrestamosLibros extends Component
         $this->cantidad = $datos['cantidad_libros'];
     }
 
+    public function loadDataBook($datos)
+    {
+        $this->libro_id = $datos['id'];
+        $this->fecha_inicio = date('Y-m-d', strtotime($datos['fecha_inicio']));
+        $this->fecha_limite = date('Y-m-d', strtotime($datos['fecha_limite']));
+        $this->folio = $datos['folio'];
+        $this->user_id = auth()->user()->id;
+    }
+
     public function processLoan()
     {
         try {
@@ -59,6 +63,7 @@ class PrestamosLibros extends Component
             $datos['fecha_limite'] = $this->fecha_limite;
             $datos['user_id'] = $this->user_id;
             $datos['cantidad'] = $this->cantidad;
+            $datos['folio'] = $this->folio;
             $datos['tipo_prestamo_id'] = $this->tipo_prestamo_id;
 
             $prestamo = Prestamo::create([
@@ -66,6 +71,9 @@ class PrestamosLibros extends Component
                 'fecha_limite' => $datos['fecha_limite'],
                 'user_id' => $datos['user_id'],
                 'cantidad' => $datos['cantidad'],
+                'folio' => $datos['folio'],
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'tipo_prestamo_id' => $datos['tipo_prestamo_id'],
             ]);
 
@@ -79,7 +87,7 @@ class PrestamosLibros extends Component
             return redirect()->route('dashboard');
 
         } catch (ValidationException $e) {
-            session()->flash('error', 'Error al procesar el prestamo' . $e->getMessage());
+            dd($e->getMessage());
         }
 
     }

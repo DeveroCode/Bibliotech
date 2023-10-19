@@ -32,8 +32,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/print/PDF', [LibroController::class, 'printPDF'])->name('dashboard.printPDF');
 
     // Routes for loans
-    Route::get('/dashboard/loans', [PrestamoController::class, 'index'])->name('loans.index');
-    Route::get('/dashboard/loans/view', [PrestamoController::class, 'show'])->name('loans.view');
+    Route::get('/dashboard/loans/view', [PrestamoController::class, 'index'])->name('loans.index');
+    Route::get('/dashboard/loans', [PrestamoController::class, 'create'])->name('loans.create');
+    Route::get('/dashboard/loans/show', [PrestamoController::class, 'show'])->name('loans.show');
 });
 
 // (Super-User => you can update the student database and delete other inactive users)

@@ -13,13 +13,19 @@ class Prestamo extends Model
         'fecha_inicio',
         'fecha_limite',
         'user_id',
+        'folio',
         'tipo_prestamo_id',
         'cantidad',
     ];
 
     public function alumnos()
     {
-        return $this->belongsTo(Alumno::class);
+        return $this->belongsToMany(Alumno::class, 'libro_prestamo', 'libro_id', 'prestamo_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function libros()
@@ -30,6 +36,11 @@ class Prestamo extends Model
     public function tipo_prestamo()
     {
         return $this->belongsTo(Tipo_prestamo::class, 'tipo_prestamo_id');
+    }
+
+    public function autores()
+    {
+        return $this->belongsToMany(Autor::class, 'autor_libro', 'libros_id', 'autores_id');
     }
 
     public function libro_prestamo()
