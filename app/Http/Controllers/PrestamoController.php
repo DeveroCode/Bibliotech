@@ -12,7 +12,11 @@ class PrestamoController extends Controller
      */
     public function index()
     {
-        return view('administrator.lending');
+        $loans = Prestamo::with('libros')->get();
+        return view('administrator.view-loans',
+            [
+                'loans' => $loans,
+            ]);
     }
 
     /**
@@ -21,6 +25,7 @@ class PrestamoController extends Controller
     public function create()
     {
         //
+        return view('administrator.lending');
     }
 
     /**
@@ -36,8 +41,8 @@ class PrestamoController extends Controller
      */
     public function show()
     {
-        $loans = Prestamo::with('libros')->get();
-        return view('administrator.view-loans',
+        $loans = Prestamo::with('libros', 'alumnos', 'autores')->get();
+        return view('administrator.show-loans',
             [
                 'loans' => $loans,
             ]);

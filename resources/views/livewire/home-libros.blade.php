@@ -53,37 +53,37 @@
                     @switch($categoria->id)
                     @case(1)
                     <div class="w-12 h-12">
-                        <img src="{{ asset('imgs/icons/sistemas.png') }}" alt="Icon sistemas">
+                        <img src="{{ asset('imgs/icons/LOGO-ISC.png') }}" alt="Icon sistemas">
                     </div>
                     @break
                     @case(2)
                     <div class="w-12 h-12">
-                        <img src="{{ asset('imgs/icons/contaduria.png') }}" alt="Icon contabilidad">
+                        <img src="{{ asset('imgs/icons/Logo-contador.png') }}" alt="Icon contabilidad">
                     </div>
                     @break
                     @case(3)
                     <div class="w-12 h-12">
-                        <img src="{{ asset('imgs/icons/mecatronica.png') }}" alt="Icon mecatronica">
+                        <img src="{{ asset('imgs/icons/logo-IMCT (1).png') }}" alt="Icon mecatronica">
                     </div>
                     @break
                     @case(4)
                     <div class="w-12 h-12">
-                        <img src="{{ asset('imgs/icons/electronica.png') }}" alt="Icon electronmecanica">
+                        <img src="{{ asset('imgs/icons/Logo-electromecanica.jpg') }}" alt="Icon electronmecanica">
                     </div>
                     @break
                     @case(5)
                     <div class="w-12 h-12">
-                        <img src="{{ asset('imgs/icons/gestion.png') }}" alt="Icon gestion empresarial">
+                        <img src="{{ asset('imgs/icons/LOGO-IGEM.png') }}" alt="Icon gestion empresarial">
                     </div>
                     @break
                     @case(6)
                     <div class="w-12 h-12">
-                        <img src="{{ asset('imgs/icons/industrial.png') }}" alt="Icon industrial">
+                        <img src="{{ asset('imgs/icons/Logo-industrial.jpg') }}" alt="Icon industrial">
                     </div>
                     @break
                     @case(7)
                     <div class="w-12 h-12">
-                        <img src="{{ asset('imgs/icons/electronica-2.png') }}" alt="Icon automotriz">
+                        <img src="{{ asset('imgs/icons/Logo-IEL.jpg') }}" alt="Icon automotriz">
                     </div>
                     @break
                     @case(8)
