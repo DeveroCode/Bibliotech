@@ -14,18 +14,18 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            'name' => 'Invitado 1',
-            'email' => 'invitado@code.com',
-            'password' => Hash::make('123123123'),
+            'name' => 'Mari Sanchez',
+            'email' => 'msanchez@code.com',
+            'password' => Hash::make('msanchez98'),
             'rol' => 1,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Invitado 2',
-            'email' => 'invitado2@code.com',
-            'password' => Hash::make('123123123'),
+            'name' => 'Meli Gameros',
+            'email' => 'gmeli@code.com',
+            'password' => Hash::make('gmeli98'),
             'rol' => 1,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),

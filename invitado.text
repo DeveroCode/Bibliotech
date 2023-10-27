@@ -1,0 +1,33 @@
+/* ==> Comando para GitHub <==  */
+=> Git branch - Crear una nueva rama dentro del directorio 
+=> Git Checkout - Navega dentro de los diferentes directorios y/o rama (Ej: Git checkout main)
+=> Git fetch - Actualiza todos los cambios surgidor por diferentes developers dentro de la rama en la que se encuentra
+
+/* ==> Comando para Laravel <==  */
+=> php artisan serve - Levanta el servidor desde tu red local (Nota: Es necesario tener buen internet para que el servidor local funcione correctamente)
+=> php artisan migrate:fresh - Reinicia todas las tablas asi como también, la base de datos desde cero. (Nota: solo correr en caso de que un cambio no funcione dentro del deploy)
+=> php artisan cache:clear - Limpia la cache de la aplicación por completo
+    -> view:clear
+    -> route:cache
+    -> config:cache
+=> php artisan optimize - En caso de estar muy lenta la aplicación en el entorno de desarrollo, este comando optimiza las vistas entre otras funciones
+
+/* ==> Iniciar la aplicacion <==  */
+=> npm run i -> Instalara todas las dependencias utilizadas durante el desarrollo de la aplicacion
+=> composer install -> Intalara composer ya que, laravel utiliza composer para trabajar
+=> .env.example -> variables de entorno 
+
+/* ==> Levantar los servidores <==  */
+=> npm run dev -> levanta el servidor front-end "Corre todos los cambios del css que utiliza tainwindcss" (Nota: es necesario que este comando este corriendo durante el uso de la aplicacion)
+=> php artisan serve -> levanta las vistas y el backend del servidor (Nota: tambien es necesario que se corra durante el uso de la aplicacion)
+
+/* ==> Aplicaciones necesarias <==  */
+Git-GitHub
+VSCode
+
+/* ==> Entorno AMP - XAMPP - WAMPP - LAMPP <==  */
+=> En caso de usar XAMPP - WAMPP no es necesario descargas las aplicaciones en listadas con este simbolo ->
+-> Apache
+-> MySQL
+-> Php 
+=> Node Js *Requerido*
