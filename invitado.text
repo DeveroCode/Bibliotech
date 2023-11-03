@@ -1,6 +1,6 @@
 /* ==> Comando para GitHub <==  */
 => Git branch - Crear una nueva rama dentro del directorio 
-=> Git Checkout - Navega dentro de los diferentes directorios y/o rama (Ej: Git checkout main)
+=> Git checkout - Navega dentro de los diferentes directorios y/o rama (Ej: Git checkout main)
 => Git fetch - Actualiza todos los cambios surgidor por diferentes developers dentro de la rama en la que se encuentra
 
 /* ==> Comando para Laravel <==  */
