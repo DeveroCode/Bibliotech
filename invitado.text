@@ -1,7 +1,11 @@
 /* ==> Comando para GitHub <==  */
 => Git branch - Crear una nueva rama dentro del directorio 
+<<<<<<< HEAD
 => Git checkout - Navega dentro de los diferentes directorios y/o rama (Ej: Git checkout main)
 => Git fetch - Actualiza todos los cambios surgidor por diferentes developers dentro de la rama en la que se encuentra
+=======
+=> Git Checkout - Navega dentro de los diferentes directorios y/o rama (Ej: Git checkout main)
+=> Git fetch . - Actualiza todos los cambios surgidor por diferentes developers dentro de la rama en la que se encuentra
 
 /* ==> Comando para Laravel <==  */
 => php artisan serve - Levanta el servidor desde tu red local (Nota: Es necesario tener buen internet para que el servidor local funcione correctamente)
