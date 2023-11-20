@@ -80,11 +80,11 @@ DeveroCode (Carlos Martinez - Programador de toda la aplicación web)
 ## Licencia 
 ---
 
-Este software es propiedad del Instituto Tecnológico Superior de Nayarit Campus Gral. Crisóforo Mazón Salazar (ITSNCG) y está licenciado bajo los términos de la siguiente licencia.
+Este software es propiedad del Instituto Tecnológico Superior de Nuevo Casas Grandes Chihuahua (ITSNCG) y está licenciado bajo los términos de la siguiente licencia.
 
 ### Términos y Condiciones
 
-1. **Uso Exclusivo:** Este software y su código fuente son exclusivamente para uso del Instituto Tecnológico  Superior de Nuevo Casas Grandes Chihuahua (ITSNCG).
+1. **Uso Exclusivo:** Este software y su código fuente son exclusivamente para uso del Instituto Tecnológico Superior de Nuevo Casas Grandes Chihuahua (ITSNCG).
 
 2. **Distribución y Modificación:** La distribución y modificación de este software, así como cualquier proyecto derivado de este, está permitida únicamente para uso interno en el ITSNCG. Cualquier distribución, modificación o uso externo debe ser autorizado por escrito por parte del ITSNCG.
 
