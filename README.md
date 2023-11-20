@@ -101,4 +101,4 @@ Para cualquier consulta relacionada con esta licencia, por favor comuníquese co
 
 Fecha de Vigencia: [Fecha de Inicio] - [Fecha de Término]
 
-© [Año] Instituto Tecnológico Superior de Nuevo Casas Grandes (ITSNCG).
+© 2023 Instituto Tecnológico Superior de Nuevo Casas Grandes (ITSNCG).
