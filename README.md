@@ -1,18 +1,102 @@
-# BiblioTech
 
-## Acerca de
-BiblioTech es un gestor diseñado para administrar altas, bajas, actualizaciones y prestaciones a alumnos y administrativos del ITSNCG. ...
+![analytics image (flat)](https://raw.githubusercontent.com/vitr/google-analytics-beacon/master/static/badge-flat.gif)
+![analytics](https://www.google-analytics.com/collect?v=1&cid=555&t=pageview&ec=repo&ea=open&dp=/Plantilla-de-repositorio/readme&dt=&tid=UA-4677001-16)
 
-## Funcionalidades Principales
-- Interfaz intuitiva y fácil de usar.
-- Gestión de préstamos y devoluciones.
-- Notificaciones automáticas para recordatorios.
-- ...
+## BIBLIOTECH 👇
+Gestor administrador de altas, bajas, actualizaciones y prestamos
 
-## Iniciar el Proyecto
-1. `npm install` - Instala las dependencias de Node.js.
-2. `composer install` - Instala las dependencias de Composer.
-3. Editar el archivo `.env` con tus configuraciones personales.
 
-## Licencia
-DeveroCode - 2023 Bibliotech
+*Esta herramienta digital forma parte del catálogo de herramientas del **Banco Interamericano de Desarrollo**. Puedes conocer más sobre la iniciativa del BID en [code.iadb.org](https://code.iadb.org)*
+
+<h1 align="center">Acerca De</h1>
+<p align="center"> BiblioTech es un sistema de gestión diseñado para facilitar la administración de la biblioteca y la documentación en el Instituto Tecnológico Superior de Nuevo Casas Grandes, Chihuahua (ITSNCG). El objetivo principal es mejorar la eficiencia en el acceso a recursos tanto para el personal como para los estudiantes.</p>
+
+## Tabla de contenidos:
+---
+
+- [Que hay de nuevo?](#que-hay-de-nuevo)
+- [Forma de desarrollo de la aplicación web](#aplicacion-web)
+- [Guía de instalación](#guía-de-instalación)
+- [Actualizaciones](#actualizaciones)
+- [Contribuidores](#cómo-contribuir)
+- [Realizado por](#realizado)
+- [Licencia](#licencia)
+
+## Que hay de nuevo?
+---
+**Aunque aun estamos en fase Beta, hemos agregado las principales funciones fundamentales para un correcto manejo de prestamos, asi como, el registro de nuevo material didáctico, reportes de inventarios. **
+** Creemos que la mejor manera para atraer al usuario es a través de un diseño limpio, por esa razón, hemos optado por los colores claros asi como, el blanco y morado.**
+
+### Forma de desarrollo de la aplicación web
+---
+En la iniciativa del proyecto, se optimo por el uso del framework Laravel junto con Livewire para la creación del proyecto, siguiendo con el modelo MVC.
+
+Dividiendo las funcionalidades del proyecto en componente con la ayuda de Livewire, se aligero la programación optimizando un 12% la creación de la aplicación, asi como diversas funciones complejas qe agrega Livewire,
+Tailwind CSS se decidio utilizar para el diseño de esta aplicación, ya que, esta solo renderiza las clase utilizadas en todo el proyecto a Diferencia de otros frameworks que ofrecen los mismo pero ya prediseñados.
+
+## Guía de instalación
+---
+Cómo instalar la aplicación web? . Para iniciar la aplicación es necesario contar con **Composer, Node.js, PHP y Laravel**
+
+### Dependencias
+Clona el repositorio directamente
+    https://github.com/DeveroCode/Bibliotech.git
+
+Instala las dependencias necesarias de composer
+    composer install
+
+Instala las dependencias necesarias de node.js
+    npm install
+
+Configura tu archivo .env.example
+-- Copia el archivo **.env.example** y renómbralo a **.env**
+-- Configura la conexión a la base de datos y otras variables de entorno según tus necesidades
+
+Genera tu APP-KEY
+    php artisan key:generate
+
+Inicia tu servidor
+    php artisan serve
+    npm run dev
+
+### Actualizaciones
+
+- Creación de libros - CRUD (Create, Read, Update, Delete): ![Libros](https://img.shields.io/badge/coverage-100%25-yellowgreen)
+- Imprimir Reportes PDF: ![Iniciando](https://img.shields.io/badge/coverage-15%25-red)
+- Prestamos: ![Finalizando](https://img.shields.io/badge/coverage-85%25-bluered)
+- Prestamos - Inteligente: ![Finalizando](https://img.shields.io/badge/coverage-0%25-purple)
+- Buscador: ![Finalizando](https://img.shields.io/badge/coverage-100%25-bluered)
+
+
+## Contribuidores
+---
+Marhley (DBA - Colaboradora)
+AbrhanNVazquez (Analista y Documentación)
+DeveroCode (Carlos Martinez - Programador de toda la aplicación web)
+
+
+## Licencia 
+---
+
+Este software es propiedad del Instituto Tecnológico Superior de Nayarit Campus Gral. Crisóforo Mazón Salazar (ITSNCG) y está licenciado bajo los términos de la siguiente licencia.
+
+### Términos y Condiciones
+
+1. **Uso Exclusivo:** Este software y su código fuente son exclusivamente para uso del Instituto Tecnológico  Superior de Nuevo Casas Grandes Chihuahua (ITSNCG).
+
+2. **Distribución y Modificación:** La distribución y modificación de este software, así como cualquier proyecto derivado de este, está permitida únicamente para uso interno en el ITSNCG. Cualquier distribución, modificación o uso externo debe ser autorizado por escrito por parte del ITSNCG.
+
+3. **Responsabilidad:** El software se proporciona "tal cual", sin garantía de ningún tipo, expresa o implícita. El ITSNCG no se hace responsable de los daños derivados del uso de este software.
+
+4. **Reserva de Derechos:** El ITSNCG se reserva todos los derechos sobre el código fuente, diseño y funcionalidades de este software. Cualquier intento de copia, reproducción o distribución no autorizada está sujeto a acciones legales.
+
+5. **Cumplimiento Legal:** Cualquier intento de distribuir, copiar o modificar este software de manera que infrinja la licencia puede resultar en acciones legales.
+
+
+### Contacto
+
+Para cualquier consulta relacionada con esta licencia, por favor comuníquese con el Instituto Tecnológico Superior de Nuevo Casas Grandes Chihuahua (ITSNCG) en [mtz.carlos.123.nz@gmail.com].
+
+Fecha de Vigencia: [Fecha de Inicio] - [Fecha de Término]
+
+© [Año] Instituto Tecnológico Superior de Nuevo Casas Grandes (ITSNCG).
