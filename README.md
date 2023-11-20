@@ -6,8 +6,6 @@
 Gestor administrador de altas, bajas, actualizaciones y prestamos
 
 
-*Esta herramienta digital forma parte del catálogo de herramientas del **Banco Interamericano de Desarrollo**. Puedes conocer más sobre la iniciativa del BID en [code.iadb.org](https://code.iadb.org)*
-
 <h1 align="center">Acerca De</h1>
 <p align="center"> BiblioTech es un sistema de gestión diseñado para facilitar la administración de la biblioteca y la documentación en el Instituto Tecnológico Superior de Nuevo Casas Grandes, Chihuahua (ITSNCG). El objetivo principal es mejorar la eficiencia en el acceso a recursos tanto para el personal como para los estudiantes.</p>
 
@@ -15,11 +13,10 @@ Gestor administrador de altas, bajas, actualizaciones y prestamos
 ---
 
 - [Que hay de nuevo?](#que-hay-de-nuevo)
-- [Forma de desarrollo de la aplicación web](#aplicacion-web)
+- [Forma de desarrollo de la aplicación web](#forma-de-desarrollo-de-la-aplicación-web)
 - [Guía de instalación](#guía-de-instalación)
 - [Actualizaciones](#actualizaciones)
-- [Contribuidores](#cómo-contribuir)
-- [Realizado por](#realizado)
+- [Contribuidores](#contribuidores)
 - [Licencia](#licencia)
 
 ## Que hay de nuevo?
@@ -29,9 +26,9 @@ Gestor administrador de altas, bajas, actualizaciones y prestamos
 
 ### Forma de desarrollo de la aplicación web
 ---
-En la iniciativa del proyecto, se optimo por el uso del framework Laravel junto con Livewire para la creación del proyecto, siguiendo con el modelo MVC.
+En la iniciativa del proyecto, se opto por el uso del framework Laravel junto con Livewire para la creación del proyecto, siguiendo el modelo MVC.
 
-Dividiendo las funcionalidades del proyecto en componente con la ayuda de Livewire, se aligero la programación optimizando un 12% la creación de la aplicación, asi como diversas funciones complejas qe agrega Livewire,
+Dividiendo las funcionalidades del proyecto en componentes con Livewire, se aligero la programación optimizando un 12% la creación de esta apliacion, asi como diversas funciones complejas que agrega Livewire,
 Tailwind CSS se decidio utilizar para el diseño de esta aplicación, ya que, esta solo renderiza las clase utilizadas en todo el proyecto a Diferencia de otros frameworks que ofrecen los mismo pero ya prediseñados.
 
 ## Guía de instalación
