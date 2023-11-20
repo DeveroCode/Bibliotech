@@ -23,23 +23,23 @@
                                     class="h-8 p-1">
                             </span>
                             @foreach ($loan->alumnos as $alumno)
-                            <h2 class="text-md md:text-xl md:font-medium">
-                                {{ $alumno }}
-                            </h2>
-                            <div class="ml-3 text-blue-800 text-[15px] md:text-xl">{{ $alumno->no_institucional }}</div>
+                            <div class="flex flex-row justify-center items-center space-x-32">
+                                <h2 class="text-md md:text-xl md:font-medium">
+                                    {{ $alumno->nombre }}
+                                </h2>
+                                <span class="ml-3 text-blue-800 text-[15px] md:text-xl">{{ $alumno->no_institucional }}
+                                </span>
+                            </div>
                             @endforeach
-                            </h2>
                         </div>
-                        {{-- @foreach ($loan->alumnos as $alumno)
-
-                        @endforeach --}}
                     </div>
                     <div class="border-b border-dashed border-b-2 my-5"></div>
                     <div class="flex items-center gap-10">
                         {{-- Date --}}
                         <div class="flex flex-col">
                             <div class="flex-auto text-xs text-gray-400 my-1">
-                                <span class="mr-1 ">Fecha</span><span>{{ $loan->fecha_inicio }}</span>
+                                <span class="mr-1 ">Fecha</span><span>{{
+                                    Carbon\Carbon::parse($loan->fecha_inicio)->format('d-m-Y') }}</span>
                             </div>
                             @foreach ($loan->libros as $libro)
                             <div class="w-full flex-none text-lg text-blue-800 font-bold leading-none">
@@ -50,14 +50,15 @@
                             <div class="text-xs font-medium">{{ $loan->autores->first()->autor }}</div>
                             @endif
                         </div>
-                        <div class="flex flex-col">
+                        <div class="flex flex-col mt-4">
                             <div class="flex-auto text-xs text-gray-400 my-1">
-                                <span class="mr-1">Renovacion</span><span>31-10-2023</span>
+                                <span class="mr-1">Renovacion</span><span>{{
+                                    Carbon\Carbon::parse($loan->fecha_fin)->format('d-m-Y')
+                                    }}</span>
                             </div>
                             <div class="w-full flex-none text-lg text-blue-800 font-bold leading-none">Cantidad
                             </div>
-                            <div class="text-xs">12</div>
-
+                            <div class="text-xs">{{ $loan->cantidad }}</div>
                         </div>
 
                     </div>
@@ -89,7 +90,7 @@
                         </div>
                         <div class="flex flex-col text-sm">
                             <span class="">Entrgado</span>
-                            <div class="font-semibold">2:00PM</div>
+                            <div class="font-semibold uppercase">Pendiente</div>
 
                         </div>
                     </div>
