@@ -37,12 +37,15 @@ Cómo instalar la aplicación web? . Para iniciar la aplicación es necesario co
 
 ### Dependencias
 Clona el repositorio directamente
+
     https://github.com/DeveroCode/Bibliotech.git
 
 Instala las dependencias necesarias de composer
+
     composer install
 
 Instala las dependencias necesarias de node.js
+
     npm install
 
 Configura tu archivo .env.example
@@ -50,9 +53,11 @@ Configura tu archivo .env.example
 -- Configura la conexión a la base de datos y otras variables de entorno según tus necesidades
 
 Genera tu APP-KEY
+
     php artisan key:generate
 
 Inicia tu servidor
+
     php artisan serve
     npm run dev
 
