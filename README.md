@@ -63,11 +63,11 @@ Inicia tu servidor
 
 ### Actualizaciones
 
-- Creación de libros - CRUD (Create, Read, Update, Delete): ![Libros](https://img.shields.io/badge/libro-100%25-yellowgreen)
-- Imprimir Reportes PDF: ![Iniciando](https://img.shields.io/badge/coverage-15%25-red)
-- Prestamos: ![Finalizando](https://img.shields.io/badge/coverage-85%25-bluered)
-- Prestamos - Inteligente: ![Finalizando](https://img.shields.io/badge/coverage-0%25-purple)
-- Buscador: ![Finalizando](https://img.shields.io/badge/coverage-100%25-bluered)
+- Creación de libros - CRUD (Create, Read, Update, Delete): ![Libros](https://img.shields.io/badge/Finalizado-100%-green)
+- Imprimir Reportes PDF: ![Iniciando](https://img.shields.io/badge/Iniciando-10%-red)
+- Prestamos: ![Finalizando](https://img.shields.io/badge/Finalizado-85%-bluered)
+- Prestamos - Inteligente: ![Iniciando](https://img.shields.io/badge/Iniciando-0%-orange)
+- Buscador: ![Finalizando](https://img.shields.io/badge/Finalizado-100%-green)
 
 
 ## Contribuidores
