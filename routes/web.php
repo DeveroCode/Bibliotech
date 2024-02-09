@@ -41,7 +41,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified', 'role'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
-    Route::get('/admin/create-user', [AdminController::class, 'createUser'])->name('admin.cuser');
+    Route::get('/admin/create-user', [AdminController::class, 'createUser'])->name('admin.user');
 });
 
 // show books for everyone

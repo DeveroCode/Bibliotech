@@ -19,6 +19,7 @@ class AdminController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    // Actualizar la base de datos de los alumnos
     public function create()
     {
         //

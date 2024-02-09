@@ -1,4 +1,4 @@
-<form class="md:w-1/2 mt-10">
+<form class="md:w-1/2 mt-10" wire:submit.prevent='crearUsuario'>
     <section class="mb-10">
         <h2 class="font-bold">Configuraremos las cuentas de tus usuarios</h2>
         <x-input-label :value="__('Configura sus permisos y privilegios. Aquí podrás definir
@@ -8,40 +8,6 @@
         y
         roles de cada usuario.')" class="mt-2" />
     </section>
-
-    {{-- <div>
-        <label for="imagen" class="mb-5 text-sm uppercase text-black font-bold">Imagen de Perfil</label>
-
-        <div class="flex">
-            <div class="relative mt-10 mb-20">
-                <label for="archivo-input" class="bg-black mt-10 px-16 py-10 rounded-md cursor-pointer relative">
-                    <img src="{{ asset('imgs/icons/profile.svg') }}"
-                        class="absolute w-28  -translate-x-[-6%] -translate-y-[38%] transform " alt="">
-                </label>
-            </div>
-
-            <div>
-                <input id="archivo-input" type="file" accept=".xlsm, .xlsx, .xls" wire:model="archivo" class="hidden" />
-                <label for="archivo-input" class=" block font-medium text-sm text-gray-700 dark:text-gray-300">
-                    Seleccionar archivo
-                </label>
-            </div>
-        </div>
-
-
-        <x-input-label for="imagen" :value="__('portada')" class="uppercase" />
-        <x-text-input id="imagen" class="block text-sm mt-1 w-full" type="file" wire:model="imagen" accept="image/*" />
-
-
-        Preview image
-        <div class="my-5 w-80">
-            @if ($imagen)
-            Imagen: <img src="{{ $imagen->temporaryUrl() }}">
-            @endif
-        </div>
-
-        <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
-    </div> --}}
 
     {{-- Name --}}
     <div class="mt-5 flex gap-4">
@@ -53,17 +19,17 @@
         </div>
 
         <div>
-            <x-input-label for="apellidoP" :value="__('Apellido Paterno')" class="uppercase" />
-            <x-text-input id="apellidoP" class="block mt-1 w-full" type="text" wire:model="apellidoP"
-                :value="old('apellidoP')" placeholder="Carvajal" />
+            <x-input-label for="apellido_paterno" :value="__('Apellido Paterno')" class="uppercase" />
+            <x-text-input id="apellido_paterno" class="block mt-1 w-full" type="text" wire:model="apellido_paterno"
+                :value="old('apellido_paterno')" placeholder="Carvajal" />
             <x-input-error :messages="$errors->get('apellido')" class="mt-2" />
         </div>
 
         <div>
-            <x-input-label for="apellidoM" :value="__('Apellido Materno')" class="uppercase" />
-            <x-text-input id="apellidoM" class="block mt-1 w-full" type="text" wire:model="apellidoM"
-                :value="old('apellidoM')" placeholder="Rivera" />
-            <x-input-error :messages="$errors->get('apellidoM')" class="mt-2" />
+            <x-input-label for="apellido_materno" :value="__('Apellido Materno')" class="uppercase" />
+            <x-text-input id="apellido_materno" class="block mt-1 w-full" type="text" wire:model="apellido_materno"
+                :value="old('apellido_materno')" placeholder="Rivera" />
+            <x-input-error :messages="$errors->get('apellido_materno')" class="mt-2" />
         </div>
     </div>
 
@@ -84,25 +50,34 @@
 
 
     <div class="mt-5 flex">
-        <div class="w-1/2 mr-2">
+        <div class="w-1/2 md:0 md:mr-2">
             <x-input-label for="password" :value="__('password')" class="uppercase" />
             <x-text-input id="password" class="block mt-1 w-full" type="password" wire:model="password"
                 :value="old('password')" placeholder="Ej: 123456" />
         </div>
-
         <div class="w-1/2">
-            <x-input-label for="genero" :value="__('Genero')" class="uppercase" />
-            <x-text-input id="genero" class="block mt-1 w-full" type="text" wire:model="genero"
-                :value="old('genero')" />
+            <x-input-label for="genero" :value="__('Genero  ')" class="uppercase" />
+            <select id="genero" class="rounded-md mt-1 w-full border-gray-300" type="text" wire:model="genero"
+                :value="old('genero')">
+                <option value="3" selected> ---Selección--- </option>
+                @foreach ($generos as $genero)
+                <option value="{{ $genero['id']}}">{{ $genero['nombre']}}</option>
+                @endforeach
+            </select>
             <x-input-error :messages="$errors->get('genero')" class="mt-2" />
         </div>
     </div>
 
     <div class="mt-5 flex">
-        <div class="md:w-1/2 mr-2">
+        <div class="w-1/2 md:mr-2 md-0">
             <x-input-label for="rol" :value="__('Rol')" class="uppercase" />
-            <x-text-input id="rol" class="block mt-1 w-full" type="text" wire:model="rol" :value="old('rol')"
-                placeholder="Bibliotecario, Invitado, Administrador" />
+            <select id="rol" class="rounded-md mt-1 w-full border-gray-300" type="text" wire:model="rol"
+                :value="old('rol')">
+                <option value="3" selected> ---Selección--- </option>
+                @foreach ($roles as $rol)
+                <option value="{{ $rol['id']}}">{{ $rol['nombre']}}</option>
+                @endforeach
+            </select>
             <x-input-error :messages="$errors->get('rol')" class="mt-2" />
         </div>
 
@@ -124,7 +99,7 @@
                         <path
                             d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                     </svg>
-                    <input type='file' accept=".jpeg, .jpg, .png" class="hidden" id="imagen" />
+                    <input type='file' accept=".jpeg, .jpg, .png" class="hidden" id="imagen" wire:model="imagen" />
                 </label>
             </div>
 

@@ -107,5 +107,4 @@
     <x-primary-button class="mt-5">
         Agregar libro
     </x-primary-button>
-
 </form>

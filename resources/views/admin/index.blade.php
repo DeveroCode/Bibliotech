@@ -60,7 +60,7 @@
 
                                         </div>
                                         <div class="flex flex-col flex-grow ml-4">
-                                            <a href="{{ route('admin.cuser') }}"
+                                            <a href="{{ route('admin.user') }}"
                                                 class="text-lg font-bold underline text-blue-700">Crear nuevos
                                                 usuarios</a>
                                             <span class="text-sm text-gray-500">Crea bibliotecarios, usarios

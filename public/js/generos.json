@@ -1,0 +1,30 @@
+{
+    "generos": [
+        {
+            "id": 1,
+            "nombre": "hombre"
+        },
+        {
+            "id": 2,
+            "nombre": "mujer"
+        },
+        {
+            "id": 3,
+            "nombre": "otro"
+        }
+    ],
+    "roles": [
+        {
+            "id": 1,
+            "nombre": "admin"
+        },
+        {
+            "id": 2,
+            "nombre": "bibliotecario"
+        },
+        {
+            "id": 3,
+            "nombre": "invitado"
+        }
+    ]
+}
