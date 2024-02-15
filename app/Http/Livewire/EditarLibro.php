@@ -3,11 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Models\Autor;
-use App\Models\Libro;
-use Livewire\Component;
 use App\Models\Categoria;
-use Livewire\WithFileUploads;
+use App\Models\Libro;
 use Illuminate\Support\Carbon;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class EditarLibro extends Component
 {
@@ -39,8 +39,8 @@ class EditarLibro extends Component
         'imagen_nueva' => 'nullable|image|max:1024',
     ];
 
-
-    public function mount(Libro $libro){
+    public function mount(Libro $libro)
+    {
         $this->libro_id = $libro->id;
         $this->titulo = $libro->titulo;
         $this->edicion = $libro->edicion;
@@ -61,9 +61,9 @@ class EditarLibro extends Component
 
     }
 
-
     // Edit and create libro
-    public function editarLibro(){
+    public function editarLibro()
+    {
         $datos = $this->validate();
 
         $datos['autores'] = strtolower($datos['autores']);
@@ -108,7 +108,7 @@ class EditarLibro extends Component
     {
         $categorias = Categoria::all();
         return view('livewire.editar-libro', [
-            'categorias' => $categorias
+            'categorias' => $categorias,
         ]);
     }
 }

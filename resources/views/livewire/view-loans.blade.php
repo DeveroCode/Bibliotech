@@ -61,7 +61,7 @@
                             <button wire:click="$emit('delete', {{ $loan->id }})">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
-                            <a href="{{ route('dashboard.edit', $loan->id) }}">
+                            <a href="{{ route('loans.update', $loan->id) }}">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
                         </div>
