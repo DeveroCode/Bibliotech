@@ -57,7 +57,6 @@
                             <a href="{{ route('show.books', $loan->id) }}">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            {{-- pasa los nombres de los autores de cada loan --}}
                             <button wire:click="$emit('delete', {{ $loan->id }})">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
@@ -90,7 +89,7 @@
 <script>
     Livewire.on('delete', (libroId, autorIds) => {
         Swal.fire({
-        title: 'esta seguro de eliminar este loan?',
+        title: 'esta seguro de eliminar este prestamo?',
         text: "Recuerda que no se podra recuperar",
         icon: 'warning',
         showCancelButton: true,

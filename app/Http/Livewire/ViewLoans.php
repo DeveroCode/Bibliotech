@@ -7,6 +7,16 @@ use Livewire\Component;
 
 class ViewLoans extends Component
 {
+    protected $listeners = [
+        'deleteBook',
+    ];
+    public function deleteBook(Prestamo $prestamo)
+    {
+        $prestamo->libros()->detach();
+        $prestamo->alumnos()->detach();
+        $prestamo->delete();
+    }
+
     public function render()
     {
         $loans = Prestamo::all();
