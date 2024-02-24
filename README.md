@@ -12,12 +12,17 @@ Gestor administrador de altas, bajas, actualizaciones y prestamos
 ## Tabla de contenidos:
 ---
 
+- [BIBLIOTECH 👇](#bibliotech-)
+- [Tabla de contenidos:](#tabla-de-contenidos)
 - [Que hay de nuevo?](#que-hay-de-nuevo)
-- [Forma de desarrollo de la aplicación web](#forma-de-desarrollo-de-la-aplicación-web)
+  - [Forma de desarrollo de la aplicación web](#forma-de-desarrollo-de-la-aplicación-web)
 - [Guía de instalación](#guía-de-instalación)
-- [Actualizaciones](#actualizaciones)
+  - [Dependencias](#dependencias)
+  - [Actualizaciones](#actualizaciones)
 - [Contribuidores](#contribuidores)
 - [Licencia](#licencia)
+  - [Términos y Condiciones](#términos-y-condiciones)
+  - [Contacto](#contacto)
 
 ## Que hay de nuevo?
 ---
@@ -99,6 +104,6 @@ Este software es propiedad del Instituto Tecnológico Superior de Nuevo Casas Gr
 
 Para cualquier consulta relacionada con esta licencia, por favor comuníquese con el Instituto Tecnológico Superior de Nuevo Casas Grandes Chihuahua (ITSNCG) en [mtz.carlos.123.nz@gmail.com].
 
-Fecha de Vigencia: [Fecha de Inicio] - [Fecha de Término]
+Fecha de Vigencia: 20-ago-2022 - 19-junio-2024
 
-© 2023 Instituto Tecnológico Superior de Nuevo Casas Grandes (ITSNCG).
+© 202 Instituto Tecnológico Superior de Nuevo Casas Grandes (ITSNCG).
