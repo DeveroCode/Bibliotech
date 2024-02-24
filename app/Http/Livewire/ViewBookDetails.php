@@ -65,11 +65,13 @@ class ViewBookDetails extends Component
         $this->folio;
         $this->fecha_limite = $this->calculateLoanDays($this->fecha_inicial);
         $this->identificacion = $datos[0]->isbn;
+        $this->cantidad = $datos[0]->cantidad;
         $this->emit('dataBook', [
             'id' => $this->libro_id,
             'fecha_inicio' => $this->fecha_inicial,
             'fecha_limite' => $this->fecha_limite,
             'folio' => $this->folio,
+            'cantidad' => $this->cantidad,
         ]);
     }
 

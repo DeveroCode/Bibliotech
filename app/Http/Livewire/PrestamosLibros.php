@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\Prestamo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class PrestamosLibros extends Component
@@ -16,6 +15,7 @@ class PrestamosLibros extends Component
     public $fecha_limite;
     public $user_id;
     public $cantidad;
+    public $cantidad_prestamo;
     public $folio;
     public $tipo_prestamo_id;
 
@@ -51,45 +51,46 @@ class PrestamosLibros extends Component
         $this->fecha_limite = date('Y-m-d', strtotime($datos['fecha_limite']));
         $this->folio = $datos['folio'];
         $this->user_id = auth()->user()->id;
+        $this->cantidad_prestamo = $datos['cantidad'];
     }
 
     public function processLoan()
     {
-        try {
-            // Validar los datos según las reglas
-            $datos = $this->validate();
 
-            $datos['fecha_inicio'] = $this->fecha_inicio;
-            $datos['fecha_limite'] = $this->fecha_limite;
-            $datos['user_id'] = $this->user_id;
-            $datos['cantidad'] = $this->cantidad;
-            $datos['folio'] = $this->folio;
-            $datos['tipo_prestamo_id'] = $this->tipo_prestamo_id;
+        // Validar los datos según las reglas
+        $datos = $this->validate();
 
-            $prestamo = Prestamo::create([
-                'fecha_inicio' => $datos['fecha_inicio'],
-                'fecha_limite' => $datos['fecha_limite'],
-                'user_id' => $datos['user_id'],
-                'cantidad' => $datos['cantidad'],
-                'folio' => $datos['folio'],
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'tipo_prestamo_id' => $datos['tipo_prestamo_id'],
-            ]);
+        $datos['fecha_inicio'] = $this->fecha_inicio;
+        $datos['fecha_limite'] = $this->fecha_limite;
+        $datos['user_id'] = $this->user_id;
+        $datos['cantidad'] = $this->cantidad;
+        $datos['folio'] = $this->folio;
+        $datos['tipo_prestamo_id'] = $this->tipo_prestamo_id;
 
-            DB::table('libro_prestamo')->insert([
-                'alumno_id' => $this->id_student,
-                'libro_id' => $this->libro_id,
-                'prestamo_id' => $prestamo->id,
-            ]);
-
-            session()->flash('message', 'Prestamo realizado exitosamente.');
-            return redirect()->route('dashboard');
-
-        } catch (ValidationException $e) {
-            dd($e->getMessage());
+        // verifica que la cantidad es mayor a cantidad_restamo y si es verdadero, no crees el prestamo
+        if ($datos['cantidad'] > $this->cantidad_prestamo) {
+            dd('No se puede realizar el prestamo');
         }
 
+        $prestamo = Prestamo::create([
+            'fecha_inicio' => $datos['fecha_inicio'],
+            'fecha_limite' => $datos['fecha_limite'],
+            'user_id' => $datos['user_id'],
+            'cantidad' => $datos['cantidad'],
+            'folio' => $datos['folio'],
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'tipo_prestamo_id' => $datos['tipo_prestamo_id'],
+        ]);
+
+        DB::table('libro_prestamo')->insert([
+            'alumno_id' => $this->id_student,
+            'libro_id' => $this->libro_id,
+            'prestamo_id' => $prestamo->id,
+        ]);
+
+        session()->flash('message', 'Prestamo realizado exitosamente.');
+        return redirect()->route('dashboard');
     }
 
     public function render()

@@ -1,10 +1,8 @@
 {{-- Funcion mostrar cuantos quedan --}}
 <div class="w-full">
-
+    @if (count($loans) > 0)
     {{-- Bar seach --}}
     <livewire:filtrar-isbn>
-
-
         <table class="table-auto text-xs w-full m-auto border-collapse bg-white text-left text-gray-500">
             <thead class="bg-gray-50">
                 <tr>
@@ -70,11 +68,13 @@
             </tbody>
             @endforeach
         </table>
-
+        @else
+        <h2 class="text-center text-3xl uppercase text-gray-500 m-32">Aun no hay prestamos disponibles</h2>
+        @endif
         {{-- Paginate --}}
-        {{-- <div class="mt-10">
+        <div class="mt-10">
             {{ $loans->links() }}
-        </div> --}}
+        </div>
 </div>
 
 @push('scripts')
@@ -87,7 +87,7 @@
 
 {{-- Alert --}}
 <script>
-    Livewire.on('delete', (libroId, autorIds) => {
+    Livewire.on('delete', (loan) => {
         Swal.fire({
         title: 'esta seguro de eliminar este prestamo?',
         text: "Recuerda que no se podra recuperar",
@@ -100,7 +100,7 @@
         }).then((result) => {
         if (result.isConfirmed) {
             // Delete book and authors
-            Livewire.emit('deleteBook', libroId);
+            Livewire.emit('deleteBook', loan);
             Swal.fire(
             'Eliminado!',
             'El loan ha sido eliminado.',
