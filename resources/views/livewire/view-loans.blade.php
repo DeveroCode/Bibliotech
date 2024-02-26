@@ -52,7 +52,7 @@
                     {{-- Herramientas --}}
                     <td class="table-cell py-4">
                         <div class="flex items-center gap-4 text-indigo-600 text-base">
-                            <a href="{{ route('show.books', $loan->id) }}">
+                            <a href="{{ route('loans.student', $loan->alumnos()->first()->id) }}">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
                             <button wire:click="$emit('delete', {{ $loan->id }})">

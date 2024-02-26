@@ -36,6 +36,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/loans', [PrestamoController::class, 'create'])->name('loans.create');
     Route::get('/dashboard/loans/show', [PrestamoController::class, 'show'])->name('loans.show');
     Route::get('/dashboard/loans/{prestamo}/update', [PrestamoController::class, 'edit'])->name('loans.update');
+    Route::get('/dashboard/loans/{prestamo}/show', [PrestamoController::class, 'showStudent'])->name('loans.student');
 });
 
 // (Super-User => you can update the student database and delete other inactive users)
