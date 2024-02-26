@@ -20,7 +20,7 @@ class ViewLoans extends Component
     public function render()
     {
         $loans = Prestamo::all();
-        $loans = Prestamo::latest()->paginate(1);
+        $loans = Prestamo::latest()->paginate(50);
         return view('livewire.view-loans', [
             'loans' => $loans,
         ]);
