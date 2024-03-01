@@ -7,7 +7,7 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="w-1/3 px-3 py-4  font-medium text-gray-900">Libro</th>
-                    <th class="px-3 py-4  font-medium text-gray-900">Fecha</th>
+                    <th class="px-3 py-4  font-medium text-gray-900">Salida</th>
                     <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Entrega</th>
                     <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Cantidad</th>
                     <th class="px-3 py-4  font-medium text-gray-900">Herramientas</th>
@@ -28,13 +28,17 @@
 
                     <td class="table-cell px-6 py-4">
                         <div class="text-sm">
-                            <div class="font-medium text-gray-700 capitalize">{{ $loan->fecha_inicio }}</div>
+                            <span class="font-medium text-gray-700 capitalize">{{
+                                \Carbon\Carbon::createFromFormat('Y-m-d', $loan->fecha_inicio)->format('d/m/Y') }}
+                            </span>
                         </div>
                     </td>
 
                     <td class="table-cell px-6 py-4">
                         <div class="text-sm">
-                            <span class="font-medium text-gray-700 capitalize">{{ $loan->fecha_limite }}</span>
+                            <span class="font-medium text-gray-700 capitalize">{{
+                                \Carbon\Carbon::createFromFormat('Y-m-d', $loan->fecha_limite)->format('d/m/Y')
+                                }}</span>
                         </div>
                     </td>
 
