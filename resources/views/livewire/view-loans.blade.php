@@ -29,7 +29,7 @@
                     <td class="table-cell px-6 py-4">
                         <div class="text-sm">
                             <span class="font-medium text-gray-700 capitalize">{{
-                                \Carbon\Carbon::createFromFormat('Y-m-d', $loan->fecha_inicio)->format('d/m/Y') }}
+                                \Carbon\Carbon::createFromFormat('Y-m-d', $loan->fecha_inicio)->format('d-M-Y') }}
                             </span>
                         </div>
                     </td>
@@ -37,7 +37,7 @@
                     <td class="table-cell px-6 py-4">
                         <div class="text-sm">
                             <span class="font-medium text-gray-700 capitalize">{{
-                                \Carbon\Carbon::createFromFormat('Y-m-d', $loan->fecha_limite)->format('d/m/Y')
+                                \Carbon\Carbon::createFromFormat('Y-m-d', $loan->fecha_limite)->format('d-M-Y')
                                 }}</span>
                         </div>
                     </td>

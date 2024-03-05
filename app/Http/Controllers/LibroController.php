@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Headers;
 use App\Models\Libro;
+use App\Models\Prestamo;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 
@@ -78,14 +79,28 @@ class LibroController extends Controller
         return view('administrator.piepagina');
     }
 
-    public function printPDF()
+    public function pdf_inventory()
     {
         $libros = Libro::with('autores', 'usuario')->latest()->get();
         $headers = Headers::first();
         $count = $libros->count();
         $pdf = PDF::loadView('pdf.inventory_2', ['libros' => $libros, 'count' => $count, 'headers' => $headers])->setPaper('a4', 'portrait')
             ->set_option('isPhpEnabled', true);
-        return $pdf->stream('inventory.pdf');
+        return $pdf->stream('reporte_de_inventario.pdf');
+    }
+
+    public function pdf_loans()
+    {
+        $loans = Prestamo::with('user', 'alumnos', 'libros', 'tipo_prestamo')->latest()->get();
+
+        // Encabezados
+        $headers = Headers::first();
+        $count = $loans->count();
+
+        $pdf = PDF::loadView('pdf.loans', ['loans' => $loans, 'count' => $count, 'headers' => $headers])->setPaper('a4', 'portrait')
+            ->set_option('isPhpEnabled', true);
+
+        return $pdf->stream('reporte_de_prestamos.pdf');
     }
 
     public function print()
