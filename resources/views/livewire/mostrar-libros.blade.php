@@ -1,6 +1,7 @@
 {{-- Funcion mostrar cuantos quedan --}}
-<div class="w-full">
+<div class="w-full h-96">
 
+    @if(count($libros) > 0)
     {{-- Bar seach --}}
     <livewire:filtrar-isbn>
 
@@ -121,6 +122,14 @@
         <div class="mt-10">
             {{ $libros->links() }}
         </div>
+        @else
+
+        <div class="w-full flex justify-center items-center flex-col">
+            <p class="text-4xl text-gray-600 text-center mt-20 uppercase">Aún no hay registro de los libros</p>
+            <a href="{{ route('dashboard.create') }}"
+                class="rounded-full mt-2 py-1 px-5 bg-gray-900 text-white w-32">Registrar</a>
+        </div>
+        @endif
 </div>
 
 @push('scripts')
