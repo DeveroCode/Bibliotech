@@ -73,7 +73,7 @@
             @endforeach
         </table>
         @else
-        <h2 class="text-center text-3xl uppercase text-gray-500 m-32">Aun no hay prestamos disponibles</h2>
+        <h2 class="text-center text-3xl uppercase text-gray-500 m-32">Aún no hay préstamos disponibles</h2>
         @endif
         {{-- Paginate --}}
         <div class="mt-10">

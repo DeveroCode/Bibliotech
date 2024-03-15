@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LibroController;
+use App\Http\Controllers\MeliController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,7 @@ Route::middleware(['auth', 'verified', 'role'])->group(function () {
 // show books for everyone
 Route::get('/books/show/{libro}', [LibroController::class, 'show'])->name('show.books');
 Route::get('/books/search', [LibroController::class, 'search'])->name('search.books');
+Route::get('/mel', [MeliController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

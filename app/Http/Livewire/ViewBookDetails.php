@@ -28,7 +28,7 @@ class ViewBookDetails extends Component
     // calculate loan days
     public function calculateLoanDays($days)
     {
-        $days = Carbon::parse($days)->addWeekdays(10);
+        $days = Carbon::parse($days)->addWeekdays(3);
 
         if ($days->isSunday()) {
             $days->addDays(1);
