@@ -69,6 +69,11 @@ class PrestamoController extends Controller
             ['prestamo' => $prestamo]);
     }
 
+    public function custom()
+    {
+        return view('administrator.loans.customized');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
