@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\NotificarPrestamo;
+use App\Models\Alumno;
+use App\Models\Libro;
 use App\Models\Prestamo;
-use App\Notifications\NuevoPrestamo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class PrestamosLibros extends Component
@@ -95,7 +98,12 @@ class PrestamosLibros extends Component
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        $prestamo->notify(new NuevoPrestamo($prestamo, $this->nombre_alumno));
+        // Get the email by id_student
+        $alumno = Alumno::find($this->id_student);
+        $libro = Libro::find($this->libro_id);
+        $email = $alumno->email;
+
+        Mail::to($email)->send(new NotificarPrestamo($alumno, $prestamo, $libro));
 
         session()->flash('message', 'Prestamo realizado exitosamente.');
         return redirect()->route('dashboard');
