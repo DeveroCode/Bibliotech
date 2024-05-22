@@ -33,11 +33,7 @@ class PrestamoController extends Controller
      */
     public function show()
     {
-        $loans = Prestamo::with('libros', 'alumnos', 'autores')->get();
-        return view('administrator.loans.show-loans',
-            [
-                'loans' => $loans,
-            ]);
+        return view('administrator.loans.customized');
     }
 
     public function showStudent($student)
@@ -67,11 +63,6 @@ class PrestamoController extends Controller
         //
         return view('administrator.loans.update-loans',
             ['prestamo' => $prestamo]);
-    }
-
-    public function custom()
-    {
-        return view('administrator.loans.customized');
     }
 
     /**

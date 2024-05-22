@@ -36,7 +36,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Routes for loans
     Route::get('/dashboard/loans/view', [PrestamoController::class, 'index'])->name('loans.index');
-    Route::get('/dashboard/loans/custom', [PrestamoController::class, 'custom'])->name('loans.custom');
     Route::get('/dashboard/loans', [PrestamoController::class, 'create'])->name('loans.create');
     Route::get('/dashboard/loans/show', [PrestamoController::class, 'show'])->name('loans.show');
     Route::get('/dashboard/loans/{prestamo}/update', [PrestamoController::class, 'edit'])->name('loans.update');

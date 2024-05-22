@@ -6,9 +6,9 @@
         <table class="table-auto text-xs w-full m-auto border-collapse bg-white text-left text-gray-500">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="w-1/3 px-3 py-4  font-medium text-gray-900">Título</th>
-                    <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Toltal Prestamos</th>
-                    <th class="px-3 py-4  font-medium text-gray-900">Categoria</th>
+                    <th class="w-1/2 md:w-1/3 px-3 py-4  font-medium text-gray-900">Título</th>
+                    <th class="px-3 py-4  font-medium text-gray-900 table-cell">Toltal Prestamos</th>
+                    <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Categoria</th>
                 </tr>
             </thead>
 
@@ -36,7 +36,7 @@
                     </td>
 
                     {{-- Categoria --}}
-                    <td class="table-cell px-2 py-2">
+                    <td class="hidden lg:table-cell px-2 py-2">
                         <div class="flex gap-2">
                             @switch($prestamo->libro->categoria->id)
                             @case(1)
