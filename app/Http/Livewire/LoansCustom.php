@@ -8,11 +8,10 @@ use Livewire\Component;
 class LoansCustom extends Component
 {
     public $categoria;
+    public $trimestre;
     public function searchLoan()
     {
-        $this->emit('searchLoan', $this->categoria);
-
-        // dd($this->categoria);
+        $this->emit('searchLoan', $this->categoria, $this->trimestre);
     }
 
     public function render()

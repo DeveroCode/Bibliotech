@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Prestamo;
+use App\Notifications\NuevoPrestamo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -19,6 +20,8 @@ class PrestamosLibros extends Component
     public $folio;
     public $tipo_prestamo_id;
 
+    public $nombre_alumno;
+
     protected $rules = [
         'fecha_inicio' => 'required|string',
         'fecha_limite' => 'required|string',
@@ -32,6 +35,7 @@ class PrestamosLibros extends Component
     public function loadDataStudent($datos)
     {
         $this->id_student = $datos['id'];
+        $this->nombre_alumno = $datos['nombre'];
     }
 
     public function mountTypeLoan($datos)
@@ -87,7 +91,11 @@ class PrestamosLibros extends Component
             'alumno_id' => $this->id_student,
             'libro_id' => $this->libro_id,
             'prestamo_id' => $prestamo->id,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+
+        $prestamo->notify(new NuevoPrestamo($prestamo, $this->nombre_alumno));
 
         session()->flash('message', 'Prestamo realizado exitosamente.');
         return redirect()->route('dashboard');

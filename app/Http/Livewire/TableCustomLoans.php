@@ -9,42 +9,46 @@ use Livewire\Component;
 class TableCustomLoans extends Component
 {
     public $categoria;
+    public $trimestre;
 
     public $listeners = ['searchLoan' => 'search'];
 
-    public function search($categoria)
+    public function search($categoria, $trimestre)
     {
         $this->categoria = $categoria;
-
+        $this->trimestre = $trimestre;
     }
 
     public function render()
     {
 
-        // $prestamos = LibroPrestamo::whereHas('libro.categoria', function ($query) {
-        //     $query->where('id', $this->categoria);
-        // })->get();
+        $prestamos = LibroPrestamo::query();
 
-        // $prestamos = LibroPrestamo::whereHas('libro.categoria', function ($query) {
-        //     $query->where('id', $this->categoria);
-        // })
-        //     ->with('libro', 'prestamo') // Cargar las relaciones 'libro' y 'prestamo' aquí
-        //     ->select('libro_id', DB::raw('count(*) as total_prestamos'))
-        //     ->groupBy('libro_id')
-        //     ->get();
+        if ($this->categoria) {
+            $prestamos->whereHas('libro.categoria', function ($query) {
+                $query->where('id', $this->categoria);
+            });
+        }
 
-        $prestamos = LibroPrestamo::whereHas('libro.categoria', function ($query) {
-            $query->where('id', $this->categoria);
-        })
-            ->with('libro')
+        if ($this->trimestre) {
+            $plazos = [
+                1 => [1, 2, 3],
+                2 => [4, 5, 6],
+                3 => [7, 8, 9],
+                4 => [10, 11, 12],
+            ];
+
+            $months = $plazos[$this->trimestre];
+
+            $prestamos->whereYear('created_at', '=', date('Y'))
+                ->whereMonth('created_at', '>=', $months[0])
+                ->whereMonth('created_at', '<=', $months[2]);
+        }
+
+        $prestamos = $prestamos->with('libro.categoria')
             ->select('libro_id', DB::raw('count(*) as total_prestamos'))
             ->groupBy('libro_id')
             ->get();
-
-        if (!$prestamos->isEmpty()) {
-            dd('Buscando libro con la categoria ' . $this->categoria);
-
-        }
 
         return view('livewire.table-custom-loans', [
             'prestamos' => $prestamos,
