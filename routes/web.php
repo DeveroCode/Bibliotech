@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProfileController;
@@ -27,12 +28,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/create', [LibroController::class, 'create'])->name('dashboard.create');
     Route::get('/dashboard/{libro}/edit', [LibroController::class, 'edit'])->name('dashboard.edit');
     Route::get('/dashboard/show-list-books', [LibroController::class, 'showLibros'])->name('dashboard.show');
-    Route::get('/dashboard/cambiar-cabezera-footer', [LibroController::class, 'pie'])->name('dashboard.pie');
 
     // Url Reportes
-    Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
-    Route::get('/dashboard/print/pdf_inventario', [LibroController::class, 'pdf_inventory'])->name('dashboard.printPDF');
-    Route::get('/dashboard/print/pdf_loans', [LibroController::class, 'pdf_loans'])->name('dashboard.print_loans');
+    Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print'); // Index
+    Route::get('/dashboard/cambiar-cabezera-footer', [InventoryController::class, 'update'])->name('inventory.pie');
+    Route::get('/dashboard/print/pdf_inventario', [InventoryController::class, 'printInventory'])->name('inventory.printInventory');
+    Route::get('/dashboard/print/pdf_loans', [InventoryController::class, 'printLoans'])->name('inventory.printLoans');
 
     // Routes for loans
     Route::get('/dashboard/loans/view', [PrestamoController::class, 'index'])->name('loans.index');

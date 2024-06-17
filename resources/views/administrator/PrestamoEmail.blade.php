@@ -1,27 +1,3 @@
-{{--
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Notificación de Préstamo de Libro</title>
-</head>
-
-<body>
-    <div>
-
-        <p class="text-gray-200 text-sm">Gracias por solicitar el prestamo de un libro.</p>
-
-        <p><strong>Libro:</strong> {{ $nombre_libro }}</p>
-        <p><strong>Fecha de inicio:</strong> {{ $prestamo->fecha_inicio }}</p>
-        <p><strong>Fecha límite:</strong> {{ $prestamo->fecha_limite }}</p>
-        <p>Por favor, asegúrate de devolverlo a tiempo para evitar sanciones.</p>
-        <p>Gracias,</p>
-        <p>Biblioteca ITSNG</p>
-    </div>
-</body>
-
-</html> --}}
-
 <!DOCTYPE html>
 <html>
 
