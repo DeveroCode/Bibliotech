@@ -65,11 +65,8 @@ class PrestamoController extends Controller
             ['prestamo' => $prestamo]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Prestamo $prestamo)
+    public function statusLoans()
     {
-        //
+        return view('administrator.loans.ViewStatus');
     }
 }

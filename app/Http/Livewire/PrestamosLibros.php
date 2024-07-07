@@ -74,7 +74,7 @@ class PrestamosLibros extends Component
         $datos['folio'] = $this->folio;
         $datos['tipo_prestamo_id'] = $this->tipo_prestamo_id;
 
-        // verifica que la cantidad es mayor a cantidad_restamo y si es verdadero, no crees el prestamo
+        // verifica que la cantidad es mayor a cantidad_prestamo y si es verdadero, no se crea el prestamo
         if ($datos['cantidad'] > $this->cantidad_prestamo) {
             dd('No se puede realizar el prestamo');
         }
