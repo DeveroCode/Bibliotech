@@ -7,12 +7,6 @@
 
 
     <div class="py-12">
-        {{-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="md:flex md:justify-center p-5 text-2xl">
-                <livewire:insertar-db />
-            </div>
-        </div> --}}
-
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="md:flex md:justify-center p-5 text-2xl">
                 <livewire:insertar-db />

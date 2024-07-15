@@ -22,8 +22,7 @@ class AdminController extends Controller
     // Actualizar la base de datos de los alumnos
     public function create()
     {
-        //
-        return view('admin.update');
+
     }
 
     /**
@@ -53,9 +52,9 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update()
     {
-        //
+        return view('admin.update');
     }
 
     /**

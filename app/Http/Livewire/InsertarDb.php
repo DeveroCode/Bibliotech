@@ -17,6 +17,11 @@ class InsertarDb extends Component
         'archivo' => 'required|file|max:2048|mimes:xlsx,xls',
     ];
 
+    public function export()
+    {
+        return Excel::download(new AlumnosImport, 'alumnos.xlsx');
+    }
+
     public function crearAlumnos()
     {
         if ($this->validate()) {
@@ -36,5 +41,5 @@ class InsertarDb extends Component
 
 function render()
 {
-    return view('livewire.insertar-db');
+    return view('livewire.super.insertar-db');
 }

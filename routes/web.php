@@ -46,7 +46,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // (Super-User => you can update the student database and delete other inactive users)
 Route::middleware(['auth', 'verified', 'role'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
+    Route::get('/admin/create', [AdminController::class, 'update'])->name('admin.update');
     Route::get('/admin/create-user', [AdminController::class, 'createUser'])->name('admin.user');
 });
 
