@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\AlumnosExport;
 use App\Imports\AlumnosImport;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -16,11 +17,6 @@ class InsertarDb extends Component
     protected $rules = [
         'archivo' => 'required|file|max:2048|mimes:xlsx,xls',
     ];
-
-    public function export()
-    {
-        return Excel::download(new AlumnosImport, 'alumnos.xlsx');
-    }
 
     public function crearAlumnos()
     {
@@ -37,9 +33,14 @@ class InsertarDb extends Component
         }
     }
 
-}
+    public function export()
+    {
+        return Excel::download(new AlumnosExport, 'alumnos.xlsx');
+    }
 
-function render()
-{
-    return view('livewire.super.insertar-db');
+    public function render()
+    {
+        return view('livewire.insertar-db');
+    }
+
 }
