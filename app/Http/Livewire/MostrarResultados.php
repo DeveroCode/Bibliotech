@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Libro;
 use Livewire\Component;
+use App\Models\Libro;
 use App\Models\Categoria;
 
 class MostrarResultados extends Component

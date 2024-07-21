@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\trimestre;
 use Illuminate\Http\Request;
 
-class MeliController extends Controller
+class TrimestreController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        return view('administrator.index');
+        return view('administrator.registersR.layout');
     }
 
     /**
@@ -21,7 +21,6 @@ class MeliController extends Controller
     public function create()
     {
         //
-        return view('administrator.RegistersR.Layout');
     }
 
     /**
@@ -35,7 +34,7 @@ class MeliController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(trimestre $trimestre)
     {
         //
     }
@@ -43,7 +42,7 @@ class MeliController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(trimestre $trimestre)
     {
         //
     }
@@ -51,7 +50,7 @@ class MeliController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, trimestre $trimestre)
     {
         //
     }
@@ -59,7 +58,7 @@ class MeliController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(trimestre $trimestre)
     {
         //
     }
