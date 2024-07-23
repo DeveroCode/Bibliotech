@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class MeriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,17 +12,15 @@ class AdminController extends Controller
     public function index()
     {
         //
-        return view('admin.index');
-
+        return view('administrator.users.userinput');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    // Actualizar la base de datos de los alumnos
     public function create()
     {
-
+        //
     }
 
     /**
@@ -52,9 +50,9 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update()
+    public function update(Request $request, string $id)
     {
-        return view('admin.update');
+        //
     }
 
     /**
@@ -63,10 +61,5 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function createUser()
-    {
-        return view('admin.create');
     }
 }

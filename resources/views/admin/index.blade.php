@@ -38,7 +38,7 @@
 
                                         </div>
                                         <div class="flex flex-col flex-grow ml-4">
-                                            <a href="{{ route('admin.create') }}"
+                                            <a href="{{ route('admin.update') }}"
                                                 class="text-lg font-bold underline text-blue-700">Actualizar
                                                 base de datos</a>
                                             <span class="text-sm text-gray-500">Actualiza la base de datos de los

@@ -12,7 +12,7 @@ class LibroPrestamo extends Model
     protected $fillable = [
         'libro_id',
         'alumno_id',
-        'user_id',
+        'prestamo_id',
     ];
 
     public function libro()
@@ -20,4 +20,17 @@ class LibroPrestamo extends Model
         return $this->belongsTo(Libro::class, 'libro_id');
     }
 
+<<<<<<< HEAD
+=======
+    public function prestamo()
+    {
+        return $this->belongsTo(Prestamo::class, 'prestamo_id');
+    }
+
+    public function alumno()
+    {
+        return $this->belongsTo(Alumno::class, 'alumno_id');
+    }
+
+>>>>>>> b5200e39d633e6c178d93ab33ca58ef73e8322d5
 }

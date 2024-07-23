@@ -2,9 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\NotificarPrestamo;
+use App\Models\Alumno;
+use App\Models\Libro;
 use App\Models\Prestamo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class PrestamosLibros extends Component
@@ -19,6 +23,8 @@ class PrestamosLibros extends Component
     public $folio;
     public $tipo_prestamo_id;
 
+    public $nombre_alumno;
+
     protected $rules = [
         'fecha_inicio' => 'required|string',
         'fecha_limite' => 'required|string',
@@ -32,6 +38,7 @@ class PrestamosLibros extends Component
     public function loadDataStudent($datos)
     {
         $this->id_student = $datos['id'];
+        $this->nombre_alumno = $datos['nombre'];
     }
 
     public function mountTypeLoan($datos)
@@ -67,7 +74,7 @@ class PrestamosLibros extends Component
         $datos['folio'] = $this->folio;
         $datos['tipo_prestamo_id'] = $this->tipo_prestamo_id;
 
-        // verifica que la cantidad es mayor a cantidad_restamo y si es verdadero, no crees el prestamo
+        // verifica que la cantidad es mayor a cantidad_prestamo y si es verdadero, no se crea el prestamo
         if ($datos['cantidad'] > $this->cantidad_prestamo) {
             dd('No se puede realizar el prestamo');
         }
@@ -90,7 +97,18 @@ class PrestamosLibros extends Component
             'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
             
+
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+
         ]);
+
+        // Get the email by id_student
+        $alumno = Alumno::find($this->id_student);
+        $libro = Libro::find($this->libro_id);
+        $email = $alumno->email;
+
+        Mail::to($email)->send(new NotificarPrestamo($alumno, $prestamo, $libro));
 
         session()->flash('message', 'Prestamo realizado exitosamente.');
         return redirect()->route('dashboard');

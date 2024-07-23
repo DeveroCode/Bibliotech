@@ -18,7 +18,7 @@ class FiltrarIsbn extends Component
     {
         // Model Book
         $libros = Libro::all();
-        return view('livewire.filtrar-isbn', [
+        return view('livewire.search-components.filtrar-isbn', [
             'libros' => $libros,
         ]);
     }

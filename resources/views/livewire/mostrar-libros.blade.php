@@ -1,5 +1,5 @@
 {{-- Funcion mostrar cuantos quedan --}}
-<div class="w-full h-96">
+<div class="w-full h-auto">
 
     @if(count($libros) > 0)
     {{-- Bar seach --}}
