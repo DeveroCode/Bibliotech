@@ -12,7 +12,6 @@ class ShowSharts extends Component
     public function mount()
     {
         $this->inventoryData = Libro::count();
-        // dd($this->inventoryData);
     }
 
     public function render()
