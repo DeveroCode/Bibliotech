@@ -4,8 +4,9 @@ namespace App\Exports;
 
 use App\Models\Alumno;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class AlumnosExport implements FromCollection
+class AlumnosExport implements FromCollection, WithHeadings
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -18,15 +19,19 @@ class AlumnosExport implements FromCollection
     public function headings(): array
     {
         return [
+            'ID',
             'Nombre',
-            'Apellido Paterno',
-            'Apellido Materno',
+            'ApellidoP',
+            'ApellidoM',
             'Email',
             'Telefono',
             'Direccion',
-            'Fecha de Nacimiento',
-            'Anio de Ingreso',
+            'No Institucional',
+            'Fecha Nacimiento',
+            'Anio Ingreso',
             'Carrera',
+            'Created At',
+            'Updated At',
         ];
     }
 }

@@ -4,7 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\LibroController;
+use App\Http\Controllers\GraphController;
+
 use App\Http\Controllers\PrestamoController;
+use App\Http\Controllers\TrimestreController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +44,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/loans/show', [PrestamoController::class, 'show'])->name('loans.show');
     Route::get('/dashboard/loans/{prestamo}/update', [PrestamoController::class, 'edit'])->name('loans.update');
     Route::get('/dashboard/loans/{prestamo}/show', [PrestamoController::class, 'showStudent'])->name('loans.student');
+
+    // Routes for registers
+   Route::get('/dashboard/regist', [TrimestreController::class, 'index']);
 });
 
 // (Super-User => you can update the student database and delete other inactive users)
@@ -54,6 +60,8 @@ Route::middleware(['auth', 'verified', 'role'])->group(function () {
 Route::get('/loans/status', [PrestamoController::class, 'statusLoans'])->name('loans.status');
 Route::get('/books/show/{libro}', [LibroController::class, 'show'])->name('show.books');
 Route::get('/books/search', [LibroController::class, 'search'])->name('search.books');
+
+Route::get('/graphs', [GraphController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

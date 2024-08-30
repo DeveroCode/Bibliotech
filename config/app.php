@@ -196,6 +196,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Asantibanez\LivewireCharts\LivewireChartsServiceProvider::class, /* 1 */
+
     ],
 
     /*

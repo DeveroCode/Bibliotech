@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MeliController extends Controller
+class MostrarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,7 +12,7 @@ class MeliController extends Controller
     public function index()
     {
         //
-        return view('administrator.index');
+        return view('administrator.users.useroutput');
     }
 
     /**
@@ -21,7 +21,6 @@ class MeliController extends Controller
     public function create()
     {
         //
-        return view('administrator.RegistersR.Layout');
     }
 
     /**

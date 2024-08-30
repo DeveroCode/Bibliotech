@@ -94,8 +94,13 @@ class PrestamosLibros extends Component
             'alumno_id' => $this->id_student,
             'libro_id' => $this->libro_id,
             'prestamo_id' => $prestamo->id,
+            'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+            
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+
         ]);
 
         // Get the email by id_student
