@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Libro;
 use App\Models\Prestamo;
 use Livewire\Component;
 
@@ -30,15 +29,11 @@ class ViewLoans extends Component
     {
 
         if ($this->isbn) {
-            // Obtener los IDs de los libros que coincidan con el criterio de búsqueda
-            $librosIds = Libro::where('isbn', 'LIKE', '%' . $this->isbn . '%')
-                ->orWhere('titulo', 'LIKE', '%' . $this->isbn . '%')
-                ->pluck('id');
-
-            // Buscar préstamos que tengan alguno de esos libros
-            $loans = Prestamo::whereHas('libros', function ($query) use ($librosIds) {
-                $query->whereIn('libro_id', $librosIds);
-            })->latest()->paginate(50);
+            $loans = Prestamo::where('folio', 'LIKE', '%' . $this->isbn . '%')
+                ->orWhereHas('libros', function ($query) {
+                    $query->where('isbn', 'LIKE', '%' . $this->isbn . '%')
+                        ->orWhere('titulo', 'LIKE', '%' . $this->isbn . '%');
+                })->latest()->paginate(50);
         } else {
             $loans = Prestamo::latest()->paginate(50);
         }

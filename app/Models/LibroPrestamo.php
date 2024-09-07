@@ -19,9 +19,6 @@ class LibroPrestamo extends Model
     {
         return $this->belongsTo(Libro::class, 'libro_id');
     }
-
-<<<<<<< HEAD
-=======
     public function prestamo()
     {
         return $this->belongsTo(Prestamo::class, 'prestamo_id');
@@ -31,6 +28,4 @@ class LibroPrestamo extends Model
     {
         return $this->belongsTo(Alumno::class, 'alumno_id');
     }
-
->>>>>>> b5200e39d633e6c178d93ab33ca58ef73e8322d5
 }

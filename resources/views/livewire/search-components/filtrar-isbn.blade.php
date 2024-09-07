@@ -1,8 +1,9 @@
 <div class="max-w-7xl mx-auto">
     <form wire:submit.prevent='leerDatosFormulario' class="flex flex-wrap justify-between items-center">
         <div class="mb-5 w-full md:w-1/3 md:mr-4">
-            <label for="isbn" class="block mb-1 text-sm text-gray-500 uppercase font-bold">Isbn de busqueda</label>
-            <input type="text" placeholder="Buscar por ISB: ej. ISBN-13:978-6073235853"
+            <label for="isbn" class="block mb-1 text-sm text-gray-500 uppercase font-bold">{{ $this->labelText
+                }}</label>
+            <input type="text" placeholder="{{ $this->placeholderText }}"
                 class="rounded-md shadow-sm border-indigo-500 focus:border-indigo-400 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
                 wire:model="isbn" id="isbn">
         </div>
@@ -28,7 +29,7 @@
             Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Ingresa el ISBN ó el nombre correcto del libro!",
+            text: "Ocurrrio un error en su búsqueda, por favor verifique los datos!",
             });
         }
     });
