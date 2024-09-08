@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Libro;
 use Livewire\Component;
 
-class ShowSharts extends Component
+class ShowCharts extends Component
 {
     public $inventoryData = [];
 
@@ -16,6 +16,6 @@ class ShowSharts extends Component
 
     public function render()
     {
-        return view('livewire.show-sharts');
+        return view('livewire.show-charts');
     }
 }

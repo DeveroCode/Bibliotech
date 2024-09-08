@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                             {{-- Grafica --}}
-                            <livewire:show-sharts />
+                            <livewire:show-charts />
                             {{-- Table alumnos --}}
                             <section class="container mt-10 hidden md:flex md:flex-col mx-auto">
                                 <div class="flex flex-col">
