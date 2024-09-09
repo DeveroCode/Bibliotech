@@ -121,8 +121,10 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <div class="flex items-center">
-                            <img src="{{ asset('storage/users-profile/' . Auth::user()->imagen) }}" alt=""
+                            @if (Auth::user()->image)
+                            <img src="{{ asset('storage/users-profile/' . Auth::user()->imagen) }}"
                                 class="w-10 h-10 object-cover object-center rounded-full">
+                            @endif
                             <button
                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white focus:outline-none transition ease-in-out duration-150">
                                 <div>{{ Auth::user()->name }}</div>
