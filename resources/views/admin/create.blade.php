@@ -72,7 +72,11 @@
                         </div>
                     </section>
 
+                    @if ($editMode)
+                    <livewire:crear-usuario :user="$user" />
+                    @else
                     <livewire:crear-usuario />
+                    @endif
                 </div>
             </div>
         </div>

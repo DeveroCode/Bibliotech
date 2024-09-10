@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -22,7 +23,10 @@ class AdminController extends Controller
     // Actualizar la base de datos de los alumnos
     public function create()
     {
-
+        $editMode = false;
+        return view('admin.create', [
+            'editMode' => $editMode,
+        ]);
     }
 
     /**
@@ -36,17 +40,21 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        return view('admin.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        $editMode = true;
+        return view('admin.create', [
+            'user' => $user,
+            'editMode' => $editMode,
+        ]);
     }
 
     /**
@@ -63,10 +71,5 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function createUser()
-    {
-        return view('admin.create');
     }
 }

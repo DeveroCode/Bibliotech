@@ -1,4 +1,4 @@
-<form class="md:w-1/2 mt-10" wire:submit.prevent='crearUsuario'>
+<form class="md:w-1/2 mt-10" wire:submit.prevent='createUser'>
     <section class="mb-10">
         <h2 class="font-bold">Configuraremos las cuentas de tus usuarios</h2>
         <x-input-label :value="__('Configura sus permisos y privilegios. Aquí podrás definir
@@ -116,7 +116,7 @@
     </div>
 
     <x-primary-button class="mt-5">
-        Crear usuario
+        {{ $editMode ? 'Actualizar usuario' : 'Crear usuario' }}
     </x-primary-button>
 
 </form>
