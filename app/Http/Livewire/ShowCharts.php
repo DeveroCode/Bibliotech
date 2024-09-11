@@ -10,6 +10,8 @@ class ShowCharts extends Component
 {
     public $inventoryData = [];
     public $Loans = [];
+    public $prestamos;
+    public $categorias;
 
     public function mount()
     {

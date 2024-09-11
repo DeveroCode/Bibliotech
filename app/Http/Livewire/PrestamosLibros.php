@@ -2,14 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\NotificarPrestamo;
 use App\Models\Alumno;
 use App\Models\Libro;
 use App\Models\Prestamo;
 use App\Models\UserActivity;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class PrestamosLibros extends Component
@@ -106,9 +104,9 @@ class PrestamosLibros extends Component
         // Get the email by id_student
         $alumno = Alumno::find($this->id_student);
         $libro = Libro::find($this->libro_id);
-        $email = $alumno->email;
+        // $email = $alumno->email;
 
-        Mail::to($email)->send(new NotificarPrestamo($alumno, $prestamo, $libro));
+        // Mail::to($email)->send(new NotificarPrestamo($alumno, $prestamo, $libro));
 
         UserActivity::create([
             'user_id' => auth()->user()->id,

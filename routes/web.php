@@ -52,6 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified', 'role'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/show', [AdminController::class, 'show'])->name('admin.show');
+    Route::get('/admin/activities', [AdminController::class, 'activities'])->name('admin.activities');
     Route::get('/admin/edit-user/{user}', [AdminController::class, 'edit'])->name('admin.edit');
     Route::get('/admin/create', [AdminController::class, 'update'])->name('admin.update');
     Route::get('/admin/create-user', [AdminController::class, 'create'])->name('admin.user');

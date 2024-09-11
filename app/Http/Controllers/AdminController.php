@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -27,14 +26,6 @@ class AdminController extends Controller
         return view('admin.create', [
             'editMode' => $editMode,
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -65,11 +56,8 @@ class AdminController extends Controller
         return view('admin.update');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function activities()
     {
-        //
+        return view('admin.activities');
     }
 }

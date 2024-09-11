@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Categoria;
-use App\Models\Estante;
 use App\Models\Libro;
 use Livewire\Component;
 
@@ -13,9 +11,6 @@ class MostrarLibro extends Component
 
     public function render()
     {
-
-        // $categorias = Categoria::all();
-        // $estantes = Estante::all();
 
         //show related books
         $librosRelacionados = Libro::where('categoria_id', $this->libro->categoria_id)

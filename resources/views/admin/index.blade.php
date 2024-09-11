@@ -104,7 +104,8 @@
 
                                         </div>
                                         <div class="flex flex-col flex-grow ml-4">
-                                            <a href="#" class="text-lg font-bold underline text-blue-700">Actividades
+                                            <a href="{{ route('admin.activities') }}"
+                                                class="text-lg font-bold underline text-blue-700">Actividades
                                                 recientes</a>
                                             <span class="text-sm text-gray-500">Verifica las ultimas actividades de los
                                                 usuarios</span>

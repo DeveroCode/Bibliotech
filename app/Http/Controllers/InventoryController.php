@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Headers;
 use App\Models\Libro;
 use App\Models\Prestamo;
+use App\Models\UserActivity;
 use Barryvdh\DomPDF\Facade\Pdf;
 use ZipArchive;
 
@@ -77,6 +78,12 @@ class InventoryController extends Controller
             unlink($file);
         }
 
+        UserActivity::create([
+            'user_id' => auth()->user()->id,
+            'activity' => 'Actualización de inventario',
+            'description' => 'Exportación de inventario realizada' . ' por ' . auth()->user()->name . ' ' . auth()->user()->last_name,
+        ]);
+
         return response()->download($zipPath)->deleteFileAfterSend(true);
     }
 
@@ -91,6 +98,11 @@ class InventoryController extends Controller
         $pdf = PDF::loadView('pdf.loans', ['loans' => $loans, 'count' => $count, 'headers' => $headers])->setPaper('a4', 'portrait')
             ->set_option('isPhpEnabled', true);
 
+        UserActivity::create([
+            'user_id' => auth()->user()->id,
+            'activity' => 'Actualización de prestamos',
+            'description' => 'Exportación de prestamos realizada' . ' por ' . auth()->user()->name . ' ' . auth()->user()->last_name,
+        ]);
         return $pdf->stream('reporte_de_prestamos.pdf');
     }
 
