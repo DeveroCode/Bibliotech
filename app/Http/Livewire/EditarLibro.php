@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Autor;
 use App\Models\Categoria;
 use App\Models\Libro;
+use App\Models\UserActivity;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -99,6 +100,12 @@ class EditarLibro extends Component
         $libro->autores()->sync($autores_ids);
         // Save the book
         $libro->save();
+
+        UserActivity::create([
+            'user_id' => auth()->user()->id,
+            'activity' => 'Edición de libro',
+            'description' => 'Se ha editado el libro ' . $libro->titulo . ' por ' . auth()->user()->name . ' ' . auth()->user()->apellido_patero . ' ' . auth()->user()->apellido_matero,
+        ]);
         // Redirect
         session()->flash('message', 'Libro actualizado correctamente');
         return redirect()->route('dashboard.show');

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Prestamo;
 use App\Models\Tipo_prestamo;
+use App\Models\UserActivity;
 use Livewire\Component;
 
 class UpdateLoans extends Component
@@ -69,6 +70,11 @@ class UpdateLoans extends Component
         } else {
             $prestamo->save();
 
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'activity' => 'Actualización de prestamo',
+                'description' => 'Se han actualizado el prestamo de' . ' ' . $prestamo->alumnos()->first()->nombre . ' ' . $prestamo->alumnos()->first()->apellidoP . ' ' . $prestamo->alumnos()->first()->apellidoM . ' por ' . auth()->user()->name . ' ' . auth()->user()->last_name,
+            ]);
             session()->flash('message', 'Prestamo actualizado');
             return redirect()->route('loans.index');
         }

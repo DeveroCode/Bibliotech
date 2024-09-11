@@ -6,6 +6,7 @@ use App\Models\Autor;
 use App\Models\Categoria;
 use App\Models\Estante;
 use App\Models\Libro;
+use App\Models\UserActivity;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -96,6 +97,12 @@ class CrearLibro extends Component
                 'autores_id' => $autor_id,
             ]);
         }
+
+        UserActivity::create([
+            'user_id' => auth()->user()->id,
+            'activity' => 'Creación de un nuvo lirbo',
+            'description' => 'Se ha creado el libro ' . $libro->titulo . ' por ' . auth()->user()->name . ' ' . auth()->user()->apellido_patero . ' ' . auth()->user()->apellido_matero,
+        ]);
 
         // Crear mensaje de éxito
         session()->flash('message', 'Libro creado con éxito');

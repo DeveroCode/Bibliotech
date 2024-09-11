@@ -6,6 +6,7 @@ use App\Mail\NotificarPrestamo;
 use App\Models\Alumno;
 use App\Models\Libro;
 use App\Models\Prestamo;
+use App\Models\UserActivity;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -108,6 +109,12 @@ class PrestamosLibros extends Component
         $email = $alumno->email;
 
         Mail::to($email)->send(new NotificarPrestamo($alumno, $prestamo, $libro));
+
+        UserActivity::create([
+            'user_id' => auth()->user()->id,
+            'activity' => ' Prestamo realizado',
+            'description' => 'Se ha prestado un libro ' . $libro->titulo . ' por ' . $alumno->nombre . ' ' . $alumno->apellidoP . ' ' . ' ' . $alumno->apellidoM . ' ' . $alumno->apellidoM,
+        ]);
 
         session()->flash('message', 'Prestamo realizado exitosamente.');
         return redirect()->route('dashboard');

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Headers;
+use App\Models\UserActivity;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -36,6 +37,12 @@ class UpdatePie extends Component
                 'footer' => $datos['footer'],
             ]);
 
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'activity' => 'Actualización del formato de PDF',
+                'description' => 'Se han actualizado las cabezeras' . ' por ' . auth()->user()->name . ' ' . auth()->user()->apellido_patero,
+            ]);
+
             session()->flash('message', 'Encabezado actualizado');
             return redirect()->route('dashboard.print');
         } else {
@@ -44,6 +51,11 @@ class UpdatePie extends Component
                 'footer' => $datos['footer'],
             ]);
 
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'activity' => 'Actualización del formato de PDF',
+                'description' => 'Se han actualizado las cabezeras' . ' por ' . auth()->user()->name . ' ' . auth()->user()->apellido_patero,
+            ]);
             session()->flash('message', 'Encabezado colocado correctamente');
             return redirect()->route('dashboard.print');
         }
