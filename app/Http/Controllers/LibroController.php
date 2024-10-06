@@ -17,10 +17,7 @@ class LibroController extends Controller
         $user = Auth::user();
 
         if ($user->rol == 1) {
-            $libros_en_existencia = Libro::where('cantidad', '>', 0)->count();
-            return view('administrator.index', [
-                'libros_en_existencia' => $libros_en_existencia,
-            ]);
+            return view('administrator.index');
         } elseif ($user->rol == 2) {
             return redirect()->route('admin.index');
         }
@@ -33,7 +30,8 @@ class LibroController extends Controller
     public function create()
     {
         //
-        return view('administrator.create');
+        $editMode = false;
+        return view('administrator.create', ['editMode' => $editMode]);
     }
 
     /**
@@ -67,8 +65,10 @@ class LibroController extends Controller
     public function edit(Libro $libro)
     {
         //
-        return view('administrator.edit', [
+        $editMode = true;
+        return view('administrator.create', [
             'libro' => $libro,
+            'editMode' => $editMode,
         ]);
     }
 

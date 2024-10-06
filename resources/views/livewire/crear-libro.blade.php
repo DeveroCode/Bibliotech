@@ -95,13 +95,18 @@
         <x-text-input id="imagen" class="block text-sm mt-1 w-full" type="file" wire:model="imagen" accept="image/*" />
 
         {{-- Preview image --}}
-        <div class="my-5 w-80">
-            @if ($imagen)
-            Imagen: <img src="{{ $imagen->temporaryUrl() }}">
-            @endif
+        @if(!$imagen_nueva)
+        <div class="mt-5 text-xs">
+            <x-input-label for="imagen" :value="__('portada actual')" class="uppercase" />
+            <img src="{{ asset('storage/libros/' . $imagen) }}" alt="{{ 'Imagen del libro ' . $titulo }}">
         </div>
-
         <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
+        @else
+        <div class="my-5 w-80">
+            Imagen nueva: <img src="{{ $imagen_nueva->temporaryUrl() }}">
+        </div>
+        <x-input-error :messages="$errors->get('imagen_nueva')" class="mt-2" />
+        @endif
     </div>
 
     <x-primary-button class="mt-5">
