@@ -17,9 +17,7 @@ class MostrarLibro extends Component
             ->where('id', '<>', $this->libro->id)
             ->limit(12)
             ->get();
-        return view('livewire.mostrar-libro', [
-            // 'categorias' => $categorias,
-            // 'estantes' => $estantes,
+        return view('livewire.public-views.mostrar-libro', [
             'librosRelacionados' => $librosRelacionados,
         ]);
     }

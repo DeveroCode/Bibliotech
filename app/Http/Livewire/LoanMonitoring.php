@@ -37,7 +37,7 @@ class LoanMonitoring extends Component
             }
         }
 
-        return view('livewire.loan-monitoring', [
+        return view('livewire.public-views.loan-monitoring', [
             'prestamos' => $prestamos,
             'estado' => $estado,
         ]);

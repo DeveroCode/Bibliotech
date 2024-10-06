@@ -64,9 +64,4 @@ class PrestamoController extends Controller
         return view('administrator.loans.update-loans',
             ['prestamo' => $prestamo]);
     }
-
-    public function statusLoans()
-    {
-        return view('administrator.loans.ViewStatus');
-    }
 }

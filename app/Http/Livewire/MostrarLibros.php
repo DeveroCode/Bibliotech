@@ -48,7 +48,7 @@ class MostrarLibros extends Component
             $libros = Libro::paginate(10);
         }
         // $libros = Libro::where('user_id', auth()->user()->id)->paginate(50);
-        return view('livewire.mostrar-libros', [
+        return view('livewire.librarian.mostrar-libros', [
             'libros' => $libros,
         ]);
     }

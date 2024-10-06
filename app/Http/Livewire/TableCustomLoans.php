@@ -50,7 +50,7 @@ class TableCustomLoans extends Component
             ->groupBy('libro_id')
             ->get();
 
-        return view('livewire.table-custom-loans', [
+        return view('livewire.librarian.table-custom-loans', [
             'prestamos' => $prestamos,
         ]);
     }

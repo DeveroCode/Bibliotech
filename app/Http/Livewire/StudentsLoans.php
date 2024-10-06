@@ -17,7 +17,7 @@ class StudentsLoans extends Component
     public function render()
     {
         $type_loan = Tipo_prestamo::all();
-        return view('livewire.students-loans',
+        return view('livewire.librarian.students-loans',
             ['type_loan' => $type_loan]
         );
     }

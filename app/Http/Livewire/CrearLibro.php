@@ -187,7 +187,7 @@ class CrearLibro extends Component
         // DB
         $categorias = Categoria::all();
         $estantes = Estante::all();
-        return view('livewire.crear-libro', [
+        return view('livewire.librarian.crear-libro', [
             'categorias' => $categorias,
             'estantes' => $estantes,
         ]);

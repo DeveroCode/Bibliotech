@@ -17,7 +17,7 @@ class SearchUser extends Component
     public function render()
     {
         $alumno = Alumno::all();
-        return view('livewire.search-user', [
+        return view('livewire.search-components.search-user', [
             'alumno' => $alumno,
         ]);
     }

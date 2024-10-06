@@ -40,7 +40,7 @@ class InsertarDb extends Component
 
     public function render()
     {
-        return view('livewire.insertar-db');
+        return view('livewire.admin.insertar-db');
     }
 
 }

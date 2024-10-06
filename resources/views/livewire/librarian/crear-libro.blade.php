@@ -110,6 +110,6 @@
     </div>
 
     <x-primary-button class="mt-5">
-        Agregar libro
+        {{ $editable ? 'Actualizar Libro' : 'Agregar libro' }}
     </x-primary-button>
 </form>

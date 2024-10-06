@@ -120,6 +120,6 @@ class PrestamosLibros extends Component
 
     public function render()
     {
-        return view('livewire.prestamos-libros');
+        return view('livewire.librarian.prestamos-libros');
     }
 }

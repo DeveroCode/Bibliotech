@@ -118,7 +118,7 @@ class CrearUsuario extends Component
 
     public function render()
     {
-        return view('livewire.crear-usuario', [
+        return view('livewire.admin.crear-usuario', [
             'generos' => $this->datas['generos'],
             'roles' => $this->datas['roles'],
         ]);

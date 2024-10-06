@@ -26,6 +26,6 @@ class ShowCharts extends Component
 
     public function render()
     {
-        return view('livewire.show-charts');
+        return view('livewire.librarian.show-charts');
     }
 }

@@ -83,7 +83,7 @@ class UpdateLoans extends Component
     public function render()
     {
         $tipos_prestamos = Tipo_prestamo::all();
-        return view('livewire.update-loans', [
+        return view('livewire.librarian.update-loans', [
             'tipos_prestamos' => $tipos_prestamos,
         ]);
     }

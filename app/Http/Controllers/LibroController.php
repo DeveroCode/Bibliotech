@@ -12,8 +12,6 @@ class LibroController extends Controller
      */
     public function index()
     {
-        //
-
         $user = Auth::user();
 
         if ($user->rol == 1) {
@@ -37,24 +35,9 @@ class LibroController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function show(Libro $libro)
+    public function show()
     {
         //
-        return view('home.show', [
-            'libro' => $libro,
-        ]);
-    }
-
-    public function search()
-    {
-        $libros_en_existencia = Libro::where('cantidad', '>', 0)->count();
-        return view('home.search', [
-            'libros_en_existencia' => $libros_en_existencia,
-        ]);
-    }
-
-    public function showLibros()
-    {
         $libros = Libro::with('autores')->get();
         return view('administrator.show', ['libros' => $libros]);
     }

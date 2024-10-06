@@ -69,7 +69,7 @@ class ViewStudentData extends Component
 
     public function render()
     {
-        return view('livewire.view-student-data', [
+        return view('livewire.librarian.view-student-data', [
             'alumno' => $this->alumno,
         ]);
     }

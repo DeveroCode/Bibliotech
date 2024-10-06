@@ -97,7 +97,7 @@ class ViewBookDetails extends Component
     public function render()
     {
         $tipo_prestamos = Tipo_prestamo::all();
-        return view('livewire.view-book-details', [
+        return view('livewire.librarian.view-book-details', [
             'tipo_prestamos' => $tipo_prestamos,
             'isbn' => $this->isbn,
         ]);

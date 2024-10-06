@@ -17,7 +17,7 @@ class LoansCustom extends Component
     public function render()
     {
         $categorias = Categoria::select('id', 'categoria')->take(6)->get();
-        return view('livewire.loans-custom', [
+        return view('livewire.librarian.loans-custom', [
             'categorias' => $categorias,
         ]);
     }

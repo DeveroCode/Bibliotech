@@ -8,6 +8,6 @@ class GenerarPdf extends Component
 {
     public function render()
     {
-        return view('livewire.generar-pdf');
+        return view('livewire.librarian.generar-pdf');
     }
 }

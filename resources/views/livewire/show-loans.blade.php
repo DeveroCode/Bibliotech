@@ -33,7 +33,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="border-b border-dashed border-b-2 my-5"></div>
+                    <div class="border-dashed border-b-2 my-5"></div>
                     <div class="flex items-center gap-10">
                         {{-- Date --}}
                         <div class="flex flex-col">

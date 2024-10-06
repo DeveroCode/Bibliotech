@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-use App\Models\Libro;
 use App\Models\Categoria;
+use App\Models\Libro;
+use Livewire\Component;
 
 class MostrarResultados extends Component
 {
@@ -24,22 +24,22 @@ class MostrarResultados extends Component
 
     public function render()
     {
-        if($this->palabra || $this->categoria || $this->edicion){
-            $libros = Libro::when($this->palabra, function($query){
+        if ($this->palabra || $this->categoria || $this->edicion) {
+            $libros = Libro::when($this->palabra, function ($query) {
                 $query->where('titulo', 'LIKE', "%" . $this->palabra . "%");
-            })->when($this->categoria, function($query){
+            })->when($this->categoria, function ($query) {
                 $query->where('categoria_id', $this->categoria);
-            })->when($this->edicion, function($query){
+            })->when($this->edicion, function ($query) {
                 $query->where('edicion', $this->edicion);
             })->with('autores')->paginate(30);
-        }else if(!is_null($this->categoria) && $this->categoria != 0 || !empty($this->edicion) && $this->edicion != 0){
+        } else if (!is_null($this->categoria) && $this->categoria != 0 || !empty($this->edicion) && $this->edicion != 0) {
             $libros = Libro::paginate(12);
-        }else{
+        } else {
             $libros = Libro::paginate(12);
         }
 
-        return view('livewire.mostrar-resultados', [
-            'libros' => $libros
+        return view('livewire.public-views.mostrar-resultados', [
+            'libros' => $libros,
         ]);
     }
 }
