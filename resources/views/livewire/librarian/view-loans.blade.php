@@ -3,6 +3,7 @@
     @if (count($loans) > 0)
     {{-- Bar seach --}}
     <livewire:filtrar-isbn>
+        {{-- Mostrar mensaje basado en 'found' --}}
         <table class="table-auto text-xs w-full m-auto border-collapse bg-white text-left text-gray-500">
             <thead class="bg-gray-50">
                 <tr>
