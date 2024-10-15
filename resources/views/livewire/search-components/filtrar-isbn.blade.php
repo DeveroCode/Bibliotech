@@ -33,7 +33,6 @@
         const $data = $('#alert').getAttribute('data-found');
         const $message = $('#alert').getAttribute('data-msg');
         const $btn = $('#buscar');
-        console.log($message);
 
         // link to function showAlerts
         $btn.addEventListener('click', showAlerts);
@@ -51,7 +50,7 @@
                     Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: $message,
+                    text: $message ? $message : "El isbn que ingreso es incorrecto!",
                     });
                 }, 300);
             }

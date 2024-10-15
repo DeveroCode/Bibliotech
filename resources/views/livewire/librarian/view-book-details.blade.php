@@ -8,9 +8,9 @@
     </div>
 
     {{-- form for librarian--}}
+    @if(!empty($isbn) && $isbn->count() > 0)
     <form class="flex flex-col md:flex-row py-6 gap-10">
         <div class="block-primary w-full flex flex-col gap-5">
-            @if (isset($isbn))
             {{-- nombre --}}
             <div class="relative z-0 md:w-full">
                 <x-text-input id="user_biblio" wire:model="user_biblio"
@@ -66,14 +66,14 @@
                     :value="__('Autor || Autores')" />
                 @error('autores') <span class="error text-red-500">{{ $message }}</span> @enderror
             </div>
-            {{-- ISBN--}}
+            {{-- isbn--}}
             <div class="relative z-0 w-full">
                 <x-text-input id="identificacion" wire:model="identificacion"
                     class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
                     placeholder=" " :value="$isbn[0]->identificacion" />
                 <x-input-label
                     class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500"
-                    :value="__('ISBN')" />
+                    :value="__('isbn')" />
                 @error('identificacion') <span class="error text-red-500">{{ $message }}</span> @enderror
             </div>
         </div>
@@ -81,7 +81,7 @@
         <div class="block-trhee w-full flex flex-col gap-5">
             {{-- Tipo de prestamo --}}
             <div class="relative z-0 w-full">
-                <select id="tipo_prestamo" wire:change="type_loan($event.target.value)"
+                <select id="tipo_prestamo" wire:change="type_isbn($event.target.value)"
                     class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 rounded-none"
                     placeholder=" ">
                     <option value=" ">Tipo préstamo</option>
@@ -112,7 +112,8 @@
                     :value="__('No. de Libros')" />
                 @error('total_books') <span class="error text-red-500">{{ $message }}</span> @enderror
             </div>
-            @endif
+
         </div>
     </form>
+    @endif
 </div>

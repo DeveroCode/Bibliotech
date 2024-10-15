@@ -4,8 +4,8 @@
         <livewire:search-user />
     </div>
 
+    @if (!$found &&count($alumno) > 0 )
     <form class="flex gap-5 w-full md:flex-row flex-col py-6 justify-center items-center mb-20">
-        @if (count($alumno) > 0 )
         {{-- nombre --}}
         <div class="relative z-0 w-full md:w-1/3">
 
@@ -37,6 +37,6 @@
                 :value="__('Correo institucional')" />
             @error('correo') <span class="error text-red-500">{{ $message }}</span> @enderror
         </div>
-        @endif
     </form>
+    @endif
 </div>

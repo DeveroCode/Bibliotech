@@ -9,6 +9,19 @@
             </div>
         </div>
         @endif
+
+        {{-- Alerta de alumno no encontrado --}}
+        @if ($found)
+        <div x-data="{ showAlert: true }" x-init="setTimeout(() => showAlert = false, 3000)" x-show="showAlert"
+            class="bg-red-100 border border-red-600 text-red-600 font-bold p-2 my-3 text-center">
+            <h2 class="text-xl">Alumno no encontrado o inscrito</h2>
+        </div>
+        @elseif ($loan)
+        <div x-data="{ showAlert: true }" x-init="setTimeout(() => showAlert = false, 3000)" x-show="showAlert"
+            class="bg-red-100 border border-red-600 text-red-600 font-bold p-2 my-3 text-center">
+            <h2 class="text-xl">ISBN no encontrado</h2>
+        </div>
+        @endif
         {{-- Start form for students --}}
         <span class="text-xl font-bold mb-10">Datos del alumno</span>
         <hr class="bg-indigo-800 mt-3">

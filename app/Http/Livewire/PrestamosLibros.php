@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\NotificarPrestamo;
 use App\Models\Alumno;
 use App\Models\Libro;
 use App\Models\Prestamo;
 use App\Models\UserActivity;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class PrestamosLibros extends Component
@@ -21,6 +23,8 @@ class PrestamosLibros extends Component
     public $cantidad_prestamo;
     public $folio;
     public $tipo_prestamo_id;
+    public $found = null;
+    public $loan = null;
 
     public $nombre_alumno;
 
@@ -32,12 +36,27 @@ class PrestamosLibros extends Component
         'folio' => 'required|string',
     ];
 
-    protected $listeners = ['dataStudent' => 'loadDataStudent', 'dataBook' => 'loadDataBook', 'dataLoan' => 'mountTypeLoan', 'total_books' => 'mount_total_books'];
+    protected $listeners = ['dataStudent' => 'loadDataStudent', 'dataBook' => 'loadDataBook', 'dataLoan' => 'mountTypeLoan', 'total_books' => 'mount_total_books', 'status' => 'leerStatus', 'loan' => 'loanStatus'];
 
     public function loadDataStudent($datos)
     {
         $this->id_student = $datos['id'];
         $this->nombre_alumno = $datos['nombre'];
+    }
+
+    public function leerStatus($found)
+    {
+        $this->found = $found;
+        if (!$this->found) {
+            $this->dispatchBrowserEvent('alumnoNoEncontrado');
+        }
+    }
+    public function loanStatus($loan)
+    {
+        $this->loan = $loan;
+        if (!$this->loan) {
+            $this->dispatchBrowserEvent('isbnNoEncontrado');
+        }
     }
 
     public function mountTypeLoan($datos)
@@ -104,9 +123,9 @@ class PrestamosLibros extends Component
         // Get the email by id_student
         $alumno = Alumno::find($this->id_student);
         $libro = Libro::find($this->libro_id);
-        // $email = $alumno->email;
+        $email = $alumno->email;
 
-        // Mail::to($email)->send(new NotificarPrestamo($alumno, $prestamo, $libro));
+        Mail::to($email)->send(new NotificarPrestamo($alumno, $prestamo, $libro));
 
         UserActivity::create([
             'user_id' => auth()->user()->id,
@@ -120,6 +139,9 @@ class PrestamosLibros extends Component
 
     public function render()
     {
-        return view('livewire.librarian.prestamos-libros');
+        return view('livewire.librarian.prestamos-libros', [
+            'found' => $this->found,
+            'loan' => $this->loan,
+        ]);
     }
 }

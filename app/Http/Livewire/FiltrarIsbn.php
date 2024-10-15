@@ -25,12 +25,18 @@ class FiltrarIsbn extends Component
     }
     public function mount()
     {
-        if (request()->routeIs('loans/view')) {
+        if (request()->routeIs('loans.index')) {
             $this->labelText = 'Búsqueda de préstamos';
             if (!$this->found) {
                 $this->message = "El folio que ha ingresado venció o no existe un préstamo asociado a este folio";
             }
             $this->placeholderText = 'Buscar por Folio: ej. 19CAR4143';
+        } else if (request()->routeIs('loans.create')) {
+            $this->labelText = 'Búsqueda de libros';
+            $this->placeholderText = 'Buscar por ISBN: ej. ISBN-13:978-6073235853';
+            if (!$this->found) {
+                $this->message = "El ISBN que ha ingresado no existe o no ha sido registrado";
+            }
         } else {
             $this->labelText = 'Búsqueda de libros';
             $this->message = "El ISBN que ingreso no está registrado o el nombre ingresado aún no ha sido registro";
