@@ -23,12 +23,13 @@ class ViewBookDetails extends Component
     public $tipo_prestamo;
     public $type_loan_id;
     public $folio;
+    public $found = null;
     protected $listeners = ['leerDatos' => 'isb', 'dataFolio' => 'mount_folio'];
 
     // calculate loan days
     public function calculateLoanDays($days)
     {
-        $days = Carbon::parse($days)->addWeekdays(10);
+        $days = Carbon::parse($days)->addWeekdays(3);
 
         if ($days->isSunday()) {
             $days->addDays(1);
@@ -42,35 +43,51 @@ class ViewBookDetails extends Component
         $this->folio = $datos['folio'];
     }
 
+    public function searchIsbn($isbn)
+    {
+        $isbn = $this->isbn = Libro::where('isbn', 'LIKE', '%' . $this->isbn . '%')->get();
+        return $isbn;
+    }
+
     // Set the datas for the view with the isbn
     public function isb($isbn)
     {
         $this->isbn = $isbn;
         if (empty($this->isbn)) {
-            $this->isbn = [];
             return;
         };
 
-        $isbn = $this->isbn = Libro::where('isbn', 'LIKE', '%' . $this->isbn . '%')->get();
-        $this->isbn = $isbn;
+        // Se vincula el libro que se esta buscando, el $this->isbn = almacena el resultado del libro buscado, por cuestiones
+        // de funcionalidad no cambiar el nombre de la variable
+        $this->isbn = $this->searchIsbn($isbn);
+
+        if ($this->isbn->isEmpty()) {
+            $this->found = true;
+            $this->emit('loand', $this->found);
+            return;
+        }
 
         //concatenating variables to the front-end
-        $datos = $this->isbn;
+        $datos = $this->isbn[0];
 
-        $this->libro_id = $datos[0]->id;
+        $this->libro_id = $datos->id;
         $this->user_biblio = auth()->user()->name;
         $this->fecha_inicial = Carbon::now()->format('d-m-Y');
-        $this->titulo = $datos[0]->titulo;
-        $this->autores = $datos[0]->autores[0]->autor;
+        $this->titulo = $datos->titulo;
+        $this->autores = $datos->autores[0]->autor;
         $this->folio;
         $this->fecha_limite = $this->calculateLoanDays($this->fecha_inicial);
-        $this->identificacion = $datos[0]->isbn;
+        $this->identificacion = $datos->isbn;
+        $this->cantidad = $datos->cantidad;
         $this->emit('dataBook', [
             'id' => $this->libro_id,
             'fecha_inicio' => $this->fecha_inicial,
             'fecha_limite' => $this->fecha_limite,
             'folio' => $this->folio,
+            'cantidad' => $this->cantidad,
         ]);
+        $this->found = false;
+        $this->emit('loand', $this->found);
     }
 
     // Set the datas for the view with the type of loan
@@ -95,7 +112,7 @@ class ViewBookDetails extends Component
     public function render()
     {
         $tipo_prestamos = Tipo_prestamo::all();
-        return view('livewire.view-book-details', [
+        return view('livewire.librarian.view-book-details', [
             'tipo_prestamos' => $tipo_prestamos,
             'isbn' => $this->isbn,
         ]);

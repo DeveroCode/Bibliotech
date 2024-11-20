@@ -25,5 +25,11 @@ class Tipo_prestamoSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
+
+        DB::table('tipo_prestamos')->insert([
+            'nombre' => 'Entrega de libros',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
     }
 }

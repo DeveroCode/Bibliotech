@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Prestamo extends Model
 {
     use HasFactory;
+    use Notifiable;
 
     protected $fillable = [
         'fecha_inicio',
@@ -20,7 +22,7 @@ class Prestamo extends Model
 
     public function alumnos()
     {
-        return $this->belongsToMany(Alumno::class, 'libro_prestamo', 'libro_id', 'prestamo_id');
+        return $this->belongsToMany(Alumno::class, 'libro_prestamo', 'prestamo_id', 'alumno_id');
     }
 
     public function user()
@@ -41,10 +43,5 @@ class Prestamo extends Model
     public function autores()
     {
         return $this->belongsToMany(Autor::class, 'autor_libro', 'libros_id', 'autores_id');
-    }
-
-    public function libro_prestamo()
-    {
-        return $this->belongsToMany(Libro_prestamo::class, 'alumnno_id', 'libros_id', 'prestamo_id');
     }
 }

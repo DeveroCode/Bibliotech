@@ -1,15 +1,15 @@
-html{
+html {
     font-size: 62.5% !important;
     box-sizing: border-box;
 }
 
-*{
+* {
     font-family: Helvetica !important;
     margin: 0;
     bottom: 0;
 }
 
-body{
+body {
     font-size: 1.5rem;
     box-sizing: border-box;
 }
@@ -18,61 +18,70 @@ body{
     position: fixed;
 } */
 
-.header-image{
+.header-image {
     position: fixed;
     top: 0;
     width: 100%;
 }
 
-.header{
+.header {
     margin-top: 15rem;
 }
 
 /* Snnipets */
-.p-1{
+.text-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.p-1 {
     padding-top: 1rem;
     padding-left: 3rem;
 }
 
-.pr-1{
+.pr-1 {
     padding-right: 3rem;
     padding-top: 1rem;
 }
 
-.py-1{
+.py-1 {
     padding-top: 0.6rem;
     padding-bottom: 0.6rem;
 }
 
-.cell{
+.cell {
     padding: 0rem 1rem;
 }
 
-.text-normal{
+.text-normal {
     color: #000;
     font-weight: normal;
 }
 
 
-.text-capitalize{
+.text-capitalize {
     text-transform: capitalize;
 }
 
-.fs-1{
+.fs-1 {
     font-size: 1.2rem;
 }
 
-.fs-2{
+.fs-2 {
     font-size: 1.4rem;
 }
 
-.marginT-5{
+.marginT-5 {
     margin-top: 20rem;
 }
 
 /* My settings */
 /* -> Header and title */
-.header{
+.header {
     font-size: 0.7rem;
     font-weight: normal;
     text-align: center;
@@ -80,17 +89,17 @@ body{
     /* margin-top: 5rem; */
 }
 
-.subtitle{
+.subtitle {
     font-size: 1.2rem;
     text-transform: capitalize;
 }
 
-.text-info{
+.text-info {
     font-size: 0.8rem;
 }
 
 /* ->Information */
-.information{
+.information {
     width: 90%;
     background-color: #F9FAFB;
     border-radius: 0.3rem;
@@ -99,33 +108,33 @@ body{
     margin-top: 5rem;
 }
 
-.libros-count{
+.libros-count {
     float: left;
 }
 
-.information__title{
+.information__title {
     font-size: 1.2rem;
     text-transform: uppercase;
     font-weight: 700;
 }
 
-.information__sub{
+.information__sub {
     color: #6B7280;
 }
 
-.libros-bibliotecario{
+.libros-bibliotecario {
     float: right;
 }
 
 /* -> Table */
-.table-group{
+.table-group {
     width: 90%;
     margin: 0 auto;
     margin-top: 2.6rem;
     margin-bottom: 1.5rem;
 }
 
-.table-group .group{
+.table-group .group {
     width: 100%;
     margin: auto;
     font-size: 1.5rem;
@@ -136,46 +145,50 @@ body{
     color: #6B7280;
 }
 
-.group-thead{
+.group-thead {
     background-color: #F9FAFB;
     border-radius: 0.3rem;
 }
 
-.group-thead-title{
+.group-thead-title {
     padding: 0.6rem 1rem;
-    width: auto;
+    width: 16.16% !important;
     font-weight: bold;
     text-align: left;
     color: rgb(17 24 39);
 }
 
+.w-4 {
+    width: 16.66666% !important;
+}
+
 /* -> Tbody */
-.group-tbody{
+.group-tbody {
     border-top: 0.1rem solid rgb(229 231 235);
     font-size: 1.4rem;
     font-weight: normal;
 }
 
-.group-title{
+.group-title {
     width: 33.333333% !important;
 }
 
-.group-tbody-book{
+.group-tbody-book {
     text-transform: capitalize;
     text-align: left;
 }
 
-.tbody-book-autor{
+.tbody-book-autor {
     font-weight: normal;
 }
 
 /* -> Category */
-.group-tbody-category{
+.group-tbody-category {
     display: table-cell;
     padding: 1rem 0.8rem;
 }
 
-.group-tbody-background{
+.group-tbody-background {
     display: inline-block;
     align-items: center;
     gap: 0.4rem;
@@ -187,24 +200,25 @@ body{
     color: rgb(22 163 74);
 }
 
-.group-tbody-category-text{
+.group-tbody-category-text {
     height: 1rem;
     width: 1rem;
     border-radius: 999.9rem;
     background-color: rgb(22 163 74);
     text-transform: capitalize;
+    text-wrap: wrap !important;
 }
 
-.group-tbody-categoria{
+.group-tbody-categoria {
     padding: 0.8rem 0.8rem;
 }
 
-.group-categoria{
+.group-categoria {
     display: flex;
     gap: 0.8rem;
 }
 
-.group-all{
+.group-all {
     display: inline-block;
     align-items: center;
     gap: 0.4rem;
@@ -215,42 +229,42 @@ body{
     color: rgb(89 75 198);
 }
 
-.sistemas{
+.sistemas {
     background-color: rgb(225 241 251);
 }
 
-.contaduria{
+.contaduria {
     background-color: rgb(240 241 249);
 }
 
-.mecatronica{
+.mecatronica {
     background-color: rgb(232 240 252);
 }
 
-.electromecanica{
+.electromecanica {
     background-color: rgb(254 243 199);
 }
 
-.gestion{
+.gestion {
     background-color: rgb(254 226 226);
 }
 
-.industrial{
+.industrial {
     background-color: rgb(209 250 229);
 }
 
-.electronica{
-    background-color: rgb(255 237 213 );
+.electronica {
+    background-color: rgb(255 237 213);
 }
 
 /* -> Footer*/
-footer{
+footer {
     position: fixed;
     bottom: 0;
     width: 100%;
 }
 
-.img-footer{
+.img-footer {
     background-size: cover;
     background-position: center;
 }

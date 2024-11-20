@@ -43,7 +43,8 @@
                 @if ($lastUserId != $libro->usuario->id)
                 <p class="information__sub pr-1 fs-2 text-capitalize">expedido por:
                     <span class="fs-1 text-normal text-capitalize">
-                        {{ $libro->usuario->name }}
+                        {{ $libro->usuario->name . " " . $libro->usuario->apellido_paterno . " " .
+                        $libro->usuario->apellido_materno }}
                     </span>
                 </p>
                 @php
@@ -65,8 +66,8 @@
                     <tr class="group-tr">
                         <th class="group-thead-title group-title">Título</th>
                         <th class="group-thead-title">Estado</th>
-                        <th class="group-thead-title">Edicion</th>
-                        <th class="group-thead-title">Categoria</th>
+                        <th class="group-thead-title">Edición</th>
+                        <th class="group-thead-title">Categoría</th>
                     </tr>
                 </thead>
                 @foreach ($libros as $libro)

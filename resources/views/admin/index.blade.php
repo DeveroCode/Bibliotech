@@ -38,7 +38,7 @@
 
                                         </div>
                                         <div class="flex flex-col flex-grow ml-4">
-                                            <a href="{{ route('admin.create') }}"
+                                            <a href="{{ route('admin.update') }}"
                                                 class="text-lg font-bold underline text-blue-700">Actualizar
                                                 base de datos</a>
                                             <span class="text-sm text-gray-500">Actualiza la base de datos de los
@@ -60,7 +60,7 @@
 
                                         </div>
                                         <div class="flex flex-col flex-grow ml-4">
-                                            <a href="{{ route('admin.cuser') }}"
+                                            <a href="{{ route('admin.user') }}" <a href="{{ route('admin.user') }}"
                                                 class="text-lg font-bold underline text-blue-700">Crear nuevos
                                                 usuarios</a>
                                             <span class="text-sm text-gray-500">Crea bibliotecarios, usarios
@@ -81,7 +81,8 @@
                                             </svg>
                                         </div>
                                         <div class="flex flex-col flex-grow ml-4">
-                                            <a href="#" class="text-lg font-bold underline text-blue-700">Lista de
+                                            <a href="{{ route('admin.show') }}"
+                                                class="text-lg font-bold underline text-blue-700">Lista de
                                                 usuarios</a>
                                             <span class="text-sm text-gray-500">Verifica usarios inactivos, elimina o
                                                 actualiza sus datos</span>
@@ -103,7 +104,8 @@
 
                                         </div>
                                         <div class="flex flex-col flex-grow ml-4">
-                                            <a href="#" class="text-lg font-bold underline text-blue-700">Actividades
+                                            <a href="{{ route('admin.activities') }}"
+                                                class="text-lg font-bold underline text-blue-700">Actividades
                                                 recientes</a>
                                             <span class="text-sm text-gray-500">Verifica las ultimas actividades de los
                                                 usuarios</span>

@@ -69,7 +69,7 @@ return [
     |
      */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Chihuahua',
 
     /*
     |--------------------------------------------------------------------------
@@ -195,6 +195,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        Asantibanez\LivewireCharts\LivewireChartsServiceProvider::class, /* 1 */
 
     ],
 

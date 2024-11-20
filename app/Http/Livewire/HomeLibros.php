@@ -12,9 +12,9 @@ class HomeLibros extends Component
     {
         $libros = Libro::with('autores')->orderByRaw('RAND()')->limit(6)->get();
         $categorias = Categoria::all();
-        return view('livewire.home-libros', [
+        return view('livewire.public-views.home-libros', [
             'libros' => $libros,
-            'categorias' => $categorias
+            'categorias' => $categorias,
         ]);
     }
 }

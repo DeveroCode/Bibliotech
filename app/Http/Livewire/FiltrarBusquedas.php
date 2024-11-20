@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Categoria;
 use App\Models\Libro;
 use Livewire\Component;
-use App\Models\Categoria;
 
 class FiltrarBusquedas extends Component
 {
@@ -12,7 +12,8 @@ class FiltrarBusquedas extends Component
     public $categoria;
     public $edicion;
 
-    public function searchWord(){
+    public function searchWord()
+    {
         $this->emit('leerPalabra', $this->palabra, $this->categoria, $this->edicion);
     }
 
@@ -20,9 +21,9 @@ class FiltrarBusquedas extends Component
     {
         $categorias = Categoria::all();
         $editoriales = Libro::all();
-        return view('livewire.filtrar-busquedas',[
+        return view('livewire.search-components.filtrar-busquedas', [
             'categorias' => $categorias,
-            'editoriales' => $editoriales
+            'editoriales' => $editoriales,
         ]);
     }
 }

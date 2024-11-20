@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Headers;
 use App\Models\Libro;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 
 class LibroController extends Controller
@@ -14,15 +12,10 @@ class LibroController extends Controller
      */
     public function index()
     {
-        //
-
         $user = Auth::user();
 
         if ($user->rol == 1) {
-            $libros_en_existencia = Libro::where('cantidad', '>', 0)->count();
-            return view('administrator.index', [
-                'libros_en_existencia' => $libros_en_existencia,
-            ]);
+            return view('administrator.index');
         } elseif ($user->rol == 2) {
             return redirect()->route('admin.index');
         }
@@ -35,30 +28,16 @@ class LibroController extends Controller
     public function create()
     {
         //
-        return view('administrator.create');
+        $editMode = false;
+        return view('administrator.create', ['editMode' => $editMode]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function show(Libro $libro)
+    public function show()
     {
         //
-        return view('home.show', [
-            'libro' => $libro,
-        ]);
-    }
-
-    public function search()
-    {
-        $libros_en_existencia = Libro::where('cantidad', '>', 0)->count();
-        return view('home.search', [
-            'libros_en_existencia' => $libros_en_existencia,
-        ]);
-    }
-
-    public function showLibros()
-    {
         $libros = Libro::with('autores')->get();
         return view('administrator.show', ['libros' => $libros]);
     }
@@ -69,10 +48,13 @@ class LibroController extends Controller
     public function edit(Libro $libro)
     {
         //
-        return view('administrator.edit', [
+        $editMode = true;
+        return view('administrator.create', [
             'libro' => $libro,
+            'editMode' => $editMode,
         ]);
     }
+<<<<<<< HEAD
 
     public function pie()
     {
@@ -88,6 +70,8 @@ class LibroController extends Controller
             ->set_option('isPhpEnabled', true);
         return $pdf->stream('inventory.pdf');
     }
+=======
+>>>>>>> features
 
     public function print()
     {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumno;
 use App\Models\Prestamo;
-use Illuminate\Http\Request;
 
 class PrestamoController extends Controller
 {
@@ -13,7 +13,7 @@ class PrestamoController extends Controller
     public function index()
     {
         $loans = Prestamo::with('libros')->get();
-        return view('administrator.view-loans',
+        return view('administrator.loans.view-loans',
             [
                 'loans' => $loans,
             ]);
@@ -25,15 +25,7 @@ class PrestamoController extends Controller
     public function create()
     {
         //
-        return view('administrator.lending');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('administrator.loans.lending');
     }
 
     /**
@@ -41,11 +33,26 @@ class PrestamoController extends Controller
      */
     public function show()
     {
-        $loans = Prestamo::with('libros', 'alumnos', 'autores')->get();
-        return view('administrator.show-loans',
-            [
-                'loans' => $loans,
-            ]);
+        return view('administrator.loans.customized');
+    }
+
+    public function showStudent($student)
+    {
+
+        $studentId = Alumno::where('id', $student)->first();
+        // Obtener todos los préstamos asociados al alumno
+        $studentLoans = Prestamo::with('libros', 'alumnos', 'autores')
+            ->whereHas('alumnos', function ($query) use ($studentId) {
+                $query->where('alumno_id', $studentId->id);
+            })
+            ->get();
+
+        // dd($studentLoans->toArray());
+
+        return view('administrator.loans.show-student-loan', [
+            'studentLoans' => $studentLoans,
+            'studentId' => $studentId, // Aquí pasas el nombre del alumno
+        ]);
     }
 
     /**
@@ -54,21 +61,7 @@ class PrestamoController extends Controller
     public function edit(Prestamo $prestamo)
     {
         //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Prestamo $prestamo)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Prestamo $prestamo)
-    {
-        //
+        return view('administrator.loans.update-loans',
+            ['prestamo' => $prestamo]);
     }
 }

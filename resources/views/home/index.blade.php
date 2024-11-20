@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="py-24 bg-white overflow-hidden">
+    <div class="py-20 md:py-24 bg-white overflow-hidden">
         <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:my-auto lg:max-w-7xl flex flex-row-reverse mb-32">
-            <div class="w-full flex justify-center items-center ">
+            <div class="hidden md:w-full md:flex justify-center items-center ">
                 <div class="relative">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
                         class="absolute inset-0 w-full h-full z-10">
@@ -20,20 +20,26 @@
                     toda la comunidad escolar</p>
 
                 {{-- Barra de busqueda --}}
-                <div class="relative inset-0 bg-opacity-75 z-10 flex items-center">
+                <div class="relative inset-0 bg-opacity-75 z-10 flex items-center space-x-2 md:space-x-4">
                     <div class="flex mt-4 space-x-3 lg:mt-6">
                         <a type="submit" href="{{ route('search.books') }}"
                             class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-inidgo-800 focus:ring-4 focus:ring-blue-300 uppercase">Iniciar
                             búsqueda</a>
+                    </div>
+                    <div class="flex mt-4 space-x-3 lg:mt-6">
+                        <a type="submit" href="{{ route('loans.status') }}"
+                            class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-indigo-700 bg-white rounded-lg border border-gray-300 focus:ring-4 focus:ring-gray-300 uppercase">Verificar
+                            préstamo</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="bg-white overflow-hidden lg:py-24">
-        <h3 class="px-5 md:px-0 md:text-center font-bold text-5xl">Nos preocupamos por una mejor navegación</h3>
-        <p class="px-5 md:px-0 text-lg md:text-center font-semibold capitalize text-indigo-700 mt-2">Por eso hemos
+    <div class="bg-white overflow-hidden md:py-24">
+        <h3 class="px-5 md:px-0 text-center font-bold text-3xl md:text-5xl">Nos preocupamos por una mejor navegación
+        </h3>
+        <p class="px-5 md:px-0 text-lg text-center font-semibold capitalize text-indigo-700 mt-2">Por eso hemos
             incluido</p>
         <div
             class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl grid grid-row-3 lg:grid-cols-3 md:gap-10 mt-16 items-center mb-16">

@@ -17,7 +17,7 @@ module.exports = {
                   '100': '#f0f1f9',
                   '200': '#dedaf3',
                   '300': '#bdb5e1',
-                  '400': '#9e8aca',
+                  '400': '#9e8aca',//botones
                   '500': '#8266b3',
                   '600': '#694a97',
                   '700': '#4e3773',
@@ -144,6 +144,32 @@ module.exports = {
                     '800': '#432911',
                     '900': '#2b190c',
                   },
+                  gold: {
+                    '50':  '#fbfaf6',
+                    '100': '#f8f0d5',
+                    '200': '#f0dca9',
+                    '300': '#dab674',
+                    '400': '#be8b46',
+                    '500': '#a06a28',
+                    '600': '#83501a',
+                    '700': '#633c16',
+                    '800': '#432911',
+                    '900': '#2b190c',
+                  },//
+                  spacing: {
+                    'chart-width': '420px',
+                  },
+                  colors: {
+                    'grid-color': '#aaa',
+                    'bar-color': '#F16335',
+                  },
+                  borderRadius: {
+                    'bar-rounded': '3px',
+                  },
+                  height: {
+                    'bar-thickness': '40px',
+                    'bar-spacing': '10px',
+                  },//
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
