@@ -94,6 +94,47 @@
                         </x-dropdown>
                     </div>
 
+                    {{-- Enlaces Melissa Gameros y Maricruz Sánchez --}}
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <button
+                                    class="inline-flex items-center px-1 pt-1 border border-transparent text-sm leading-4 font-medium rounded-md text-white focus:outline-none transition ease-in-out duration-150">
+                                    <div>Otros</div>
+
+                                    <div class="ml-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                {{-- <x-dropdown-link :href="route('dashboard.regisAlum')"
+                                    :active="request()->routeIs('dashboard.regisAlum')">
+                                    {{ __('Admin Entradas') }}
+                                </x-dropdown-link>
+
+                                <x-dropdown-link :href="route('dashboard.showAdma')"
+                                    :active="request()->routeIs('dashboard.showAdma')">
+                                    {{ __('Registro Entradas') }}
+                                </x-dropdown-link> --}}
+
+                                <x-dropdown-link :href="route('dashboard.regist')"
+                                    :active="request()->routeIs('dashboard.regist')">
+                                    {{ __('Administrar Entradas Libros') }}
+                                </x-dropdown-link>
+                                
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+
+
+
                     @endif
 
                     @if (Auth::user()->rol === 2)
@@ -209,6 +250,7 @@
             <x-responsive-nav-link :href="route('dashboard.print')" :active="request()->routeIs('dashboard.print')">
                 {{ __('Reportes') }}
             </x-responsive-nav-link>
+            
 
             <div x-data="{ open: false }" class="sm:hidden">
                 <button @click="open = !open" class="flex w-full items-center pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-gray-600
@@ -236,6 +278,38 @@
                     </x-responsive-nav-link>
                 </div>
             </div>
+
+{{--Enlaces Meli y Mari--}}
+
+        <div x-data="{ open: false }" class="sm:hidden">
+            <button @click="open = !open" class="flex w-full items-center pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-gray-600
+                dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 
+                hover:border-gray-300 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200
+                focus:bg-gray-50  focus:border-gray-300  transition ease-in-out duration-150">
+                <div>Otros</div>
+                <div class="ml-1 flex items-center">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </button>
+            <div x-show="open" @click.away="open = false">
+                {{-- boton de acceder a los administrativos --}}
+                {{-- <x-responsive-nav-link :href="route('dashboard.regisAlum')" :active="request()->routeIs('dashboard.regisAlum')">
+                {{ __('Administrar Entradas') }}
+                </x-responsive-nav-link>
+                {{-- boton de acceder a registro de usuario --}}
+                {{-- <x-responsive-nav-link :href="route('dashboard.showAdma')" :active="request()->routeIs('dashboard.showAdma')">
+                    {{ __('Registro Entradas') }}
+                </x-responsive-nav-link>  --}}
+                {{-- boton de acceder a administrar entradas libros --}}
+                <x-responsive-nav-link :href="route('dashboard.regist')" :active="request()->routeIs('dashboard.regist')">
+                    {{ __('Administrar Entradas Libros') }}
+                </x-responsive-nav-link>
+            </div>
+        </div>
 
             @endif
 

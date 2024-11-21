@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Stat;
 
 use Livewire\Component;
 use Asantibanez\LivewireCharts\Models\ColumnChartModel;  /* 2 */
 
 class ChartComponent extends Component
 {
-    public function render()
+   public function render()
     {
         $columnChartModel = (new ColumnChartModel())
         ->setTitle('My Chart')
@@ -15,7 +15,7 @@ class ChartComponent extends Component
         ->addColumn('Jul',500,'#fc8181')
         ->addColumn('Ago',300,'#90cdf4');
 
-        return view('livewire.chart-component',[
+        return view('livewire.search-components.chart-component',[
             'columnChartModel' => $columnChartModel
         ]);
     }

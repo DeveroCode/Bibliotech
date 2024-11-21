@@ -6,6 +6,7 @@ use App\Http\Controllers\LibroController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\OtherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,7 +49,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/loans/show', [PrestamoController::class, 'show'])->name('loans.show');
     Route::get('/dashboard/loans/{prestamo}/update', [PrestamoController::class, 'edit'])->name('loans.update');
     Route::get('/dashboard/loans/{prestamo}/show', [PrestamoController::class, 'showStudent'])->name('loans.student');
+
 });
+    // Router for Mari
+  /*   Route::get('/dashboard/mari/regis', [UserinputController::class, 'index'])->name('dashboard.mari.regis');
+    Route::get('/dashboard/mari/show', [UserinputController::class, 'show'])->name('dashboard.mari.show'); */
+
+    // Routes for registers
+   Route::get('/dashboard/regist', [OtherController::class, 'see'])->name('dashboard.regist');
+   
+
+
 
 // (Super-User => you can update the student database and delete other inactive users)
 Route::middleware(['auth', 'verified', 'role'])->group(function () {
