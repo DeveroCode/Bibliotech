@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Stat;
+namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Asantibanez\LivewireCharts\Models\ColumnChartModel;  /* 2 */
