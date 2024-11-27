@@ -50,14 +50,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/loans/{prestamo}/update', [PrestamoController::class, 'edit'])->name('loans.update');
     Route::get('/dashboard/loans/{prestamo}/show', [PrestamoController::class, 'showStudent'])->name('loans.student');
 
+    Route::get('/dashboard/loans-quarterly', [OtherController::class, 'show'])->name('loans.quarterly');
 });
-    // Router for Mari
-  /*   Route::get('/dashboard/mari/regis', [UserinputController::class, 'index'])->name('dashboard.mari.regis');
-    Route::get('/dashboard/mari/show', [UserinputController::class, 'show'])->name('dashboard.mari.show'); */
 
-    // Routes for registers
-   Route::get('/dashboard/regist', [OtherController::class, 'see'])->name('dashboard.regist');
-   
 
 
 
