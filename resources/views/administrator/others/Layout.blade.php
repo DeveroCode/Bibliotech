@@ -13,11 +13,8 @@
                     gráfica.'}}</h2>
 
                 <div class="md:flex-direction:column md:justify-center p-5 text-2xl">
-
                     <livewire:metodos-tabla />
-                    <livewire:chart-component />
                     <livewire:results-graphic />
-
                 </div>
             </div>
 </x-app-layout>

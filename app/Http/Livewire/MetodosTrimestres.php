@@ -17,9 +17,12 @@ class MetodosTrimestres extends Component
     public $found = null;
 
 
-    public function searchWord()
+    public function updated($propertyName)
     {
-        $this->emit('loans', $this->categoria, $this->plazo);
+        // Emitir el evento solo si cambian los filtros `plazo` o `categoria`
+        if (in_array($propertyName, ['plazo', 'categoria'])) {
+            $this->emit('loans', $this->categoria ?? 0, $this->plazo ?? 0);
+        }
     }
 
     public function export()

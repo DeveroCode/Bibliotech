@@ -62,18 +62,38 @@ class MetodosTabla extends Component
         $this->categoria = $categoria;
         $this->plazo = $plazo;
 
-        if ($categoria || $plazo) {
-            $this->libroPrestamos = $this->getFilterdLoans($this->categoria, $this->plazo);
+
+        if ($categoria == 0 || $plazo == 0) {
+            $this->libroPrestamos = [];
+            $this->statusMessage = 'Por favor, selecciona una categoría y un trimestre para realizar la búsqueda.';
+            $this->emit('hideAlert');
+            $this->found = false;
+            return;
+        }
+
+        $this->libroPrestamos = $this->getFilterdLoans(
+            $categoria,
+            $plazo
+        );
+
+        if ($this->libroPrestamos->isEmpty()) {
+            $this->statusMessage = 'No se encontraron resultados con los filtros aplicados.';
+            $this->emit('hideAlert');
+            $this->found = false;
         } else {
-            $this->libroPrestamos = $this->getAllLoans();
+            $this->statusMessage = 'Se encontraron resultados.';
+            $this->found = true;
+        }
+
+
+        if ($this->statusMessage) {
+            $this->emit('hideAlert');
         }
     }
 
     public function render()
     {
-        if ($this->categoria || $this->plazo) {
-            $this->libroPrestamos = $this->getFilterdLoans($this->categoria, $this->plazo);
-        } else {
+        if (empty($this->libroPrestamos)) {
             $this->libroPrestamos = $this->getAllLoans();
         }
 
