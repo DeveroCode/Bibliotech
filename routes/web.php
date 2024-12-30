@@ -53,9 +53,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/loans-quarterly', [OtherController::class, 'show'])->name('loans.quarterly');
 });
 
-
-
-
 // (Super-User => you can update the student database and delete other inactive users)
 Route::middleware(['auth', 'verified', 'role'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
