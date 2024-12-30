@@ -74,7 +74,6 @@ class CrearLibro extends Component
         } else {
             $this->editable = false;
         }
-
     }
 
     public function crearLibro()
@@ -135,37 +134,6 @@ class CrearLibro extends Component
         session()->flash('message', 'Libro creado con éxito');
 
         // Redirigir al dashboard
-        return redirect()->route('dashboard');
-    }
-
-    public function editBook($datos, $autoresIds)
-    {
-        $libro = Libro::find($this->libro_id);
-
-        if ($this->imagen_nueva) {
-            $imagen = $this->imagen_nueva->store('public/libros');
-            $datos['imagen'] = str_replace('public/libros/', '', $imagen);
-        } else {
-            $datos['imagen'] = $this->imagen;
-        }
-
-        $libro->update($datos);
-        DB::table('autor_libro')->where('libros_id', $this->libro_id)->delete();
-
-        foreach ($autoresIds as $autor_id) {
-            DB::table('autor_libro')->insert([
-                'libros_id' => $libro->id,
-                'autores_id' => $autor_id,
-            ]);
-        };
-
-        UserActivity::create([
-            'user_id' => auth()->user()->id,
-            'activity' => 'Edición de libro',
-            'description' => 'Se ha editado el libro ' . $libro->titulo . ' por ' . auth()->user()->name . ' ' . auth()->user()->apellido_patero . ' ' . auth()->user()->apellido_matero,
-        ]);
-
-        session()->flash('message', 'Libro actualizado con éxito');
         return redirect()->route('dashboard');
     }
 
