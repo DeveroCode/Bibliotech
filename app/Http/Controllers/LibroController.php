@@ -26,9 +26,8 @@ class LibroController extends Controller
      */
     public function create()
     {
-        //
-        $editMode = false;
-        return view('administrator.create', ['editMode' => $editMode]);
+
+        return view('administrator.create');
     }
 
     /**
