@@ -13,6 +13,7 @@ class ViewStudentData extends Component
     public $correo;
     public $id_student;
     public $no_folio;
+    public $found = null;
 
     // Datas for search the books and alumnos
     public $no_institucional;
@@ -31,38 +32,47 @@ class ViewStudentData extends Component
         return $folio;
     }
 
+    public function searchUser($no_institucional)
+    {
+        $alumno = $this->alumno = Alumno::where('no_institucional', 'LIKE', '%' . $no_institucional . '%')->get();
+        return $alumno;
+    }
+
     public function buscar($no_institucional)
     {
         $this->no_institucional = $no_institucional;
 
         if (empty($this->no_institucional)) {
-            $this->alumno = [];
             return;
         }
+        $alumno = $this->searchUser($no_institucional);
+        if ($alumno && $alumno->count() > 0) {
+            $datos = $alumno->first();
 
-        $alumno = $this->alumno = Alumno::where('no_institucional', 'LIKE', '%' . $this->no_institucional . '%')->get();
-        $this->alumno = $alumno;
+            // Asignar los valores correspondientes
+            $this->id_student = $datos->id;
+            $this->no_folio = $this->createFolio($datos->no_institucional, $datos->nombre);
+            $this->nombre = $datos->nombre;
+            $this->carrera = $datos->carrera;
+            $this->correo = $datos->email;
 
-        //concatenating variables to the front-end
-        $datos = $this->alumno;
+            // Emitir los datos encontrados
+            $this->emit('dataStudent', [
+                'id' => $this->id_student,
+                'nombre' => $this->nombre,
+                'carrera' => $this->carrera,
+                'correo' => $this->correo,
+            ]);
 
-        $this->id_student = $datos[0]->id;
-        $this->no_folio = $this->createFolio($datos[0]->no_institucional, $datos[0]->nombre);
-        $this->nombre = $datos[0]->nombre;
-        $this->carrera = $datos[0]->carrera;
-        $this->correo = $datos[0]->email;
-
-        //
-        $this->emit('dataStudent', [
-            'id' => $this->id_student,
-            'nombre' => $this->nombre,
-            'carrera' => $this->carrera,
-            'correo' => $this->correo,
-        ]);
-
-        $this->emit('dataFolio', [
-            'folio' => $this->no_folio,
-        ]);
+            $this->emit('dataFolio', [
+                'folio' => $this->no_folio,
+            ]);
+            $this->found = false; // establecer found
+            $this->emit('status', $this->found); // Emite el estado actualizado
+        } else {
+            $this->found = true; // No se encontró, actualiza el estado
+            $this->emit('status', $this->found); // Emite el estado
+        }
     }
 
     // Create folio
