@@ -58,6 +58,10 @@ class InventoryController extends Controller
             $libros = Libro::with('autores', 'usuario')->latest()->skip(($page - 1) * $perPage)->take($perPage)->get();
             $headers = Headers::first();
 
+            if (!$headers || !$headers->header || !$headers->footer) {
+                return redirect()->route('inventory.index')->with('error', 'No se encontraron encabezados o pie de país. Por favor, actualice los datos de encabezados.');
+            }
+
             $pdf = PDF::loadView('pdf.inventory_2', ['libros' => $libros, 'count' => $totalLibros, 'headers' => $headers])
                 ->setPaper('a4', 'portrait')
                 ->set_option('isHtml5ParserEnabled', true)
@@ -105,5 +109,4 @@ class InventoryController extends Controller
         ]);
         return $pdf->stream('reporte_de_prestamos.pdf');
     }
-
 }

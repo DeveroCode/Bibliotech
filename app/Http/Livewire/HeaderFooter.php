@@ -9,38 +9,45 @@ class HeaderFooter extends Component
 {
     public function render()
     {
+        // Obtener el primer registro de Headers
+        $headerFooter = Headers::first();
 
-        // Header
-        $header = Headers::first();
-        if ($header) {
-            $encabezado = public_path('storage/logos/' . $header->header);
-            $type = pathinfo($encabezado, PATHINFO_EXTENSION);
-            $data = file_get_contents($encabezado);
-            $base64Header = 'data:/image/' . $type . ';base64,' . base64_encode($data);
+        // Verificar si existe y contiene valores válidos
+        if (!$headerFooter || !$headerFooter->header || !$headerFooter->footer) {
+            $this->redirectToAdmin('El archivo del encabezado no existe.');
+            return;
         }
 
-        // Footer
-        $footer = Headers::first();
-        if ($footer) {
-            $pie = public_path('storage/logos/' . $footer->footer);
-            $type = pathinfo($pie, PATHINFO_EXTENSION);
-            $data = file_get_contents($pie);
-            $base64Footer = 'data:/image/' . $type . ';base64,' . base64_encode($data);
-
+        // Procesar el header
+        $headerPath = public_path('storage/logos/' . $headerFooter->header);
+        if (!file_exists($headerPath)) {
+            $this->redirectToAdmin('El archivo del encabezado no existe.');
+            return;
         }
-        // Header
-        // $header = Headers::all();
-        // $encabezado = public_path('storage/logos/' . $header[0]->header);
-        // dd($encabezado);
+        $headerType = pathinfo($headerPath, PATHINFO_EXTENSION);
+        $headerData = file_get_contents($headerPath);
+        $base64Header = 'data:image/' . $headerType . ';base64,' . base64_encode($headerData);
 
-        // Footer
-        // $footer = Headers::all();
-        // $pie = public_path('storage/logos/' . $footer[0]->footer);
-        // dd($pie);
+        // Procesar el footer
+        $footerPath = public_path('storage/logos/' . $headerFooter->footer);
+        if (!file_exists($footerPath)) {
+            $this->redirectToAdmin('El archivo del encabezado no existe.');
+            return;
+        }
+        $footerType = pathinfo($footerPath, PATHINFO_EXTENSION);
+        $footerData = file_get_contents($footerPath);
+        $base64Footer = 'data:image/' . $footerType . ';base64,' . base64_encode($footerData);
 
+        // Retornar la vista con los datos procesados
         return view('livewire.header-footer', [
             'base64Header' => $base64Header,
             'base64Footer' => $base64Footer,
         ]);
+    }
+
+    public function redirectToAdmin($errorMessage = 'El encabezado o pie de página no están configurados.')
+    {
+        session()->flash('error', $errorMessage);
+        return redirect()->route('dashboard.print');
     }
 }
