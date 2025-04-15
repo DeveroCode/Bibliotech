@@ -10,13 +10,14 @@ class TableCustomLoans extends Component
 {
     public $categoria;
     public $trimestre;
-
+    public $palabra;
     public $listeners = ['searchLoan' => 'search'];
 
-    public function search($categoria, $trimestre)
+    public function search($categoria, $trimestre, $palabra)
     {
         $this->categoria = $categoria;
         $this->trimestre = $trimestre;
+        $this->palabra = $palabra;
     }
 
     public function render()
@@ -24,13 +25,13 @@ class TableCustomLoans extends Component
 
         $prestamos = LibroPrestamo::query();
 
-        if ($this->categoria) {
-            $prestamos->whereHas('libro.categoria', function ($query) {
-                $query->where('id', $this->categoria);
+        $prestamos->when($this->categoria, function($query){
+            $query->whereHas('libro.categoria', function ($q) {
+                $q->where('id', $this->categoria);
             });
-        }
+        });
 
-        if ($this->trimestre) {
+        $prestamos->when($this->categoria, function($query){
             $plazos = [
                 1 => [1, 2, 3],
                 2 => [4, 5, 6],
@@ -40,10 +41,16 @@ class TableCustomLoans extends Component
 
             $months = $plazos[$this->trimestre];
 
-            $prestamos->whereYear('created_at', '=', date('Y'))
+            $query->whereYear('created_at', '=', date('Y'))
                 ->whereMonth('created_at', '>=', $months[0])
                 ->whereMonth('created_at', '<=', $months[2]);
-        }
+        });
+
+        $prestamos->when($this->palabra, function($query){
+            $query->whereHas('libro', function ($q) {
+                $q->where('titulo', 'like', '%' . $this->palabra . '%');
+            });
+        });
 
         $prestamos = $prestamos->with('libro.categoria')
             ->select('libro_id', DB::raw('count(*) as total_prestamos'))
