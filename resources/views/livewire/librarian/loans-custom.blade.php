@@ -7,7 +7,7 @@
                         libro</label>
                     <input id="termino" type="text" placeholder="Buscar por Término: ej. Cálculo"
                         class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
-                        wire:model="palabra" />
+                        wire:model.debounce.500ms="palabra" />
                 </div>
 
                 <div class="mb-5 flex-grow">
@@ -30,12 +30,6 @@
                         <option value="4">Cuarto Trimestre</option>
                     </select>
                 </div>
-
-                <button type="submit"
-                    class="bg-indigo-600 hover:bg-indigo-800 transition-colors text-white text-sm font-bold px-10 py-2 rounded cursor-pointer uppercase">
-                    <i class="fa-solid fa-magnifying-glass fa-flip-horizontal"></i>
-                    Buscar
-                </button>
             </div>
         </form>
     </div>

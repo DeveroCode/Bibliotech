@@ -27,11 +27,12 @@
                     {{-- Disponibles --}}
                     <td class="table-cell px-6 py-4">
                         <span
-                            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                            <span class="h-1.5 w-1.5 rounded-full bg-green-600 capitalize">
-
+                            class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold 
+                        {{ $prestamo->total_prestamos > 100 ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600' }}">
+                            <span class="h-1.5 w-1.5 rounded-full 
+                            {{ $prestamo->total_prestamos > 100 ? 'bg-green-600' : 'bg-red-600' }} capitalize">
                             </span>
-                            {{ $prestamo->total_prestamos}} veces se a solicitado
+                            {{ $prestamo->total_prestamos }} {{ $prestamo->total_prestamos <= 1 ? 'vez' : 'veces' }} se ha solicitado
                         </span>
                     </td>
 
@@ -93,5 +94,7 @@
             </tbody>
             @endforeach
         </table>
+        @else
+        <p class="text-center font-bold text-2xl text-gray-400">No hay libros encontrado</p>
         @endif
 </div>
