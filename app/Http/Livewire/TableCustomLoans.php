@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\LoansExport;
 use App\Models\LibroPrestamo;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TableCustomLoans extends Component
 {
@@ -20,12 +22,17 @@ class TableCustomLoans extends Component
         $this->palabra = $palabra;
     }
 
+    public function export()
+    {
+        return Excel::download(new LoansExport($this->categoria, $this->trimestre, $this->palabra), 'prestamos.xlsx');
+    }
+
     public function render()
     {
 
         $prestamos = LibroPrestamo::query();
 
-        $prestamos->when($this->categoria, function($query){
+        $prestamos->when($this->categoria, function ($query) {
             $query->whereHas('libro.categoria', function ($q) {
                 $q->where('id', $this->categoria);
             });
@@ -38,15 +45,15 @@ class TableCustomLoans extends Component
             4 => [10, 11, 12],
         ];
 
-        $prestamos->when($this->trimestre && isset($plazos[$this->trimestre]), function($query) use ($plazos) {
+        $prestamos->when($this->trimestre && isset($plazos[$this->trimestre]), function ($query) use ($plazos) {
             $months = $plazos[$this->trimestre];
-        
+
             $query->whereYear('created_at', '=', date('Y'))
                 ->whereMonth('created_at', '>=', $months[0])
                 ->whereMonth('created_at', '<=', $months[2]);
         });
 
-        $prestamos->when($this->palabra, function($query){
+        $prestamos->when($this->palabra, function ($query) {
             $query->whereHas('libro', function ($q) {
                 $q->where('titulo', 'like', '%' . $this->palabra . '%');
             });
