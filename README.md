@@ -77,7 +77,36 @@ Inicia tu servidor
 
 ## Contribuidores
 ---
-DeveroCode (Carlos Martinez - Programador de toda la aplicación web)
+**DeveroCode (Carlos Martinez - Programador de toda la aplicación web)**
+
+<details>
+  <summary>⚠️ Aviso sobre colaboradores anteriores</summary>
+
+**Español 🇲🇽**
+
+Los usuarios `MelissaGamerosT` y `marlhey` figuran como _contributors_ en este repositorio debido a contribuciones iniciales.  
+No obstante, su código fue **eliminado o reescrito completamente** por presentar:
+
+- Malas prácticas de programación.
+- Código insostenible e ineficiente.
+- Incumplimiento de estándares mínimos de calidad.
+
+Su trabajo permanece únicamente en la rama `release/v1.0` como referencia histórica, pero **no forma parte del código actual ni estable del proyecto**, el cual ha sido íntegramente desarrollado y refactorizado por el autor principal  `DeveroCode`.
+
+---
+
+**English 🇺🇸**
+
+The users `MelissaGamerosT` and `marlhey` appear as _contributors_ due to early contributions.  
+However, their code was **removed or entirely rewritten** due to:
+
+- Poor programming practices.
+- Unsustainable and inefficient code.
+- Failure to meet minimum quality standards.
+
+Their work remains only in the `release/v1.0` branch as historical reference, but it is **not part of the current or stable version** of the project, which has been fully developed and refactored by the lead author.
+
+</details>
 
 
 ## Licencia 
@@ -104,4 +133,6 @@ Para cualquier consulta relacionada con esta licencia, por favor comuníquese co
 
 Fecha de Vigencia: 20-ago-2022 - 19-junio-2025
 
-© 202 Instituto Tecnológico Superior de Nuevo Casas Grandes (ITSNCG).
+© 2021 Instituto Tecnológico Superior de Nuevo Casas Grandes (ITSNCG).
+
+Coding-White ❤️ | Elegancia en cada línea de código.
