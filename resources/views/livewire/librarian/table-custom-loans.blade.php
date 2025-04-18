@@ -1,7 +1,20 @@
 <div>
-    <div class="rounded-md py-2 px-4 flex justify-end flex-row gap-2">
-        <button wire:click='export' class="bg-purple-600 px-3 py-2 rounded-md"><i class="fa-solid fa-print text-white"></i></button>
-        <button class="bg-purple-600 px-3 py-2 rounded-md"><i class="fa-solid fa-chart-simple text-white"></i></button>
+    <div x-data>
+        <div class="rounded-md py-2 px-4 flex justify-end flex-row gap-2">
+            <button wire:click='export' class="bg-purple-600 px-3 py-2 rounded-md">
+                <i class="fa-solid fa-print text-white"></i>
+            </button>
+    
+            <button 
+                class="bg-purple-600 px-3 py-2 rounded-md"
+                wire:click="openModal"
+            >
+                <i class="fa-solid fa-chart-simple text-white"></i>
+            </button>
+        </div>
+    
+        <!-- Componente del modal con Alpine integrado -->
+        <livewire:modal-chart-loans />
     </div>
     <livewire:loans-custom>
 
