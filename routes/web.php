@@ -33,25 +33,32 @@ Route::controller(PublicController::class)->group(function () {
 
 // (Library user => CRUD)
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [LibroController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/book/create', [LibroController::class, 'create'])->name('dashboard.create');
-    Route::get('/dashboard/book/{libro}/edit', [LibroController::class, 'edit'])->name('dashboard.edit');
-    Route::get('/dashboard/books/show', [LibroController::class, 'show'])->name('dashboard.show');
+    Route::controller(LibroController::class)->group(function () {
+        Route::get('/dashboard', 'index')->name('dashboard');
+        Route::get('/dashboard/book/create', 'create')->name('dashboard.create');
+        Route::get('/dashboard/book/{libro}/edit', 'edit')->name('dashboard.edit');
+        Route::get('/dashboard/books/show', 'show')->name('dashboard.show');
 
+        // Print reports
+        Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
+    });
+    
     // Url Reportes
-    Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print'); // Index
-    Route::get('/dashboard/cambiar-cabezera-footer', [InventoryController::class, 'update'])->name('inventory.pie');
-    Route::get('/dashboard/print/pdf_inventario', [InventoryController::class, 'printInventory'])->name('inventory.printInventory');
-    Route::get('/dashboard/print/pdf_loans', [InventoryController::class, 'printLoans'])->name('inventory.printLoans');
+    Route::controller(InventoryController::class)->group(function () {
+        Route::get('/dashboard/cambiar-cabezera-footer', 'update')->name('inventory.pie');
+        Route::get('/dashboard/print/pdf_inventario', 'printInventory')->name('inventory.printInventory');
+        Route::get('/dashboard/print/pdf_loans', 'printLoans')->name('inventory.printLoans');
+    });
 
     // Routes for loans
-    Route::get('/dashboard/loans/view', [PrestamoController::class, 'index'])->name('loans.index');
-    Route::get('/dashboard/loans', [PrestamoController::class, 'create'])->name('loans.create');
-    Route::get('/dashboard/loans/show', [PrestamoController::class, 'show'])->name('loans.show');
-    Route::get('/dashboard/loans/{prestamo}/update', [PrestamoController::class, 'edit'])->name('loans.update');
-    Route::get('/dashboard/loans/{prestamo}/show', [PrestamoController::class, 'showStudent'])->name('loans.student');
-
-    Route::get('/dashboard/loans-quarterly', [OtherController::class, 'show'])->name('loans.quarterly');
+    Route::controller(PrestamoController::class)->group(function () {
+        Route::get('/dashboard/loans/view', 'index')->name('loans.index');
+        Route::get('/dashboard/loans', 'create')->name('loans.create');
+        Route::get('/dashboard/loans/show', 'show')->name('loans.show');
+        Route::get('/dashboard/loans/{prestamo}/update', 'edit')->name('loans.update');
+        Route::get('/dashboard/loans/{prestamo}/show', 'showStudent')->name('loans.student');
+        Route::get('/dahsboard/loans-quarterly', 'show')->name('loans.quarterly');
+    });
 });
 
 // (Super-User => you can update the student database and delete other inactive users)

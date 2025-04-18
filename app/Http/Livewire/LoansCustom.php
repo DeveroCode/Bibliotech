@@ -9,9 +9,10 @@ class LoansCustom extends Component
 {
     public $categoria;
     public $trimestre;
+    public $palabra;
     public function searchLoan()
     {
-        $this->emit('searchLoan', $this->categoria, $this->trimestre);
+        $this->emit('searchLoan', $this->categoria, $this->trimestre, $this->palabra);
     }
 
     public function render()
