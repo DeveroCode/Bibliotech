@@ -47,4 +47,9 @@ class PublicController extends Controller
     {
         return view('administrator.loans.ViewStatus');
     }
+
+    public function UsersEntries()
+    {
+        return view('home.UsersEntries');
+    }
 }

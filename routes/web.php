@@ -29,6 +29,7 @@ Route::controller(PublicController::class)->group(function () {
     Route::get('/books/show/{libro}', 'show')->name('show.books');
     Route::get('/view-books/category/{category}', 'view')->name('view.category');
     Route::get('/books/search', 'find')->name('search.books');
+    Route::get('/entries-users', 'UsersEntries')->name('users.entries');
 });
 
 // (Library user => CRUD)
