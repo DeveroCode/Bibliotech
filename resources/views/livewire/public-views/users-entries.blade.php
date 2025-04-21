@@ -11,7 +11,8 @@
         </div>
 
         <div class="mt-5">
-            <x-button-search>Buscar</x-button-search>
+            <x-button-search  :disabled="empty($user_control)" 
+            class="{{ empty($user_control) ? 'opacity-50 cursor-not-allowed' : '' }}" type="submit">Buscar</x-button-search>
         </div>
     </form>
 </div>
