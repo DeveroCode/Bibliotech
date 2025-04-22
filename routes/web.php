@@ -60,6 +60,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard/loans/{prestamo}/show', 'showStudent')->name('loans.student');
         Route::get('/dahsboard/loans-quarterly', 'show')->name('loans.quarterly');
     });
+
+    Route::controller(OtherController::class)->group(function () {
+        Route::get('/dashboard/other', 'index')->name('other.index');
+    });
 });
 
 // (Super-User => you can update the student database and delete other inactive users)
