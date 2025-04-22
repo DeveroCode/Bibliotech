@@ -1,7 +1,7 @@
 <div class="px-16 py-3">
     <div x-data>
         <div class="rounded-md py-2 px-4 flex justify-end flex-row gap-2">
-            <button wire:click='export' class="bg-purple-600 px-3 py-2 rounded-md">
+            <button wire:click='exportEntries' class="bg-purple-600 px-3 py-2 rounded-md">
                 <i class="fa-solid fa-print text-white"></i>
             </button>
     

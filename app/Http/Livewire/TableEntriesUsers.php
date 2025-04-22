@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\EntriesExport;
 use App\Models\EntriesUsers;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TableEntriesUsers extends Component
 {   
@@ -15,6 +17,11 @@ class TableEntriesUsers extends Component
     public $end;
 
     public $listeners = ['filters' => 'search'];
+
+    public function exportEntries()
+    {
+        return Excel::download(new EntriesExport($this->actividad, $this->genero, $this->trimestre), 'entradas.xlsx');
+    }
 
     public function search($actividad, $genero, $trimestre, $start, $end)
     {
