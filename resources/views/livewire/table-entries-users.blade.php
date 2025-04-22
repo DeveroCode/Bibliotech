@@ -14,7 +14,7 @@
         </div>
     
         <!-- Componente del modal con Alpine integrado -->
-        <livewire:modal-chart-loans />
+        <livewire:modal-entries />
     </div>
     <livewire:filter-entries>
 
