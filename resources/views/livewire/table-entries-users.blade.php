@@ -1,4 +1,4 @@
-<div class="px-16 py-3">
+<div class="px-8 md:px-16 py-3">
     <div x-data>
         <div class="rounded-md py-2 px-4 flex justify-end flex-row gap-2">
             <button wire:click='exportEntries' class="bg-purple-600 px-3 py-2 rounded-md">
@@ -23,10 +23,10 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="w-1/2 md:w-1/3 px-3 py-4  font-medium text-gray-900">Info. Alumno</th>
-                    <th class="px-3 py-4  font-medium text-gray-900 table-cell">Carrera</th>
-                    <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Actividad</th>
-                    <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Materia</th>
-                    <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Fecha</th>
+                    <th class="px-3 py-4  font-medium text-gray-900 hidden md:table-cell">Carrera</th>
+                    <th class="px-3 py-4  font-medium text-gray-900 md:table-cell">Actividad</th>
+                    <th class="px-3 py-4  font-medium text-gray-900 md:table-cell">Materia</th>
+                    <th class="px-3 py-4  font-medium text-gray-900 hidden md:table-cell">Fecha</th>
                 </tr>
             </thead>
 
@@ -45,7 +45,7 @@
                     </th>
 
                     {{-- Materia y Actividad --}}
-                    <td class="table-cell px-6 py-4">
+                    <td class="hidden md:table-cell px-6 py-4">
                         <p class="font-medium text-gray-700 capitalize">{{ $entry->alumno->carrera}}</p>
                     </td>
                     <td class="table-cell px-6 py-4">
@@ -54,7 +54,7 @@
                     <td class="table-cell px-6 py-4">
                         <p class="font-medium text-gray-700 capitalize">{{ $entry->materia}}</p>
                     </td>
-                    <td class="table-cell px-6 py-4">
+                    <td class="hidden md:table-cell px-6 py-4">
                         <p class="font-medium text-gray-700 capitalize">{{ $entry->created_at->format('d-M-Y')}}</p>
                     </td>
                     
