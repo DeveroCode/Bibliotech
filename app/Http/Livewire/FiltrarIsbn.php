@@ -21,8 +21,19 @@ class FiltrarIsbn extends Component
     }
     public function leerDatosFormulario()
     {
+        $libro = Libro::where('isbn', $this->isbn)->first();
+
+        if ($libro) {
+            $this->found = true;
+            $this->emit('isbnFound', $libro->titulo); 
+        } else {
+            $this->found = false;
+            $this->emit('isbnNotFound');
+        }
+
         $this->emit('leerDatos', $this->isbn);
     }
+
     public function mount()
     {
         if (request()->routeIs('loans.index')) {
