@@ -38,4 +38,9 @@ class Alumno extends Model
     {
         return $this->hasMany(Prestamo::class);
     }
+
+    public function actividades()
+    {
+        return $this->hasMany(EntriesUsers::class, 'alumno_id');
+    }
 }
