@@ -47,59 +47,27 @@
                             {{ $prestamo->total_prestamos > 100 ? 'bg-green-600' : 'bg-red-600' }}">
                             </span>
                             {{ $prestamo->total_prestamos }} {{ $prestamo->total_prestamos <= 1 ? 'vez' : 'veces' }}
-                        </span>
+                                </span>
                     </td>
 
                     <!-- Categoría -->
                     <td class="px-3 py-4">
                         <div class="flex gap-2">
-                            @switch($prestamo->libro->categoria->id)
-                                @case(1)
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-sea-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                        {{ $prestamo->libro->categoria->categoria }}
-                                    </span>
-                                    @break
-                                @case(2)
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-indigo-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                        {{ $prestamo->libro->categoria->categoria }}
-                                    </span>
-                                    @break
-                                @case(3)
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                        {{ $prestamo->libro->categoria->categoria }}
-                                    </span>
-                                    @break
-                                @case(4)
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                        {{ $prestamo->libro->categoria->categoria }}
-                                    </span>
-                                    @break
-                                @case(5)
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                        {{ $prestamo->libro->categoria->categoria }}
-                                    </span>
-                                    @break
-                                @case(6)
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                        {{ $prestamo->libro->categoria->categoria }}
-                                    </span>
-                                    @break
-                                @case(7)
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-orange-100 px-2 py-1 text-xs capitalize font-semibold text-blue-500">
-                                        {{ $prestamo->libro->categoria->categoria }}
-                                    </span>
-                                    @break
-                                @default
-                            @endswitch
+                            <span
+                                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs capitalize font-semibold {{ $categoryColors[$prestamo->libro->categoria->id] ?? '' }}">
+                                {{ $prestamo->libro->categoria->categoria }}
+                            </span>
                         </div>
                     </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
     </div>
+    </td>
+    </tr>
+    @endforeach
+    </tbody>
+    </table>
+</div>
 
-    @else
-    <p class="text-center font-bold text-2xl text-gray-400">No hay libros encontrados</p>
-    @endif
+@else
+<p class="text-center font-bold text-2xl text-gray-400">No hay libros encontrados</p>
+@endif
 </div>
