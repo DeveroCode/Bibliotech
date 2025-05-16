@@ -27,6 +27,13 @@ class ViewBookDetails extends Component
     public $found = null;
     protected $listeners = ['leerDatos' => 'isb', 'dataFolio' => 'mount_folio'];
 
+    public function mount()
+    {
+        $this->tipo_prestamo = Tipo_prestamo::select('id', 'nombre')->take(1)-> get();
+
+        // dd($tipo_prestamo);
+    }
+
     // calculate loan days
     public function calculateLoanDays($days)
     {
@@ -112,9 +119,10 @@ class ViewBookDetails extends Component
 
     public function render()
     {
-        $tipo_prestamos = Tipo_prestamo::all();
+        
+        
+        // $categorias = Categoria::select('id', 'categoria')->take(6)->get();
         return view('livewire.librarian.view-book-details', [
-            'tipo_prestamos' => $tipo_prestamos,
             'isbn' => $this->isbn,
         ]);
     }
