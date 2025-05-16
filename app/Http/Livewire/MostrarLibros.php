@@ -49,9 +49,7 @@ class MostrarLibros extends Component
     public function render()
     {
         if ($this->isbn) {
-            $libros = Libro::where('isbn', 'LIKE', '%' . $this->isbn . '%')
-                ->orWhere('titulo', 'LIKE', '%' . $this->isbn . '%')
-                ->paginate(50);
+            $libros = Libro::where('isbn', $this->isbn)->paginate(1);
         } else {
             $libros = Libro::paginate(10);
         }
