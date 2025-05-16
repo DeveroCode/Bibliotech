@@ -4,7 +4,7 @@
         </label>
         <input id="folio" type="text" placeholder="Buscar por Término: ej. 90CAB23"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-[360px]"
-            wire:model="folio" />
+            wire:model.lazy="folio" />
     </fieldset>
 
     <div class="w-[360px]">

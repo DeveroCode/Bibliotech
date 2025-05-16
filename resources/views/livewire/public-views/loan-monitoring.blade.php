@@ -18,12 +18,12 @@
     <section class="bg-gray-100 shadow-md p-5 rounded-md w-[360px] mx-auto py-10 mb-10">
         <div>
             <h3 class="text-2xl font-bold">Estado del préstamo</h3>
-            <p class="text-sm text-gray-600 capitalize"> <span>{{ $prestamos->alumnos()->first()->nombre }}</span>
-                tu préstamo ha sido entregado</p>
+            <p class="text-sm text-gray-600"> <span>{{ $prestamos->alumnos()->first()->nombre }}</span>
+                a continuación se muestra el estado actual de su préstamo</p>
 
             <div class="flex justify-between py-10 space-x-6">
                 <div class="flex flex-col">
-                    <p class="font-bold text-md leading-none">Solictud</p>
+                    <p class="font-bold text-md leading-none">Salida</p>
                     <span class="text-[14px]">{{ Carbon\Carbon::parse($prestamos->fecha_inicio)->format('d/m/Y')
                         }}</span>
                 </div>

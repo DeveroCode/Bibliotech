@@ -2,7 +2,7 @@
 <div class="w-full">
     @if (count($loans) > 0)
     {{-- Bar seach --}}
-    <livewire:filtrar-isbn>
+    <livewire:filtrar-loans>
         <table class="table-auto text-xs w-full m-auto border-collapse bg-white text-left text-gray-500">
             <thead class="bg-gray-50">
                 <tr>
