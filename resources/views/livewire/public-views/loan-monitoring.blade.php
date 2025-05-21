@@ -1,36 +1,31 @@
-<div class="bg-white p-4 rounded-lg w-1/2 h-auto">
-    <section class="py-5">
+<div class="bg-white p-4 rounded-lg w-full max-w-md mx-auto h-auto">
+    <section class="py-5 px-4 sm:px-0">
         <h2 class="text-3xl font-bold text-center p-3">Seguimiento de préstamos</h2>
-        <p class="text-[15px] w-96 mx-auto text-gray-500 leading-none p-3">Introduzca su número de folio para verificar
-            el
-            estado
-            actual de
-            su
-            préstamo</p>
+        <p class="text-[15px] text-center text-gray-500 leading-none p-3">
+            Introduzca su número de folio para verificar el estado actual de su préstamo
+        </p>
     </section>
 
-
-    <section class="px-28">
+    <section class="sm:px-28 md:px-5">
         <livewire:search-loans />
     </section>
 
     @if (!empty($prestamos))
-    <section class="bg-gray-100 shadow-md p-5 rounded-md w-[360px] mx-auto py-10 mb-10">
+    <section class="bg-gray-100 shadow-md p-5 rounded-md max-w-md mx-auto py-10 mb-10 w-full">
         <div>
             <h3 class="text-2xl font-bold">Estado del préstamo</h3>
-            <p class="text-sm text-gray-600"> <span>{{ $prestamos->alumnos()->first()->nombre }}</span>
-                a continuación se muestra el estado actual de su préstamo</p>
+            <p class="text-sm text-gray-600">
+                <span>{{ $prestamos->alumnos()->first()->nombre }}</span> a continuación se muestra el estado actual de su préstamo
+            </p>
 
-            <div class="flex justify-between py-10 space-x-6">
+            <div class="flex flex-col sm:flex-row justify-between py-10 space-y-6 sm:space-y-0 sm:space-x-6">
                 <div class="flex flex-col">
                     <p class="font-bold text-md leading-none">Salida</p>
-                    <span class="text-[14px]">{{ Carbon\Carbon::parse($prestamos->fecha_inicio)->format('d/m/Y')
-                        }}</span>
+                    <span class="text-[14px]">{{ Carbon\Carbon::parse($prestamos->fecha_inicio)->format('d/m/Y') }}</span>
                 </div>
                 <div class="flex flex-col">
-                    <p class="font-bold text-m leading-none">Entrega</p>
-                    <span class="text-[14px]">{{ Carbon\Carbon::parse($prestamos->fecha_limite)->format('d/m/Y')
-                        }}</span>
+                    <p class="font-bold text-md leading-none">Entrega</p>
+                    <span class="text-[14px]">{{ Carbon\Carbon::parse($prestamos->fecha_limite)->format('d/m/Y') }}</span>
                 </div>
             </div>
 
@@ -73,10 +68,8 @@
     @endif
 </div>
 
-{{-- Valdate the input --}}
+{{-- Validate the input --}}
 @push('scripts')
-
-{{-- Sweetalert --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
@@ -86,11 +79,11 @@
     btn.addEventListener('click', () => {
         if(folio.value === ''){
             Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Es necesario que ingrese un folio correcto",
+                icon: "error",
+                title: "Oops...",
+                text: "Es necesario que ingrese un folio correcto",
             });
         }
-    })
+    });
 </script>
 @endpush

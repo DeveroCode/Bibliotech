@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
  */
- 
+
 // Grouping routes
 
 // Public views
@@ -43,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Print reports
         Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
     });
-    
+
     // Url Reportes
     Route::controller(InventoryController::class)->group(function () {
         Route::get('/dashboard/cambiar-cabezera-footer', 'update')->name('inventory.pie');
