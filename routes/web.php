@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
  */
- 
+
 // Grouping routes
 
 // Public views
@@ -29,6 +29,7 @@ Route::controller(PublicController::class)->group(function () {
     Route::get('/books/show/{libro}', 'show')->name('show.books');
     Route::get('/view-books/category/{category}', 'view')->name('view.category');
     Route::get('/books/search', 'find')->name('search.books');
+    Route::get('/entries-users', 'UsersEntries')->name('users.entries');
 });
 
 // (Library user => CRUD)
@@ -42,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Print reports
         Route::get('/dashboard/print', [LibroController::class, 'print'])->name('dashboard.print');
     });
-    
+
     // Url Reportes
     Route::controller(InventoryController::class)->group(function () {
         Route::get('/dashboard/cambiar-cabezera-footer', 'update')->name('inventory.pie');
@@ -58,6 +59,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard/loans/{prestamo}/update', 'edit')->name('loans.update');
         Route::get('/dashboard/loans/{prestamo}/show', 'showStudent')->name('loans.student');
         Route::get('/dahsboard/loans-quarterly', 'show')->name('loans.quarterly');
+    });
+
+    Route::controller(OtherController::class)->group(function () {
+        Route::get('/dashboard/other', 'index')->name('other.index');
     });
 });
 

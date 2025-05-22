@@ -2,11 +2,10 @@
     <form wire:submit.prevent='leerDatosFormulario' class="flex flex-wrap justify-between items-center"
         id="search-form">
         <div class="mb-5 w-full md:w-1/3 md:mr-4">
-            <label for="isbn" class="block mb-1 text-sm text-gray-500 uppercase font-bold">{{ $this->labelText
-                }}</label>
-            <input type="text" placeholder="{{ $this->placeholderText }}"
+            <label for="folio" class="block mb-1 text-sm text-gray-500 uppercase font-bold">Búsqueda de préstamos</label>
+            <input type="text" placeholder="Buscar por Folio: ej. 19CAR4143"
                 class="rounded-md shadow-sm border-indigo-500 focus:border-indigo-400 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
-                wire:model="isbn" id="isbn">
+                wire:model="folio" id="folio">
 
         </div>
         <div>
@@ -16,7 +15,7 @@
         </div>
     </form>
 
-    <div id="alert" data-found="{{ $found }}" data-msg="{{ $this->message }}"></div>
+    <div id="alert" data-found="{{ $found }}"></div>
 </div>
 
 
@@ -25,9 +24,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('livewire:load', () => {
-    const $input = document.querySelector('#isbn');
+        const $form = document.querySelector('#search-form');
+        const $input = document.querySelector('#folio');
 
-    Livewire.on('isbnFound', (titulo) => {
+    Livewire.on('loansFound', (titulo) => {
         Swal.fire({
             icon: "success",
             title: "Libro encontrado!",
@@ -35,7 +35,7 @@
         });
     });
 
-    Livewire.on('isbnNotFound', () => {
+    Livewire.on('loansNotFound', () => {
         Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -43,8 +43,6 @@
         });
     });
 });
-
-
     
 </script>
 @endpush

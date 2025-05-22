@@ -14,10 +14,6 @@ use Livewire\WithFileUploads;
 
 class CrearLibro extends Component
 {
-    // Helpers Variables
-    public $libro_id;
-    public $editable = false;
-    public $imagen_nueva;
     // General Variables
     public $titulo;
     public $autores;
@@ -49,32 +45,6 @@ class CrearLibro extends Component
         'imagen' => 'required|image|max:1024',
     ];
 
-    public function mount(Libro $libro)
-    {
-        if ($libro) {
-            $this->editable = true;
-            $this->libro_id = $libro->id; // Find the book whith the id
-
-            $this->titulo = $libro->titulo;
-            $this->edicion = $libro->edicion;
-            $this->tomo = $libro->tomo;
-            $this->categoria = $libro->categoria_id;
-            $this->fecha = Carbon::parse($libro->fecha)->format('Y-m-d');
-            $this->cantidad = $libro->cantidad;
-            $this->isbn = $libro->isbn;
-            $this->descripcion = $libro->descripcion;
-            $this->imagen = $libro->imagen;
-
-            $autores = $libro->autores;
-            $autores_array = [];
-            foreach ($autores as $autor) {
-                $autores_array[] = $autor->autor;
-            }
-            $this->autores = implode(', ', $autores_array);
-        } else {
-            $this->editable = false;
-        }
-    }
 
     public function crearLibro()
     {
@@ -82,46 +52,41 @@ class CrearLibro extends Component
         // Convert to lowercase
         $datos = array_map('strtolower', $datos); // Convert to lowercase - convertir a minusculas
         $autores_ids = $this->processAuthors($datos['autores']);
-        if ($this->editable && $this->libro_id) {
-            return $this->editBook($datos, $autores_ids);
-        } else {
+        // Guardar imagen
+        $imagen = $this->imagen->store('public/libros');
+        $datos['imagen'] = str_replace('public/libros/', '', $imagen);
 
-            // Guardar imagen
-            $imagen = $this->imagen->store('public/libros');
-            $datos['imagen'] = str_replace('public/libros/', '', $imagen);
+        // Verificar si el ISBN ya existe en la base de datos
+        if (Libro::where('isbn', $datos['isbn'])->exists()) {
+            // Crear mensaje de error
+            session()->flash('error', 'El ISBN ya existe en la base de datos.');
 
-            // Verificar si el ISBN ya existe en la base de datos
-            if (Libro::where('isbn', $datos['isbn'])->exists()) {
-                // Crear mensaje de error
-                session()->flash('error', 'El ISBN ya existe en la base de datos.');
+            // Redirigir al formulario
+            return redirect()->back();
+        }
 
-                // Redirigir al formulario
-                return redirect()->back();
-            }
+        // Crear el libro
+        $libro = Libro::create([
+            'titulo' => $datos['titulo'],
+            'edicion' => $datos['edicion'],
+            'tomo' => $datos['tomo'],
+            'paginas' => $datos['paginas'],
+            'categoria_id' => $datos['categoria'],
+            'estante_id' => $datos['estante'],
+            'fecha' => $datos['fecha'],
+            'cantidad' => $datos['cantidad'],
+            'isbn' => $datos['isbn'],
+            'descripcion' => $datos['descripcion'],
+            'imagen' => $datos['imagen'],
+            'user_id' => auth()->user()->id,
+        ]);
 
-            // Crear el libro
-            $libro = Libro::create([
-                'titulo' => $datos['titulo'],
-                'edicion' => $datos['edicion'],
-                'tomo' => $datos['tomo'],
-                'paginas' => $datos['paginas'],
-                'categoria_id' => $datos['categoria'],
-                'estante_id' => $datos['estante'],
-                'fecha' => $datos['fecha'],
-                'cantidad' => $datos['cantidad'],
-                'isbn' => $datos['isbn'],
-                'descripcion' => $datos['descripcion'],
-                'imagen' => $datos['imagen'],
-                'user_id' => auth()->user()->id,
+        // Adjuntar autores al libro
+        foreach ($autores_ids as $autor_id) {
+            DB::table('autor_libro')->insert([
+                'libros_id' => $libro->id,
+                'autores_id' => $autor_id,
             ]);
-
-            // Adjuntar autores al libro
-            foreach ($autores_ids as $autor_id) {
-                DB::table('autor_libro')->insert([
-                    'libros_id' => $libro->id,
-                    'autores_id' => $autor_id,
-                ]);
-            }
         }
 
         UserActivity::create([

@@ -44,57 +44,12 @@
                     {{-- Edicion --}}
                     <td class="px-2 py-2 hidden lg:table-cell capitalize">{{ $libro->edicion }}</td>
                     {{-- Categoria --}}
-                    <td class="hidden lg:table-cell px-2 py-2">
+                    <td class="px-3 py-4">
                         <div class="flex gap-2">
-                            @switch($libro->categoria->id)
-                            @case(1)
                             <span
-                                class="inline-flex items-center gap-1 rounded-full bg-sea-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                {{ $libro->categoria->categoria}}
+                                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs capitalize font-semibold {{ $categoryColors[$libro->categoria->id] ?? '' }}">
+                                {{ $libro->categoria->categoria }}
                             </span>
-                            @break
-                            @case(2)
-                            <span
-                                class="inline-flex items-center gap-1 rounded-full bg-indigo-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                {{ $libro->categoria->categoria}}
-                            </span>
-                            @break
-                            @case(3)
-                            <span
-                                class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                {{ $libro->categoria->categoria}}
-                            </span>
-                            @break
-                            @case(4)
-                            <span
-                                class="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                {{ $libro->categoria->categoria}}
-                            </span>
-                            @break
-                            @case(5)
-                            <span
-                                class="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                {{ $libro->categoria->categoria}}
-                            </span>
-                            @break
-                            @case(6)
-                            <span
-                                class="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                {{ $libro->categoria->categoria}}
-                            </span>
-                            @break
-                            @case(7)
-                            <span
-                                class="inline-flex items-center gap-1 rounded-full bg-orange-100 px-2 py-1 text-xs capitalize font-semibold text-blue-500">
-                                {{ $libro->categoria->categoria}}
-                            </span>
-                            @break
-                            @default
-                            @endswitch
-                            {{-- <span
-                                class="inline-flex items-center gap-1 rounded-full bg-sea-100 px-2 py-1 text-xs capitalize font-semibold text-blue-600">
-                                {{ $libro->categoria->categoria}}
-                            </span> --}}
                         </div>
                     </td>
                     {{-- Herramientas --}}

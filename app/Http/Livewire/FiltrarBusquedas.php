@@ -12,6 +12,10 @@ class FiltrarBusquedas extends Component
     public $categoria;
     public $edicion;
 
+    public function updated(){
+        $this->emit('leerPalabra', $this->palabra, $this->categoria, $this->edicion);
+    }
+
     public function searchWord()
     {
         $this->emit('leerPalabra', $this->palabra, $this->categoria, $this->edicion);
