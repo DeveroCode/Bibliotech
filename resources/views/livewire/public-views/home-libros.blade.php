@@ -8,7 +8,7 @@
 <body>
     {{-- Our collection --}}
     <div class="mt-20 overflow-hidden lg:py-5 bg-white">
-        <h3 class="uppercase text-4xl font-bold px-5 w-full md:px-40 text-indigo-700">conoce nuestra colleción</h3>
+        <h3 class="text-4xl font-bold px-5 w-full md:px-40 text-indigo-700">conoce nuestra colleción</h3>
         <div class="md:flex md:justify-center p-5 text-2xl">
             <div class="w-full">
                 <div class="flex flex-wrap justify-center">

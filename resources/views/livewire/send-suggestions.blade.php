@@ -1,6 +1,6 @@
 <div class="bg-white py-24 px-4 md:px-24 flex flex-col md:flex-row md:gap-20 md:justify-between items-center">
     <div class="w-full md:w-1/3 text-center md:text-left">
-        <h3 class="font-bold text-2xl capitalize">Envíanos tus dudas o sugerencias</h3>
+        <h3 class="font-bold text-2xl">Envíanos tus dudas o sugerencias</h3>
         <p class="text-md font-semibold text-gray-500 mt-2">Estamos abiertos a cualquier sugerencia que ayude a
             mejorar la experiencia del usuario, ¡contáctanos ahora mismo!</p>
     </div>
