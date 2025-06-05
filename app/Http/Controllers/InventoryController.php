@@ -40,6 +40,11 @@ class InventoryController extends Controller
         $totalLibros = Libro::count();
         $totalPages = ceil($totalLibros / $perPage);
 
+        $headers = Headers::first();
+        if (!$headers || !$headers->header || !$headers->footer) {
+            return redirect()->route('dashboard.print')->with('error', 'No se encontraron encabezados. Por favor, actualice los datos de encabezados en "pie de página".');
+        }
+
         // Ruta temporal para almacenar archivos PDF
         $pdfPath = sys_get_temp_dir() . '/pdfs/';
         if (!file_exists($pdfPath)) {
@@ -57,10 +62,6 @@ class InventoryController extends Controller
         for ($page = 1; $page <= $totalPages; $page++) {
             $libros = Libro::with('autores', 'usuario')->latest()->skip(($page - 1) * $perPage)->take($perPage)->get();
             $headers = Headers::first();
-
-            if (!$headers || !$headers->header || !$headers->footer) {
-                return redirect()->route('inventory.index')->with('error', 'No se encontraron encabezados o pie de país. Por favor, actualice los datos de encabezados.');
-            }
 
             $pdf = PDF::loadView('pdf.inventory_2', ['libros' => $libros, 'count' => $totalLibros, 'headers' => $headers])
                 ->setPaper('a4', 'portrait')
@@ -93,6 +94,10 @@ class InventoryController extends Controller
 
     public function printLoans()
     {
+        $headers = Headers::first();
+        if (!$headers || !$headers->header || !$headers->footer) {
+            return redirect()->route('dashboard.print')->with('error', 'No los encabezados. Por favor, actualice los datos de encabezados en "pie de página".');
+        }
         $loans = Prestamo::with('user', 'alumnos', 'libros', 'tipo_prestamo')->latest()->get();
 
         // Encabezados
