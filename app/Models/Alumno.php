@@ -16,8 +16,6 @@ class Alumno extends Model
         'apellidoP',
         'apellidoM',
         'email',
-        'telefono',
-        'direccion',
         'no_institucional',
         'fecha_nacimiento',
         'anio_ingreso',
