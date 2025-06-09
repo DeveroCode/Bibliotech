@@ -1,16 +1,16 @@
 {{-- Funcion mostrar cuantos quedan --}}
-<div class="w-full h-auto">
+<div class="w-full h-auto px-5">
 
     @if(count($libros) > 0)
     {{-- Bar seach --}}
     <livewire:filtrar-isbn>
 
 
-        <table class="table-auto text-xs w-full m-auto border-collapse bg-white text-left text-gray-500">
+        <table class="table-auto text-xs w-full m-auto border-collapse bg-white text-left text-gray-500 px-5">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="w-1/3 px-3 py-4  font-medium text-gray-900">Título</th>
-                    <th class="px-3 py-4  font-medium text-gray-900">Estado</th>
+                    <th class="w-auto lg:w-1/3 px-3 py-4  font-medium text-gray-900">Título</th>
+                    <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Estado</th>
                     <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Edición</th>
                     <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Categoría</th>
                     <th class="px-3 py-4  font-medium text-gray-900">Herramientas</th>
@@ -33,7 +33,7 @@
                     </th>
 
                     {{-- Disponibles --}}
-                    <td class="table-cell px-6 py-4">
+                    <td class="hidden lg:table-cell px-6 py-4">
                         <span
                             class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
                             <span class="h-1.5 w-1.5 rounded-full bg-green-600 capitalize"></span>
@@ -44,7 +44,7 @@
                     {{-- Edicion --}}
                     <td class="px-2 py-2 hidden lg:table-cell capitalize">{{ $libro->edicion }}</td>
                     {{-- Categoria --}}
-                    <td class="px-3 py-4">
+                    <td class="px-3 hidden lg:table-cell py-4">
                         <div class="flex gap-2">
                             <span
                                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs capitalize font-semibold {{ $categoryColors[$libro->categoria->id] ?? '' }}">
@@ -80,7 +80,7 @@
         @else
 
         <div class="w-full flex justify-center items-center flex-col">
-            <p class="text-4xl text-gray-600 text-center mt-20 uppercase">Aún no hay registros de los libros</p>
+            <p class="text-xl md:text-4xl text-gray-600 md:text-center mt-20 uppercase">Aún no hay registros de los libros</p>
             <a href="{{ route('dashboard.create') }}"
                 class="rounded-full mt-2 py-1 px-5 bg-gray-900 text-white w-32">Registrar</a>
         </div>
