@@ -39,8 +39,13 @@ class InventoryController extends Controller
         $perPage = 90; // Tamaño óptimo de cada PDF
         $totalLibros = Libro::count();
         $totalPages = ceil($totalLibros / $perPage);
-
+        $libros = Libro::all();
         $headers = Headers::first();
+
+        if (!$libros) {
+            return redirect()->route('dashboard.print')->with('error', 'Sin existencia de libros en la base de datos. Verifica la existencia');
+        }
+
         if (!$headers || !$headers->header || !$headers->footer) {
             return redirect()->route('dashboard.print')->with('error', 'No se encontraron encabezados. Por favor, actualice los datos de encabezados en "pie de página".');
         }
@@ -95,6 +100,12 @@ class InventoryController extends Controller
     public function printLoans()
     {
         $headers = Headers::first();
+        $loans = Prestamo::all();
+
+        if (!$loans) {
+            return redirect()->route('dashboard.print')->with('error', 'No se encontró ningún préstamo, favor de realizar mínimo un préstamo.');
+        }
+
         if (!$headers || !$headers->header || !$headers->footer) {
             return redirect()->route('dashboard.print')->with('error', 'No los encabezados. Por favor, actualice los datos de encabezados en "pie de página".');
         }
