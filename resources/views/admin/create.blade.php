@@ -10,7 +10,6 @@
         </div>
         @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="md:flex md:justify-center p-5 text-2xl">
                     <section class="w-full md:w-1/2 mt-10">
@@ -52,14 +51,16 @@
                                 </div>
                             </div>
                         </div>
-                </div>
-                </section>
+                    </section>
 
-                @if ($editMode)
-                <livewire:crear-usuario :user="$user" />
-                @else
-                <livewire:crear-usuario />
-                @endif
+                    @if ($editMode)
+                    <livewire:crear-usuario :user="$user" />
+                    @else
+                    <livewire:crear-usuario />
+                    @endif
+                </div>
+
+
             </div>
         </div>
     </div>

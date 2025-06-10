@@ -37,7 +37,7 @@
                             <i class="fa-solid fa-eye"></i>
                         </a>
                         {{-- pasa los nombres de los autores de cada libro --}}
-                        <button wire:click="#">
+                        <button wire:click="$emit('delete', {{ $user->id }})">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                         <a href="{{ route('admin.edit', $user->id) }}">
@@ -50,3 +50,36 @@
         @endforeach
     </table>
 </div>
+
+@push('scripts')
+{{-- Fontawesome --}}
+<script src="https://kit.fontawesome.com/85d631ed4b.js" crossorigin="anonymous"></script>
+
+{{-- Sweetalert --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    Livewire.on('delete', (userId) => {
+        Swal.fire({
+        title: 'Seguro de eliminar?',
+        text: "Recuerda que no se podrá recuperar la información de este usuario",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#4FA755',
+        cancelButtonColor: '#694A97',
+        confirmButtonText: 'Si, eliminar!',
+        cancelButtonText: 'Cancelar'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            // Delete book and authors
+            Livewire.emit('userDelete', userId);
+            Swal.fire(
+            'Eliminado!',
+            'El libro ha sido eliminado.',
+            'success'
+            )
+        }
+        })
+    });
+</script>
+@endpush

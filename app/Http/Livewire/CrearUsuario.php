@@ -62,7 +62,7 @@ class CrearUsuario extends Component
             $this->genero = $user->genero;
             $this->rol = $user->rol;
             $this->telefono = $user->telefono;
-            $this->imagen = $user->imagen;
+            $this->imagen = $user->imagen || '';
         } else {
             $this->editMode = false;
         }
@@ -74,8 +74,10 @@ class CrearUsuario extends Component
         if ($this->editMode && $this->userId) {
             return $this->editUser($datos);
         } else {
-            $imagen = $this->imagen->store('public/users-profile');
-            $datos['imagen'] = str_replace('public/users-profile/', '', $imagen);
+            if ($this->imagen) {
+                $imagen = $this->imagen->store('public/users-profile');
+                $datos['imagen'] = str_replace('public/users-profile/', '', $imagen);
+            }
             $user = User::create([
                 'name' => $datos['name'],
                 'apellido_paterno' => $datos['apellido_paterno'],
