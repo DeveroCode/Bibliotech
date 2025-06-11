@@ -22,7 +22,6 @@ class CrearUsuario extends Component
     public $password;
     public $genero;
     public $rol;
-    public $telefono;
     public $imagen;
     public $imagen_nueva;
 
@@ -59,6 +58,7 @@ class CrearUsuario extends Component
             $this->email = $user->email;
             $this->genero = $user->genero;
             $this->rol = $user->rol;
+            $this->telefono= null;
 
         } else {
             $this->editMode = false;
@@ -80,8 +80,8 @@ class CrearUsuario extends Component
                 'password' => bcrypt($datos['password']),
                 'genero' => $datos['genero'],
                 'rol' => $datos['rol'],
-                'telefono' => $datos['telefono'],
-                'imagen' => $datos['imagen'],
+                'telefono' => 1,
+                'imagen' => null,
             ]);
         }
 
@@ -92,6 +92,7 @@ class CrearUsuario extends Component
     public function editUser()
     {
         $datos = $this->validate($this->getRules());
+        $datos['telefono'] = 1;
         $user = User::find($this->userId);
 
         if (!empty($this->password)) {
