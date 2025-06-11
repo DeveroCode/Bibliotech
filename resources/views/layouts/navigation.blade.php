@@ -125,14 +125,9 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <div class="flex items-center">
-                            @if (Auth::user()->image)
-                            <img src="{{ asset('storage/users-profile/' . Auth::user()->imagen) }}"
-                                class="w-10 h-10 object-cover object-center rounded-full">
-                            @endif
                             <button
                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white focus:outline-none transition ease-in-out duration-150">
                                 <div>{{ Auth::user()->name }}</div>
-
                                 <div class="ml-1">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20">
@@ -206,7 +201,7 @@
             </x-responsive-nav-link>
             <div x-data="{ open: false }" class="sm:hidden">
                 <button @click="open = !open" class="flex w-full items-center pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-gray-600
-                    dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 
+                    dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50
                     hover:border-gray-300 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200
                     focus:bg-gray-50  focus:border-gray-300  transition ease-in-out duration-150">
                     <div>Gestión de Libros</div>
@@ -237,7 +232,7 @@
 
             <div x-data="{ open: false }" class="sm:hidden">
                 <button @click="open = !open" class="flex w-full items-center pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-gray-600
-                    dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 
+                    dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50
                     hover:border-gray-300 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200
                     focus:bg-gray-50  focus:border-gray-300  transition ease-in-out duration-150">
                     <div>Gestión de préstamos</div>

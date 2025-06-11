@@ -37,8 +37,6 @@ class CrearUsuario extends Component
             'password' => $this->editMode ? 'nullable|min:8' : 'required|min:8',
             'genero' => 'required',
             'rol' => 'required',
-            'telefono' => 'required',
-            'imagen' => 'nullable|image|max:2048',
         ];
     }
 
@@ -61,8 +59,7 @@ class CrearUsuario extends Component
             $this->email = $user->email;
             $this->genero = $user->genero;
             $this->rol = $user->rol;
-            $this->telefono = $user->telefono;
-            $this->imagen = $user->imagen || '';
+
         } else {
             $this->editMode = false;
         }
@@ -74,10 +71,6 @@ class CrearUsuario extends Component
         if ($this->editMode && $this->userId) {
             return $this->editUser($datos);
         } else {
-            if ($this->imagen) {
-                $imagen = $this->imagen->store('public/users-profile');
-                $datos['imagen'] = str_replace('public/users-profile/', '', $imagen);
-            }
             $user = User::create([
                 'name' => $datos['name'],
                 'apellido_paterno' => $datos['apellido_paterno'],
@@ -96,16 +89,10 @@ class CrearUsuario extends Component
         return redirect()->route('admin.index');
     }
 
-    public function editUser($datos)
+    public function editUser()
     {
+        $datos = $this->validate($this->getRules());
         $user = User::find($this->userId);
-
-        if ($this->imagen_nueva) {
-            $imagen = $this->imagen_nueva->store('public/users-profile');
-            $datos['imagen'] = str_replace('public/users-profile/', '', $imagen);
-        } else {
-            $datos['imagen'] = $this->imagen;
-        }
 
         if (!empty($this->password)) {
             $datos['password'] = bcrypt($this->password);
@@ -117,6 +104,16 @@ class CrearUsuario extends Component
         session()->flash('message', 'Usuario actualizado exitosamente');
         return redirect()->route('admin.index');
     }
+
+    public function saveUser()
+    {
+        if ($this->editMode && $this->userId) {
+            $this->editUser();
+        } else {
+            $this->createUser();
+        }
+    }
+
 
     public function render()
     {

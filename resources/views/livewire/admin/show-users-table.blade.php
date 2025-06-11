@@ -1,16 +1,14 @@
-<div class="w-full h-auto">
+<div class="w-full h-auto px-4">
     <table class="table-auto text-xs w-full m-auto border-collapse bg-white text-left text-gray-500">
         <thead class="bg-gray-50">
             <tr>
-                <th class="w-1/4 px-3 py-4  font-medium text-gray-900">Nombre</th>
-                <th class="px-3 py-4  font-medium text-gray-900">Correo</th>
+                <th class="md:w-1/4 px-3 py-4  font-medium text-gray-900">Nombre</th>
+                <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Correo</th>
                 <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Fecha de ingreso</th>
-                <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Télefono</th>
-                <th class="px-3 py-4  font-medium text-gray-900">Último acceso</th>
+                <th class="px-3 py-4  font-medium text-gray-900 hidden lg:table-cell">Último acceso</th>
                 <th class="px-3 py-4  font-medium text-gray-900">Herramientas</th>
             </tr>
         </thead>
-
         @foreach ($users as $user)
         <tbody class="divide-y divide-gray-100 border-t border-gray-100">
             <tr class="hover:bg-gray-50">
@@ -26,7 +24,6 @@
                 <td class="px-2 py-2 hidden lg:table-cell capitalize text-black text-sm">{{ $user->email }}</td>
                 <td class="px-2 py-2 hidden lg:table-cell capitalize text-black text-sm">
                     {{\Carbon\Carbon::parse($user->fecha)->format('d-M-Y') }}</td>
-                <td class="px-2 py-2 hidden lg:table-cell capitalize text-black text-sm">{{ $user->telefono }}</td>
                 <td class="px-2 py-2 hidden lg:table-cell capitalize text-black text-sm">
                     {{\Carbon\Carbon::parse($user->updated_at)->format('d-M-Y') }}</td>
 
