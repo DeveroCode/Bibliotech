@@ -251,7 +251,7 @@
                     <x-responsive-nav-link :href="route('loans.create')" :active="request()->routeIs('loans.create')">
                         {{ __('Agregar') }}
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('loans.create')" :active="request()->routeIs('loans.show')">
+                    <x-responsive-nav-link :href="route('loans.show')" :active="request()->routeIs('loans.show')">
                         {{ __('Más información') }}
                     </x-responsive-nav-link>
                 </div>
