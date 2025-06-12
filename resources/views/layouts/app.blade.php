@@ -11,11 +11,12 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="{{ asset('build/assets/app-d331797d.css') }}" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('imgs/logo.png') }}" type="image/x-icon">
 
     {{-- Swipper css --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-
+    <script src="{{ asset('build/assets/app-cfbb7a3c.js') }}" ></script>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{-- Livewire --}}
