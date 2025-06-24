@@ -86,7 +86,6 @@ class CrearUsuario extends Component
                 'rol' => $datos['rol'],
                 'telefono' => 1,
                 'imagen' => null,
-                'imagen' => $datos['imagen'],
             ]);
         }
 
