@@ -15,17 +15,20 @@
         <div>
             <h3 class="text-2xl font-bold">Estado del préstamo</h3>
             <p class="text-sm text-gray-600">
-                <span>{{ $prestamos->alumnos()->first()->nombre }}</span> a continuación se muestra el estado actual de su préstamo
+                <span>{{ $prestamos->alumnos()->first()->nombre }}</span> a continuación se muestra el estado actual de
+                su préstamo
             </p>
 
             <div class="flex flex-col sm:flex-row justify-between py-10 space-y-6 sm:space-y-0 sm:space-x-6">
                 <div class="flex flex-col">
                     <p class="font-bold text-md leading-none">Salida</p>
-                    <span class="text-[14px]">{{ Carbon\Carbon::parse($prestamos->fecha_inicio)->format('d/m/Y') }}</span>
+                    <span class="text-[14px]">{{ Carbon\Carbon::parse($prestamos->fecha_inicio)->format('d/m/Y')
+                        }}</span>
                 </div>
                 <div class="flex flex-col">
                     <p class="font-bold text-md leading-none">Entrega</p>
-                    <span class="text-[14px]">{{ Carbon\Carbon::parse($prestamos->fecha_limite)->format('d/m/Y') }}</span>
+                    <span class="text-[14px]">{{ Carbon\Carbon::parse($prestamos->fecha_limite)->format('d/m/Y')
+                        }}</span>
                 </div>
             </div>
 
@@ -64,6 +67,12 @@
                 @endif
             </section>
         </div>
+    </section>
+    @elseif ($folio && empty($prestamos))
+    <section class="text-center text-red-600 font-semibold p-5" x-data="{ show: true }"
+        x-init="setTimeout(() => show = false, 2000)" x-show="show" x-transition>
+        <i class="fa-solid fa-circle-exclamation mr-2"></i>
+        No se encontró ningún préstamo con el folio ingresado.
     </section>
     @endif
 </div>

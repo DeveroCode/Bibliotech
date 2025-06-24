@@ -36,21 +36,24 @@ class InventoryController extends Controller
 
     public function printInventory()
     {
-        $perPage = 90; // Tamaño óptimo de cada PDF
+        // Aumenta el tiempo de ejecución permitido
+        set_time_limit(300); // 5 minutos
+
+        $perPage = 50; // Menos libros por PDF para aligerar el proceso
         $totalLibros = Libro::count();
         $totalPages = ceil($totalLibros / $perPage);
-        $libros = Libro::all();
+
+        // Cargar headers una sola vez fuera del loop (sigue disponibles dentro)
         $headers = Headers::first();
 
-        if (!$libros) {
-            return redirect()->route('dashboard.print')->with('error', 'Sin existencia de libros en la base de datos. Verifica la existencia');
+        if ($totalLibros === 0) {
+            return redirect()->route('dashboard.print')->with('error', 'Sin existencia de libros en la base de datos.');
         }
 
         if (!$headers || !$headers->header || !$headers->footer) {
-            return redirect()->route('dashboard.print')->with('error', 'No se encontraron encabezados. Por favor, actualice los datos de encabezados en "pie de página".');
+            return redirect()->route('dashboard.print')->with('error', 'Encabezados incompletos o faltantes.');
         }
 
-        // Ruta temporal para almacenar archivos PDF
         $pdfPath = sys_get_temp_dir() . '/pdfs/';
         if (!file_exists($pdfPath)) {
             mkdir($pdfPath, 0777, true);
@@ -65,10 +68,18 @@ class InventoryController extends Controller
         }
 
         for ($page = 1; $page <= $totalPages; $page++) {
-            $libros = Libro::with('autores', 'usuario')->latest()->skip(($page - 1) * $perPage)->take($perPage)->get();
-            $headers = Headers::first();
+            $libros = Libro::with('autores', 'usuario')
+                ->latest()
+                ->skip(($page - 1) * $perPage)
+                ->take($perPage)
+                ->get();
 
-            $pdf = PDF::loadView('pdf.inventory_2', ['libros' => $libros, 'count' => $totalLibros, 'headers' => $headers])
+            // Crear PDF con membrete (headers) en cada vista
+            $pdf = PDF::loadView('pdf.inventory_2', [
+                'libros' => $libros,
+                'count' => $totalLibros,
+                'headers' => $headers
+            ])
                 ->setPaper('a4', 'portrait')
                 ->set_option('isHtml5ParserEnabled', true)
                 ->set_option('isRemoteEnabled', true)
@@ -83,19 +94,21 @@ class InventoryController extends Controller
 
         $zip->close();
 
-        // Borrar archivos PDF temporales
+        // Limpiar archivos PDF temporales
         foreach (glob($pdfPath . '*.pdf') as $file) {
             unlink($file);
         }
 
+        // Guardar actividad del usuario
         UserActivity::create([
             'user_id' => auth()->user()->id,
             'activity' => 'Actualización de inventario',
-            'description' => 'Exportación de inventario realizada' . ' por ' . auth()->user()->name . ' ' . auth()->user()->last_name,
+            'description' => 'Exportación de inventario realizada por ' . auth()->user()->name . ' ' . auth()->user()->last_name,
         ]);
 
         return response()->download($zipPath)->deleteFileAfterSend(true);
     }
+
 
     public function printLoans()
     {
