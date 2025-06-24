@@ -20,6 +20,7 @@ class Alumno extends Model
         'fecha_nacimiento',
         'anio_ingreso',
         'carrera',
+        'sexo',
     ];
 
     public function libros()
