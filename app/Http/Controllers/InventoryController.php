@@ -39,11 +39,11 @@ class InventoryController extends Controller
         // Aumenta el tiempo de ejecución permitido
         set_time_limit(300); // 5 minutos
 
-        $perPage = 50; // Menos libros por PDF para aligerar el proceso
+        $perPage = 25; // Menos libros por PDF para aligerar el proceso
         $totalLibros = Libro::count();
         $totalPages = ceil($totalLibros / $perPage);
 
-        // Cargar headers una sola vez fuera del loop (sigue disponibles dentro)
+      
         $headers = Headers::first();
 
         if ($totalLibros === 0) {

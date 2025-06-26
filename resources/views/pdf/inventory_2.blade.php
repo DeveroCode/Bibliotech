@@ -7,13 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ public_path('css/app_2.css') }}">
     <title>Reporte - Inventario</title>
+
+    <style>
+        @page {
+            margin: 70mm 10mm 30mm 10mm;
+        }
+        body {
+            padding-top: 20mm;
+            padding-bottom: 20mm;
+        }
+    </style>
 </head>
 
 <body>
     {{-- Header and Footer --}}
     <livewire:header-footer />
 
-    <main>
+    <main style="margin-top: 30mm;">
         <div class="header">
             <h1 class="title">Instituto Tecnológico Superior de Nuevo Casas Grandes Chihuahua</h1>
             <p class="subtitle">Av. Tecnológico No. 7100 C.P. 31700</p>
@@ -72,9 +82,7 @@
                             <div class="tbody-book cell">
                                 <div class="tbody-book-title text-normal">{{ $libro->titulo }}</div>
                                 <div class="tbody-book-autor">
-                                    @foreach ($libro->autores as $autor)
-                                    {{ $autor->autor }}
-                                    @endforeach
+                                  <p class="text-uppercase">isbn {{$libro->isbn}}</p>
                                 </div>
                             </div>
                         </th>

@@ -9,14 +9,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ public_path('css/app_2.css') }}">
 
-    <title>Reporte - Prestamos 2024</title>
+    <title>Reporte - Prestamos 2025</title>
+
+
+      <style>
+        @page {
+            margin: 70mm 10mm 30mm 10mm;
+        }
+        body {
+            padding-top: 20mm;
+            padding-bottom: 20mm;
+        }
+    </style>
 </head>
 
 <body>
     {{-- Header and Footer --}}
     <livewire:header-footer />
 
-    <main>
+    <main style="margin-top: 30mm;">
         <div class="header">
             <h1 class="title">Instituto Tecnólogico Superior de Nuevo Casas Grandes Chihuahua</h1>
             <p class="subtitle">Av. Tecnologico No. 7100 C.P. 31700</p>
