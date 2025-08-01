@@ -1,7 +1,7 @@
 <form class="md:w-1/2" wire:submit.prevent='crearLibro'>
     <div>
         <x-input-label for="titulo" :value="__('Titulo del libro')" class="uppercase" />
-        <x-text-input id="titulo" class="block mt-1 w-full" type="text" wire:model="titulo" :value="old('titulo')"
+        <x-text-input id="titulo" class="block mt-1 w-full" type="text" wire:model="titulo"
             placeholder="Ej: calculo diferencial" />
         <x-input-error :messages="$errors->get('titulo')" class="mt-2" />
     </div>
@@ -9,14 +9,14 @@
     <div class="mt-5">
         <x-input-label for="autores" :value="__('Autores *Recuerda colocar al autor principal primero')"
             class="uppercase" />
-        <x-text-input id="autores" class="block mt-1 w-full" type="text" wire:model="autores" :value="old('autores')"
+        <x-text-input id="autores" class="block mt-1 w-full" type="text" wire:model="autores"
             placeholder="Ej: Isaac Newtoon" />
         <x-input-error :messages="$errors->get('autores')" class="mt-2" />
     </div>
 
     <div class="mt-5">
         <x-input-label for="edicion" :value="__('Lugar y Editorial')" class="uppercase" />
-        <x-text-input id="edicion" class="block mt-1 w-full" type="text" wire:model="edicion" :value="old('edicion')"
+        <x-text-input id="edicion" class="block mt-1 w-full" type="text" wire:model="edicion"
             placeholder="Ej: Mexico: Addisson Wesley 1998" />
         <x-input-error :messages="$errors->get('edicion')" class="mt-2" />
     </div>
@@ -24,14 +24,14 @@
     <div class="mt-5 flex">
         <div class="w-1/2 mr-2">
             <x-input-label for="tomo" :value="__('Tomo')" class="uppercase" />
-            <x-text-input id="tomo" class="block mt-1 w-full" type="text" wire:model="tomo" :value="old('tomo')"
+            <x-text-input id="tomo" class="block mt-1 w-full" type="text" wire:model="tomo"
                 placeholder="Ej: Tomo 3" />
         </div>
 
         <div class="w-1/2 mr-2">
             <x-input-label for="paginas" :value="__('Páginas')" class="uppercase" />
             <x-text-input id="paginas" class="block mt-1 w-full" type="text" wire:model="paginas"
-                :value="old('paginas')" placeholder="Ej: 564 Páginas" />
+               placeholder="Ej: 564 Páginas" />
             <x-input-error :messages="$errors->get('paginas')" class="mt-2" />
         </div>
     </div>
@@ -39,8 +39,7 @@
     <div class="mt-5 flex">
         <div class="w-1/2 mr-2">
             <x-input-label for="categoria" :value="__('categoria')" class="uppercase" />
-            <select id="categoria" class="rounded-md  mt-1 w-full border-gray-300" type="text" wire:model="categoria"
-                :value="old('categoria')">
+            <select id="categoria" class="rounded-md  mt-1 w-full border-gray-300" type="text" wire:model="categoria">
                 <option> ---Selección--- </option>
                 @foreach ($categorias as $categoria)
                 <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
@@ -51,8 +50,7 @@
         {{-- Start estantes --}}
         <div class="w-1/2">
             <x-input-label for="estante" :value="__('Estante')" class="uppercase" />
-            <select id="estante" class="rounded-md mt-1 w-full border-gray-300" type="text" wire:model="estante"
-                :value="old('estante')">
+            <select id="estante" class="rounded-md mt-1 w-full border-gray-300" type="text" wire:model="estante">
                 <option> ---Selección--- </option>
                 @foreach ($estantes as $estante)
                 <option value="{{ $estante->id }}">{{ $estante->estante }}</option>
@@ -72,14 +70,14 @@
         <div class="w-1/2">
             <x-input-label for="cantidad" :value="__('cantidad')" class="uppercase" />
             <x-text-input id="cantidad" class="block mt-1 w-full" type="text" wire:model="cantidad"
-                :value="old('cantidad')" placeholder="Ej: calculo diferencial" />
+             placeholder="Ej: calculo diferencial" />
             <x-input-error :messages="$errors->get('cantidad')" class="mt-2" />
         </div>
     </div>
 
     <div class="mt-5">
         <x-input-label for="isbn" :value="__('isbn')" class="uppercase" />
-        <x-text-input id="isbn" class="block mt-1 w-full" type="text" wire:model="isbn" :value="old('isbn')"
+        <x-text-input id="isbn" class="block mt-1 w-full" type="text" wire:model="isbn"
             placeholder="Ej: 12345BB" />
         <x-input-error :messages="$errors->get('isbn')" class="mt-2" />
     </div>
@@ -95,21 +93,15 @@
         <x-text-input id="imagen" class="block text-sm mt-1 w-full" type="file" wire:model="imagen" accept="image/*" />
 
         {{-- Preview image --}}
-        @if(!$imagen_nueva)
-        <div class="mt-5 text-xs">
-            <x-input-label for="imagen" :value="__('portada actual')" class="uppercase" />
-            <img src="{{ asset('storage/libros/' . $imagen) }}" alt="{{ 'Imagen del libro ' . $titulo }}">
-        </div>
-        <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
-        @else
+        @if ($imagen)
         <div class="my-5 w-80">
-            Imagen nueva: <img src="{{ $imagen_nueva->temporaryUrl() }}">
+            Imagen nueva: <img src="{{ $imagen->temporaryUrl() }}">
         </div>
-        <x-input-error :messages="$errors->get('imagen_nueva')" class="mt-2" />
         @endif
+        <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
     </div>
 
     <x-primary-button class="mt-5">
-        {{ $editable ? 'Actualizar Libro' : 'Agregar libro' }}
+        {{ 'Crear libro' }}
     </x-primary-button>
 </form>

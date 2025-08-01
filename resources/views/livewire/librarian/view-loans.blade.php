@@ -2,7 +2,7 @@
 <div class="w-full">
     @if (count($loans) > 0)
     {{-- Bar seach --}}
-    <livewire:filtrar-isbn>
+    <livewire:filtrar-loans>
         <table class="table-auto text-xs w-full m-auto border-collapse bg-white text-left text-gray-500">
             <thead class="bg-gray-50">
                 <tr>
@@ -73,7 +73,7 @@
             @endforeach
         </table>
         @else
-        <h2 class="text-center text-3xl uppercase text-gray-500 m-32">Aún no hay préstamos disponibles</h2>
+        <h2 class="lg:text-center text-xl md:text-3xl uppercase text-gray-500 m-32">Aún no hay préstamos disponibles</h2>
         @endif
         {{-- Paginate --}}
         <div class="mt-10">

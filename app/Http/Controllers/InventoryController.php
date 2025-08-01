@@ -36,11 +36,24 @@ class InventoryController extends Controller
 
     public function printInventory()
     {
-        $perPage = 90; // Tamaño óptimo de cada PDF
+        // Aumenta el tiempo de ejecución permitido
+        set_time_limit(300); // 5 minutos
+
+        $perPage = 25; // Menos libros por PDF para aligerar el proceso
         $totalLibros = Libro::count();
         $totalPages = ceil($totalLibros / $perPage);
 
-        // Ruta temporal para almacenar archivos PDF
+      
+        $headers = Headers::first();
+
+        if ($totalLibros === 0) {
+            return redirect()->route('dashboard.print')->with('error', 'Sin existencia de libros en la base de datos.');
+        }
+
+        if (!$headers || !$headers->header || !$headers->footer) {
+            return redirect()->route('dashboard.print')->with('error', 'Encabezados incompletos o faltantes.');
+        }
+
         $pdfPath = sys_get_temp_dir() . '/pdfs/';
         if (!file_exists($pdfPath)) {
             mkdir($pdfPath, 0777, true);
@@ -55,14 +68,18 @@ class InventoryController extends Controller
         }
 
         for ($page = 1; $page <= $totalPages; $page++) {
-            $libros = Libro::with('autores', 'usuario')->latest()->skip(($page - 1) * $perPage)->take($perPage)->get();
-            $headers = Headers::first();
+            $libros = Libro::with('autores', 'usuario')
+                ->latest()
+                ->skip(($page - 1) * $perPage)
+                ->take($perPage)
+                ->get();
 
-            if (!$headers || !$headers->header || !$headers->footer) {
-                return redirect()->route('inventory.index')->with('error', 'No se encontraron encabezados o pie de país. Por favor, actualice los datos de encabezados.');
-            }
-
-            $pdf = PDF::loadView('pdf.inventory_2', ['libros' => $libros, 'count' => $totalLibros, 'headers' => $headers])
+            // Crear PDF con membrete (headers) en cada vista
+            $pdf = PDF::loadView('pdf.inventory_2', [
+                'libros' => $libros,
+                'count' => $totalLibros,
+                'headers' => $headers
+            ])
                 ->setPaper('a4', 'portrait')
                 ->set_option('isHtml5ParserEnabled', true)
                 ->set_option('isRemoteEnabled', true)
@@ -77,22 +94,34 @@ class InventoryController extends Controller
 
         $zip->close();
 
-        // Borrar archivos PDF temporales
+        // Limpiar archivos PDF temporales
         foreach (glob($pdfPath . '*.pdf') as $file) {
             unlink($file);
         }
 
+        // Guardar actividad del usuario
         UserActivity::create([
             'user_id' => auth()->user()->id,
             'activity' => 'Actualización de inventario',
-            'description' => 'Exportación de inventario realizada' . ' por ' . auth()->user()->name . ' ' . auth()->user()->last_name,
+            'description' => 'Exportación de inventario realizada por ' . auth()->user()->name . ' ' . auth()->user()->last_name,
         ]);
 
         return response()->download($zipPath)->deleteFileAfterSend(true);
     }
 
+
     public function printLoans()
     {
+        $headers = Headers::first();
+        $loans = Prestamo::all();
+
+        if (!$loans) {
+            return redirect()->route('dashboard.print')->with('error', 'No se encontró ningún préstamo, favor de realizar mínimo un préstamo.');
+        }
+
+        if (!$headers || !$headers->header || !$headers->footer) {
+            return redirect()->route('dashboard.print')->with('error', 'No los encabezados. Por favor, actualice los datos de encabezados en "pie de página".');
+        }
         $loans = Prestamo::with('user', 'alumnos', 'libros', 'tipo_prestamo')->latest()->get();
 
         // Encabezados

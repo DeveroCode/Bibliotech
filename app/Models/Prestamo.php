@@ -37,7 +37,7 @@ class Prestamo extends Model
 
     public function tipo_prestamo()
     {
-        return $this->belongsTo(Tipo_prestamo::class, 'tipo_prestamo_id');
+        return $this->belongsTo(Tipo_prestamo::class);
     }
 
     public function autores()

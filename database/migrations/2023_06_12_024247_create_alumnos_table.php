@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('apellidoP');
             $table->string('apellidoM');
             $table->string('email');
-            $table->string('telefono');
-            $table->string('direccion');
             $table->string('no_institucional');
             $table->string('fecha_nacimiento');
             $table->string('anio_ingreso');

@@ -5,82 +5,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{--
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ public_path('css/app_2.css') }}">
-
     <title>Reporte - Inventario</title>
+
+    <style>
+        @page {
+            margin: 70mm 10mm 30mm 10mm;
+        }
+        body {
+            padding-top: 20mm;
+            padding-bottom: 20mm;
+        }
+    </style>
 </head>
 
 <body>
     {{-- Header and Footer --}}
     <livewire:header-footer />
 
-    <main>
+    <main style="margin-top: 30mm;">
         <div class="header">
-            <h1 class="title">Instituto Tecnólogico Superior de Nuevo Casas Grandes Chihuahua</h1>
-            <p class="subtitle">Av. Tecnologico No. 7100 C.P. 31700</p>
+            <h1 class="title">Instituto Tecnológico Superior de Nuevo Casas Grandes Chihuahua</h1>
+            <p class="subtitle">Av. Tecnológico No. 7100 C.P. 31700</p>
             <span class="text-info">Inventario de libros de la biblioteca</span>
         </div>
 
         <div class="information">
             <h2 class="information__title p-1">Libros en existencia</h2>
             <div class="libros-count">
-                <p class="information__sub p-1 fs-2 text-capitalize">expedición: <span class="text-normal fs-1">{{
-                        now()->format('d/m/Y') }}</span></p>
-                <span class="information__sub p-1 fs-2 text-capitalize">libros: <span class="text-normal fs-1">{{
-                        $count}}
-                    </span>
+                <p class="information__sub p-1 fs-2 text-capitalize">expedición:
+                    <span class="text-normal fs-1">{{ now()->format('d/m/Y') }}</span>
+                </p>
+                <span class="information__sub p-1 fs-2 text-capitalize">libros:
+                    <span class="text-normal fs-1">{{ $count }}</span>
+                </span>
             </div>
+
             @php
             $lastUserId = null;
-            $cont=0;
-            $total_pages=0;
             @endphp
 
             @foreach ($libros as $libro)
+            @if ($lastUserId != $libro->usuario->id)
             <div class="libros-bibliotecario">
-                @if ($lastUserId != $libro->usuario->id)
                 <p class="information__sub pr-1 fs-2 text-capitalize">expedido por:
-                    <span class="fs-1 text-normal text-capitalize">
-                        {{ $libro->usuario->name }}
-                    </span>
+                    <span class="fs-1 text-normal text-capitalize">{{ $libro->usuario->name }}</span>
                 </p>
-                @php
-                $lastUserId = $libro->usuario->id;
-                @endphp
-
-                <p class="information__sub fs-2 text-capitalize">folio: <span class="text-normal fs-1">{{
-                        $libro->usuario->email }}</span></p>
-                @endif
+                <p class="information__sub fs-2 text-capitalize">folio:
+                    <span class="text-normal fs-1">{{ $libro->usuario->email }}</span>
+                </p>
             </div>
+            @php
+            $lastUserId = $libro->usuario->id;
+            @endphp
+            @endif
             @endforeach
         </div>
 
-        {{-- Table --}}
+        {{-- Tabla de libros --}}
         <div class="table-group marginT-5">
-            <!-- Table start -->
             <table class="group">
                 <thead class="group-thead">
                     <tr class="group-tr">
                         <th class="group-thead-title group-title">Título</th>
                         <th class="group-thead-title">Estado</th>
-                        <th class="group-thead-title">Edicion</th>
-                        <th class="group-thead-title">Categoria</th>
+                        <th class="group-thead-title">Edición</th>
+                        <th class="group-thead-title">Categoría</th>
                     </tr>
                 </thead>
-                @foreach ($libros as $libro)
+
                 <tbody class="group-tbody">
+                    @foreach ($libros as $libro)
                     <tr class="group-tbody-cell">
-                        <!-- Titulo y autores -->
+                        <!-- Título y autores -->
                         <th class="group-tbody-book py-1">
                             <div class="tbody-book cell">
                                 <div class="tbody-book-title text-normal">{{ $libro->titulo }}</div>
                                 <div class="tbody-book-autor">
-                                    {{-- Autores --}}
-                                    @foreach ($libro->autores as $autor)
-                                    {{ $autor->autor }}
-                                    @endforeach
+                                  <p class="text-uppercase">isbn {{$libro->isbn}}</p>
                                 </div>
                             </div>
                         </th>
@@ -88,74 +90,47 @@
                         <!-- Disponibles -->
                         <td class="group-tbody-category cell">
                             <span class="group-tbody-background">
-                                <span class="group-tbody-category-text"></span>
                                 Disponibles {{ $libro->cantidad }}
                             </span>
                         </td>
 
-                        <!-- Edicion -->
+                        <!-- Edición -->
                         <td class="group-tbody-edicion cell text-capitalize fs-1">{{ $libro->edicion }}</td>
-                        <!-- Categoria -->
+
+                        <!-- Categoría -->
                         <td class="group-tbody-categoria cell">
                             <div class="group-categoria">
                                 @switch($libro->categoria->id)
                                 @case(1)
-                                <span class="group-all sistemas">
-                                    {{ $libro->categoria->categoria}}
-                                </span>
+                                <span class="group-all sistemas">{{ $libro->categoria->categoria }}</span>
                                 @break
                                 @case(2)
-                                <span class="group-all contaduria">
-                                    {{ $libro->categoria->categoria}}
-                                </span>
+                                <span class="group-all contaduria">{{ $libro->categoria->categoria }}</span>
                                 @break
                                 @case(3)
-                                <span class="group-all mecatronica">
-                                    {{ $libro->categoria->categoria}}
-                                </span>
+                                <span class="group-all mecatronica">{{ $libro->categoria->categoria }}</span>
                                 @break
                                 @case(4)
-                                <span class="group-all electromecanica">
-                                    {{ $libro->categoria->categoria}}
-                                </span>
+                                <span class="group-all electromecanica">{{ $libro->categoria->categoria }}</span>
                                 @break
                                 @case(5)
-                                <span class="group-all gestion">
-                                    {{ $libro->categoria->categoria}}
-                                </span>
+                                <span class="group-all gestion">{{ $libro->categoria->categoria }}</span>
                                 @break
                                 @case(6)
-                                <span class="group-all industrial">
-                                    {{ $libro->categoria->categoria}}
-                                </span>
+                                <span class="group-all industrial">{{ $libro->categoria->categoria }}</span>
                                 @break
                                 @case(7)
-                                <span class="group-all electronica">
-                                    {{ $libro->categoria->categoria}}
-                                </span>
+                                <span class="group-all electronica">{{ $libro->categoria->categoria }}</span>
                                 @break
-                                @default
                                 @endswitch
                             </div>
                         </td>
-
-                        @if(count($libros) > 8 && $cont === 8)
-                    <tr colspan="60">
-                        @for ($i = 1; $i <= 7; $i++) <br>
-                            @endfor
                     </tr>
-                    @endif
-                    @php
-                    $cont++;
-                    $total_pages++;
-                    @endphp
-                    </tr>
+                    @endforeach
                 </tbody>
-                @endforeach
             </table>
         </div>
     </main>
-    {{-- Information font-sans antialiased --}}
 </body>
 
 </html>

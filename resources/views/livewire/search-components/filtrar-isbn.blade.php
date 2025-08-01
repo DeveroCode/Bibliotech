@@ -25,37 +25,25 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('livewire:load', () => {
-        // Utilities
-        const $ = selected => document.querySelector(selected);
-        
-        // Variables
-        const $input = $('#isbn');
-        const $data = $('#alert').getAttribute('data-found');
-        const $message = $('#alert').getAttribute('data-msg');
-        const $btn = $('#buscar');
+    const $input = document.querySelector('#isbn');
 
-        // link to function showAlerts
-        $btn.addEventListener('click', showAlerts);
-
-
-        function showAlerts(){
-            if($input.value === ''){
-                Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Ocurrrio un error en su búsqueda, por favor verifique los datos!",
-                });
-            }else if(!$data){
-                setTimeout(() => {
-                    Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: $message ? $message : "El isbn que ingreso es incorrecto!",
-                    });
-                }, 300);
-            }
-        }
+    Livewire.on('isbnFound', (titulo) => {
+        Swal.fire({
+            icon: "success",
+            title: "Libro encontrado!",
+            text: `Se encontró el libro: ${titulo}`,
+        });
     });
+
+    Livewire.on('isbnNotFound', () => {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "El ISBN que ha ingresado no existe o no ha sido registrado!",
+        });
+    });
+});
+
 
     
 </script>

@@ -16,12 +16,11 @@ class Alumno extends Model
         'apellidoP',
         'apellidoM',
         'email',
-        'telefono',
-        'direccion',
         'no_institucional',
         'fecha_nacimiento',
         'anio_ingreso',
         'carrera',
+        'sexo',
     ];
 
     public function libros()
@@ -37,5 +36,10 @@ class Alumno extends Model
     public function prestamos()
     {
         return $this->hasMany(Prestamo::class);
+    }
+
+    public function actividades()
+    {
+        return $this->hasMany(EntriesUsers::class, 'alumno_id');
     }
 }
