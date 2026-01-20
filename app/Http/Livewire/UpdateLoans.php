@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Prestamo;
 use App\Models\Tipo_prestamo;
 use App\Models\UserActivity;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class UpdateLoans extends Component
@@ -43,40 +44,67 @@ class UpdateLoans extends Component
         $this->carrera = $prestamo->alumnos()->first()->carrera;
         $this->nombre = $prestamo->alumnos()->first()->nombre;
         $this->correo = $prestamo->alumnos()->first()->email;
-
     }
 
     public function editarPrestamo()
     {
         $datos = $this->validate();
 
-        $prestamo = Prestamo::find($this->prestamo_id);
+        DB::beginTransaction();
 
-        $prestamo->user()->update(['name' => $datos['user_biblio']]);
-        $prestamo->cantidad = $datos['cantidad'];
-        $prestamo->tipo_prestamo_id = $datos['tipo_prestamo'];
-        $prestamo->folio = $datos['folio'];
+        try {
 
-        $prestamo->alumnos()->update([
-            'carrera' => $datos['carrera'],
-            'nombre' => $datos['nombre'],
-            'email' => $datos['correo'],
-        ]);
+            $prestamo = Prestamo::findOrFail($this->prestamo_id);
+            $prestamo->user()->update([
+                'name' => $datos['user_biblio']
+            ]);
 
-        // Loand table data
-        if ($prestamo->cantidad >= $prestamo->libros()->first()->cantidad) {
-            session()->flash('message', 'Libros insuficientes');
-            return;
-        } else {
+            $prestamo->cantidad = $datos['cantidad'];
+            $prestamo->tipo_prestamo_id = $datos['tipo_prestamo'];
+            $prestamo->folio = $datos['folio'];
+
+            $prestamo->alumnos()->update([
+                'carrera' => $datos['carrera'],
+                'nombre' => $datos['nombre'],
+                'email' => $datos['correo'],
+            ]);
+
+            if ($datos['tipo_prestamo'] == 3) {
+
+                $libro = $prestamo->libros()->first();
+
+                if (!$libro) {
+                    DB::rollBack();
+                    session()->flash('message', 'No se encontró el libro asociado al préstamo');
+                    return;
+                }
+
+                // Regresar stock
+                $libro->cantidad += $datos['cantidad'];
+                $libro->save();
+            }
+
             $prestamo->save();
 
+            // Log de actividad
             UserActivity::create([
-                'user_id' => auth()->user()->id,
-                'activity' => 'Actualización de prestamo',
-                'description' => 'Se han actualizado el prestamo de' . ' ' . $prestamo->alumnos()->first()->nombre . ' ' . $prestamo->alumnos()->first()->apellidoP . ' ' . $prestamo->alumnos()->first()->apellidoM . ' por ' . auth()->user()->name . ' ' . auth()->user()->last_name,
+                'user_id' => auth()->id(),
+                'activity' => 'Actualización de préstamo',
+                'description' =>
+                'Se actualizó el préstamo de ' .
+                    $prestamo->alumnos()->first()->nombre . ' ' .
+                    $prestamo->alumnos()->first()->apellidoP . ' ' .
+                    $prestamo->alumnos()->first()->apellidoM .
+                    ' por ' . auth()->user()->name . ' ' . auth()->user()->last_name,
             ]);
-            session()->flash('message', 'Prestamo actualizado');
+
+            DB::commit();
+
+            session()->flash('message', 'Préstamo actualizado correctamente');
             return redirect()->route('loans.index');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            dd($e->getMessage());
         }
     }
 
