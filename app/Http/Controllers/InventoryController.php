@@ -36,6 +36,13 @@ class InventoryController extends Controller
 
     public function printInventory()
     {
+
+        // dont exist footer and header in the DabatBase?
+        $headers = Headers::first();
+        if (!$headers || !$headers->header || !$headers->footer) {
+            return redirect()->route('dashboard.print')->with('error', 'No se encontraron encabezados o pie de página. Por favor, actualice los datos de encabezado.');
+        }
+
         $perPage = 90; // Tamaño óptimo de cada PDF
         $totalLibros = Libro::count();
         $totalPages = ceil($totalLibros / $perPage);
@@ -59,7 +66,7 @@ class InventoryController extends Controller
             $headers = Headers::first();
 
             if (!$headers || !$headers->header || !$headers->footer) {
-                return redirect()->route('inventory.index')->with('error', 'No se encontraron encabezados o pie de país. Por favor, actualice los datos de encabezados.');
+                return redirect()->route('dashboard.print')->with('error', 'No se encontraron encabezados o pie de país. Por favor, actualice los datos de encabezados.');
             }
 
             $pdf = PDF::loadView('pdf.inventory_2', ['libros' => $libros, 'count' => $totalLibros, 'headers' => $headers])

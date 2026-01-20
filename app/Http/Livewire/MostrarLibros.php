@@ -8,6 +8,7 @@ use Livewire\Component;
 class MostrarLibros extends Component
 {
     public $isbn;
+    public $found;
     protected $listeners = ['deleteBook', 'leerDatos' => 'buscar'];
 
     // Set the colors
@@ -38,25 +39,32 @@ class MostrarLibros extends Component
 
         // Eliminar el libro
         $libro->delete();
-
     }
 
-    public function buscar($isbn)
+    public function buscar($isbn, $found)
     {
         $this->isbn = $isbn;
+        $this->found = $found;
     }
 
     public function render()
     {
         if ($this->isbn) {
-            $libros = Libro::where('isbn', $this->isbn)->paginate(1);
+            // Limpiar ISBN de espacios y guiones
+            $isbn = strtolower(preg_replace('/[^0-9x]/i', '', $this->isbn));
+
+            $libros = Libro::whereRaw(
+                "LOWER(REPLACE(isbn, '-', '')) LIKE ?",
+                ['%' . $isbn . '%']
+            )->paginate(1);
         } else {
             $libros = Libro::paginate(10);
         }
         // $libros = Libro::where('user_id', auth()->user()->id)->paginate(50);
         return view('livewire.librarian.mostrar-libros', [
             'libros' => $libros,
-            'categoryColors' => $this->categoryColors
+            'categoryColors' => $this->categoryColors,
+            'found' => $this->found
         ]);
     }
 }

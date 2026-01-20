@@ -9,11 +9,13 @@ use Livewire\Component;
 class LoanMonitoring extends Component
 {
     public $folio;
+    public $buscando = false;
     protected $listeners = ['readFolio' => 'insert'];
 
     public function insert($folio)
     {
         $this->folio = $folio;
+        $this->buscando = true;
     }
 
     public function render()
@@ -40,6 +42,7 @@ class LoanMonitoring extends Component
         return view('livewire.public-views.loan-monitoring', [
             'prestamos' => $prestamos,
             'estado' => $estado,
+            'buscando' => $this->buscando
         ]);
     }
 }

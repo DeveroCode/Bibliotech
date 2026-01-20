@@ -21,17 +21,24 @@ class FiltrarIsbn extends Component
     }
     public function leerDatosFormulario()
     {
-        $libro = Libro::where('isbn', $this->isbn)->first();
+        // Normalizar ISBN del input
+        $isbn = strtolower(preg_replace('/[^0-9x]/i', '', $this->isbn));
+
+        $libro = Libro::whereRaw(
+            "LOWER(REPLACE(isbn, '-', '')) = ?",
+            [$isbn]
+        )->first();
 
         if ($libro) {
             $this->found = true;
-            $this->emit('isbnFound', $libro->titulo); 
+            $this->emit('isbnFound', $libro->titulo);
         } else {
             $this->found = false;
             $this->emit('isbnNotFound');
         }
 
-        $this->emit('leerDatos', $this->isbn);
+        // IMPORTANTE: enviar el ISBN original para el otro componente
+        $this->emit('leerDatos', $this->isbn, $this->found);
     }
 
     public function mount()

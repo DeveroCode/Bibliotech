@@ -24,8 +24,8 @@
 
         <div class="pt-10 flex justify-end">
             <input type="button" wire:click='processLoan' wire:loading.attr="disabled" wire:target="processLoan"
-                class="inline-flex uppercase items-center justify-center md:justify-start w-full px-5 py-2 mb-3 mr-1 text-sm font-bold text-white no-underline align-middle bg-indigo-600 border border-transparent border-solid rounded-md cursor-pointer select-none sm:mb-0 sm:w-auto hover:bg-indigo-700 hover:border-indigo-700 hover:text-white focus-within:bg-indigo-700 focus-within:border-blindigoue-700" :class="{'opacity-50 cursor-not-allowed': $wire.loading}"
-                value="Enviar e Imprimir">
+                class="inline-flex uppercase items-center justify-center md:justify-start w-full px-5 py-2 mb-3 mr-1 text-sm font-bold text-white no-underline align-middle bg-indigo-600 border border-transparent border-solid rounded-md cursor-pointer select-none sm:mb-0 sm:w-auto hover:bg-indigo-700 hover:border-indigo-700 hover:text-white focus-within:bg-indigo-700 focus-within:border-blindigoue-700"
+                :class="{'opacity-50 cursor-not-allowed': $wire.loading}" value="Enviar e Imprimir">
 
         </div>
 
@@ -41,3 +41,9 @@
 
     </div>
 </div>
+
+<script>
+    window.addEventListener('stockInsuficiente', () => {
+        alert('Libros insuficientes para realizar el préstamo');
+    });
+</script>

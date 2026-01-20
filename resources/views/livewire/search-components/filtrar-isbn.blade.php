@@ -9,10 +9,21 @@
                 wire:model="isbn" id="isbn">
 
         </div>
-        <div>
-            <input type="submit"
-                class="inline-flex items-center w-full px-5 py-2 mb-3 mr-1 text-sm font-bold text-white no-underline align-middle bg-indigo-600 border border-transparent border-solid rounded-md cursor-pointer select-none sm:mb-0 sm:w-auto hover:bg-indigo-700 hover:border-indigo-700 hover:text-white focus-within:bg-indigo-700 focus-within:border-blindigoue-700 text-center"
-                value="Buscar" id="buscar">
+
+        <div class="flex gap-2">
+            <div>
+                <input type="submit"
+                    class="inline-flex items-center w-full px-5 py-2 mb-3 mr-1 text-sm font-bold text-white no-underline align-middle bg-indigo-600 border border-transparent border-solid rounded-md cursor-pointer select-none sm:mb-0 sm:w-auto hover:bg-indigo-700 hover:border-indigo-700 hover:text-white focus-within:bg-indigo-700 focus-within:border-blindigoue-700 text-center"
+                    value="Buscar" id="buscar">
+            </div>
+            @if ($this->found)
+            <div>
+                <a href="{{ route('dashboard.show') }}"
+                    class="inline-flex items-center w-full px-5 py-2 mb-3 mr-1 text-sm font-bold text-white no-underline align-middle bg-indigo-600 border border-transparent border-solid rounded-md cursor-pointer select-none sm:mb-0 sm:w-auto hover:bg-indigo-700 hover:border-indigo-700 hover:text-white focus-within:bg-indigo-700 focus-within:border-blindigoue-700 text-center">
+                    Regresar
+                </a>
+            </div>
+            @endif
         </div>
     </form>
 
@@ -43,8 +54,5 @@
         });
     });
 });
-
-
-    
 </script>
 @endpush

@@ -66,7 +66,7 @@ class PrestamosLibros extends Component
 
     public function mount_total_books($datos)
     {
-        $this->cantidad = $datos['cantidad_libros'];
+        $this->cantidad = $datos['cantidad_libros']; // Cantidad insertada desde el input - front - ni idea para que sirve, pero no lo borren
     }
 
     public function loadDataBook($datos)
@@ -81,61 +81,70 @@ class PrestamosLibros extends Component
 
     public function processLoan()
     {
-
-        // Validar los datos según las reglas
         $datos = $this->validate();
 
-        $datos['fecha_inicio'] = Carbon::parse($datos['fecha_inicio'])->format('Y-m-d');
-        $datos['fecha_limite'] = Carbon::parse($datos['fecha_limite'])->format('Y-m-d');
-        $datos['user_id'] = $this->user_id;
-        $datos['cantidad'] = $this->cantidad;
-        $datos['folio'] = $this->folio;
-        $datos['tipo_prestamo_id'] = $this->tipo_prestamo_id;
+        DB::beginTransaction();
 
-        // verifica que la cantidad es mayor a cantidad_prestamo y si es verdadero, no se crea el prestamo
-        if ($datos['cantidad'] > $this->cantidad_prestamo) {
-            dd('No se puede realizar el prestamo');
+        try {
+
+            $libro = Libro::lockForUpdate()->find($this->libro_id);
+
+            // Validar stock
+            if (!$libro || $this->cantidad > $libro->cantidad) {
+                DB::rollBack();
+                $this->dispatchBrowserEvent('stockInsuficiente');
+                return;
+            }
+
+            // Fechas
+            $fechaInicio = Carbon::parse($this->fecha_inicio)->format('Y-m-d');
+            $fechaLimite = Carbon::parse($this->fecha_limite)->format('Y-m-d');
+
+            // Crear préstamo
+            $prestamo = Prestamo::create([
+                'fecha_inicio' => $fechaInicio,
+                'fecha_limite' => $fechaLimite,
+                'user_id' => auth()->id(),
+                'cantidad' => $this->cantidad,
+                'folio' => $this->folio,
+                'tipo_prestamo_id' => $this->tipo_prestamo_id,
+            ]);
+
+            // Pivot
+            DB::table('libro_prestamo')->insert([
+                'alumno_id' => $this->id_student,
+                'libro_id' => $this->libro_id,
+                'prestamo_id' => $prestamo->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            // Restar stock
+            $libro->cantidad -= $this->cantidad;
+            $libro->save();
+
+            // Email
+            $alumno = Alumno::find($this->id_student);
+            Mail::to($alumno->email)
+                ->send(new NotificarPrestamo($alumno, $prestamo, $libro));
+            // Activity log
+            UserActivity::create([
+                'user_id' => auth()->id(),
+                'activity' => 'Préstamo realizado',
+                'description' => 'Se prestó el libro ' . $libro->titulo . ' a ' .
+                    $alumno->nombre . ' ' . $alumno->apellidoP,
+            ]);
+
+            DB::commit();
+
+            session()->flash('message', 'Préstamo realizado exitosamente.');
+            return redirect()->route('dashboard');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            dd($e->getMessage());
         }
-
-        $prestamo = Prestamo::create([
-            'fecha_inicio' => $datos['fecha_inicio'],
-            'fecha_limite' => $datos['fecha_limite'],
-            'user_id' => $datos['user_id'],
-            'cantidad' => $datos['cantidad'],
-            'folio' => $datos['folio'],
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'tipo_prestamo_id' => $datos['tipo_prestamo_id'],
-        ]);
-
-        DB::table('libro_prestamo')->insert([
-            'alumno_id' => $this->id_student,
-            'libro_id' => $this->libro_id,
-            'prestamo_id' => $prestamo->id,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-
-        ]);
-
-        // Get the email by id_student
-        $alumno = Alumno::find($this->id_student);
-        $libro = Libro::find($this->libro_id);
-        $email = $alumno->email;
-
-        Mail::to($email)->send(new NotificarPrestamo($alumno, $prestamo, $libro));
-
-        UserActivity::create([
-            'user_id' => auth()->user()->id,
-            'activity' => ' Prestamo realizado',
-            'description' => 'Se ha prestado un libro ' . $libro->titulo . ' por ' . $alumno->nombre . ' ' . $alumno->apellidoP . ' ' . ' ' . $alumno->apellidoM . ' ' . $alumno->apellidoM,
-        ]);
-
-        session()->flash('message', 'Prestamo realizado exitosamente.');
-        return redirect()->route('dashboard');
     }
+
 
     public function render()
     {

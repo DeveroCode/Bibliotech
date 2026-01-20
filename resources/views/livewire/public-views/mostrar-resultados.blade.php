@@ -1,10 +1,14 @@
 <div class="py-10">
     <div class="flex flex-col md:flex-row flex-wrap gap-10 items-center justify-center px-14">
-        @foreach ($libros as $libro)
+
+        @forelse ($libros as $libro)
             <div class="flex w-[350px] h-[200px] bg-white shadow-lg rounded-lg overflow-hidden">
                 <div class="w-1/3 h-full flex justify-center items-center bg-gray-100">
-                    <img src="{{ asset('storage/libros/' . $libro->imagen) }}" alt="Imagen del libro" class="object-contain h-full w-full">
+                    <img src="{{ asset('storage/libros/' . $libro->imagen) }}"
+                         alt="Imagen del libro"
+                         class="object-contain h-full w-full">
                 </div>
+
                 <div class="flex flex-col justify-between flex-1 p-4">
                     <div>
                         <h2 class="text-gray-900 font-bold text-xl capitalize truncate">
@@ -14,6 +18,7 @@
                             {{ Str::limit($libro->descripcion, 80) }}
                         </p>
                     </div>
+
                     <div class="mt-4">
                         <div class="flex items-center">
                             @if ($libro->cantidad <= 10 && $libro->cantidad > 0)
@@ -32,19 +37,31 @@
                                 </span>
                             @endif
                         </div>
+
                         <div class="flex justify-center mt-4">
                             <a href="{{ route('show.books', $libro->id) }}"
-                                class="px-3 py-2 bg-indigo-500 hover:bg-indigo-800 transition-all text-white text-xs font-bold uppercase rounded">
+                               class="px-3 py-2 bg-indigo-500 hover:bg-indigo-800 transition-all text-white text-xs font-bold uppercase rounded">
                                 Más información
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-        @endforeach
+
+        @empty
+            <div class="w-full flex justify-center">
+                <div class="text-center bg-purple-100 border border-purple-400 text-purple-700 px-6 py-4 rounded-lg">
+                    <p class="font-bold uppercase text-sm">No se encontraron resultados</p>
+                    <p class="text-xs mt-1">Intenta con otro criterio de búsqueda</p>
+                </div>
+            </div>
+        @endforelse
+
     </div>
 
-    <div class="mt-10 px-32">
-        {{ $libros->links() }}
-    </div>
+    @if ($libros->count())
+        <div class="mt-10 px-32">
+            {{ $libros->links() }}
+        </div>
+    @endif
 </div>

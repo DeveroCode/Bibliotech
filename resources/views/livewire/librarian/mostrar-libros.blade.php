@@ -4,8 +4,6 @@
     @if(count($libros) > 0)
     {{-- Bar seach --}}
     <livewire:filtrar-isbn>
-
-
         <table class="table-auto text-xs w-full m-auto border-collapse bg-white text-left text-gray-500">
             <thead class="bg-gray-50">
                 <tr>
@@ -76,6 +74,12 @@
         {{-- Paginate --}}
         <div class="mt-10">
             {{ $libros->links() }}
+        </div>
+        @elseif ($found===false)
+        <div class="w-full flex justify-center items-center flex-col">
+            <p class="text-4xl text-gray-600 text-center mt-20 uppercase">Libro no encontrado</p>
+            <a href="{{ route('dashboard.show') }}"
+                class="underline text-purple-600 hover:text-purple-800 w-32">Regresar</a>
         </div>
         @else
 

@@ -14,7 +14,13 @@
                 <section class="flex items-center gap-3 mb-4">
                     <div>
                         <h1 class="text-lg md:text-xl capitalize font-bold">{{ $book->titulo }}</h1>
-                        <p class="text-sm md:text-md text-gray-600">{{ json_decode($book->autores)[0]->autor }}</p>
+                        @php
+                        $autores = json_decode($book->autores, true);
+                        @endphp
+
+                        <p class="text-sm md:text-md text-gray-600 capitalize">
+                            {{ $autores[0]['autor'] ?? 'Autor no registrado' }}
+                        </p>
                     </div>
                     <div class="flex items-center gap-2 capitalize relative group">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
